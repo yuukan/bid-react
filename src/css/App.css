@@ -62,7 +62,7 @@ body,
   width: 100%;
   height: 100%;
   font-family: 'Roboto';
-  font-size: 10px;
+  font-size: 20px;
   color: #2B2D42; }
 
 #root {
@@ -72,7 +72,7 @@ body,
       padding-top: 0px; } }
 
 h1 {
-  font-size: 3.0rem;
+  font-size: 1.7rem;
   font-weight: bold;
   margin-bottom: 20px; }
 
@@ -311,9 +311,12 @@ header {
     background: #fff;
     padding: 25px; }
   .crear-container .list-container {
-    font-size: 1.6rem; }
-    .crear-container .list-container .MuiTableCell-root {
-      font-size: 1.6rem; }
+    font-size: 0.8rem; }
+    .crear-container .list-container .MuiTableCell-root,
+    .crear-container .list-container button {
+      font-size: 0.8rem; }
+    .crear-container .list-container .MuiSvgIcon-root {
+      font-size: 1.25rem; }
   .crear-container .row {
     float: left;
     width: 100%;
@@ -327,7 +330,7 @@ header {
       float: left;
       width: 100%;
       margin-bottom: 5px;
-      font-size: 2.0rem;
+      font-size: 1.0rem;
       color: #2B2D42; }
     .crear-container .row input,
     .crear-container .row select {
@@ -335,7 +338,7 @@ header {
       width: 100%;
       height: 38px;
       padding: 5px 10px;
-      font-size: 1.8rem;
+      font-size: 0.9rem;
       border-radius: 5px;
       border: 1px solid #B3B3B3; }
       .crear-container .row input.error,
@@ -354,7 +357,7 @@ header {
     .crear-container .row .save {
       float: right;
       border: none;
-      font-size: 1.4rem;
+      font-size: 0.7rem;
       background: #ADC698;
       color: white;
       padding: 10px 15px; }
