@@ -1,0 +1,128 @@
+header{
+    float: left;
+    width: 100%;
+    background: $blue;
+    color: $white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: 65px;
+    padding: 0 25px;
+    border-bottom: 1px solid $lighterGray;
+    @media print {
+        display: none;
+    }
+    img{
+        float:left;
+        height: 64px;
+        // margin-top: 3px;
+    }
+    ul{
+        margin-left: 25px;
+        float: left;
+        li{
+            margin-right: 10px;
+            display: inline-block;
+            a{
+                line-height: 49px;
+                font-size: 15px;
+                color: $white;
+                text-decoration: none;
+                border-bottom: 1px solid $white;
+                display: inline-block;
+                &:hover{
+                    color: $white;
+                    border-bottom-color: $white;
+                }
+                &.active{
+                    color: $white;
+                    border-bottom-color: $white;
+                }
+                svg{
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .bars{
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        line-height: 60px;
+        float: left;
+        margin-left: 80px;
+        &.active{
+            color: $green;
+        } 
+    }
+    .sign-out{
+        line-height: 65px;
+        font-size: 15px;
+        color: $white;
+        text-decoration: none;
+        float: right;
+        &:hover{
+            color: $green;
+        }
+        svg{
+            margin-right: 5px;
+        }
+    }
+}
+.navbar-container{
+    position: fixed;
+    top: 65px;
+    left: -100%;
+    width: 100%;
+    background: transparent;
+    height: 100%;
+    transition: all 0.5s;
+    z-index: 99;
+    &.active{
+        left: 0;
+    }
+    .navbar{
+        float: left;;
+        width: 260px;
+        background: #234e76;
+        height: 100%;
+        transition: all 0.5s;
+        .nav-title{
+            float:left;
+            width: 100%;
+            color: $white;
+            font-size: 34px;
+            border-bottom:  $white solid 1px;
+            padding-left: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+        ul{
+            float: left;
+            width: 100%;
+            padding-left: 25px;
+            padding-top: 30px;
+            li{
+                a{
+                    float: left;
+                    width: 100%;
+                    color: white;
+                    text-decoration: none;
+                    padding-bottom: 30px;
+                    font-size: 16px;
+                    svg{
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+    .empty-clickable{
+        float: left;
+        width: calc(100% - 260px);
+        height: 100%;
+    }
+}

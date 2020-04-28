@@ -1,0 +1,16 @@
+.home-container{
+    float: left;
+    width: 100%;
+    min-height: 100%;
+    padding: 25px 20px 20px;
+    .hero{
+        width: 500px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        img{
+            width: 100%;
+        }
+    }
+}

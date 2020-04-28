@@ -1,0 +1,360 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+html {
+  background: #DCDCDD; }
+
+html,
+body,
+#root,
+#main,
+.routes-container {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto';
+  font-size: 10px;
+  color: #2B2D42; }
+
+#root {
+  padding-top: 65px; }
+  @media print {
+    #root {
+      padding-top: 0px; } }
+
+h1 {
+  font-size: 3.0rem;
+  font-weight: bold;
+  margin-bottom: 20px; }
+
+.landing {
+  background: url(../images/bg.png);
+  width: 100%;
+  height: calc(100% + 50px);
+  position: relative;
+  margin-top: -50px; }
+  .landing .buttons-container {
+    float: left; }
+  .landing .splash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 330px;
+    background: #fefefe;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #ccc; }
+    .landing .splash img {
+      width: 100%; }
+    .landing .splash .social-btn {
+      float: left;
+      width: 100%;
+      color: white;
+      font-family: 'Roboto';
+      font-size: 20px;
+      margin-top: 15px;
+      line-height: normal;
+      background: black;
+      border: none;
+      padding: 0; }
+      .landing .splash .social-btn:nth-of-type(1) {
+        background: #3b5998; }
+      .landing .splash .social-btn:nth-of-type(2) {
+        background: #db3236; }
+      .landing .splash .social-btn svg {
+        display: inline-block;
+        padding: 10px 0px 0 0;
+        font-size: 20px;
+        width: 20px;
+        margin-right: 5px; }
+      .landing .splash .social-btn span {
+        padding: 10px 10px 10px 0;
+        display: inline-block; }
+    .landing .splash .gohome {
+      float: left;
+      width: 100%;
+      color: #fff;
+      font-family: 'Roboto';
+      font-size: 20px;
+      margin-top: 15px;
+      line-height: normal;
+      background: black;
+      border: none;
+      padding: 0;
+      text-align: center; }
+      .landing .splash .gohome.goBack {
+        margin-top: 35px;
+        background: #999;
+        width: auto;
+        font-size: 12px;
+        border-radius: 5px; }
+        .landing .splash .gohome.goBack svg {
+          display: inline-block;
+          padding: 0 0 0 5px;
+          font-size: 12px;
+          margin-right: 5px;
+          width: 15px; }
+        .landing .splash .gohome.goBack span {
+          padding: 5px 5px 5px 0; }
+      .landing .splash .gohome svg {
+        display: inline-block;
+        padding: 10px 0px 0 0;
+        font-size: 31px;
+        width: 31px;
+        margin-right: 5px; }
+      .landing .splash .gohome span {
+        padding: 10px 10px 10px 0;
+        display: inline-block;
+        font-size: 18px; }
+    .landing .splash .invitado {
+      text-decoration: none;
+      float: left;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      margin-top: 25px; }
+
+.email-form {
+  float: left;
+  width: 100%;
+  padding-top: 25px; }
+  .email-form input {
+    float: left;
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #CFCFCF;
+    line-height: 30px;
+    font-size: 15px; }
+
+header {
+  float: left;
+  width: 100%;
+  background: #0b4f76;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 65px;
+  padding: 0 25px;
+  border-bottom: 1px solid #dbdbdb; }
+  @media print {
+    header {
+      display: none; } }
+  header img {
+    float: left;
+    height: 64px; }
+  header ul {
+    margin-left: 25px;
+    float: left; }
+    header ul li {
+      margin-right: 10px;
+      display: inline-block; }
+      header ul li a {
+        line-height: 49px;
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid #fff;
+        display: inline-block; }
+        header ul li a:hover {
+          color: #fff;
+          border-bottom-color: #fff; }
+        header ul li a.active {
+          color: #fff;
+          border-bottom-color: #fff; }
+        header ul li a svg {
+          margin-right: 5px; }
+  header .bars {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    line-height: 60px;
+    float: left;
+    margin-left: 80px; }
+    header .bars.active {
+      color: #ADC698; }
+  header .sign-out {
+    line-height: 65px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    float: right; }
+    header .sign-out:hover {
+      color: #ADC698; }
+    header .sign-out svg {
+      margin-right: 5px; }
+
+.navbar-container {
+  position: fixed;
+  top: 65px;
+  left: -100%;
+  width: 100%;
+  background: transparent;
+  height: 100%;
+  transition: all 0.5s;
+  z-index: 99; }
+  .navbar-container.active {
+    left: 0; }
+  .navbar-container .navbar {
+    float: left;
+    width: 260px;
+    background: #234e76;
+    height: 100%;
+    transition: all 0.5s; }
+    .navbar-container .navbar .nav-title {
+      float: left;
+      width: 100%;
+      color: #fff;
+      font-size: 34px;
+      border-bottom: #fff solid 1px;
+      padding-left: 25px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-weight: bold; }
+    .navbar-container .navbar ul {
+      float: left;
+      width: 100%;
+      padding-left: 25px;
+      padding-top: 30px; }
+      .navbar-container .navbar ul li a {
+        float: left;
+        width: 100%;
+        color: white;
+        text-decoration: none;
+        padding-bottom: 30px;
+        font-size: 16px; }
+        .navbar-container .navbar ul li a svg {
+          margin-right: 15px; }
+  .navbar-container .empty-clickable {
+    float: left;
+    width: calc(100% - 260px);
+    height: 100%; }
+
+.home-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  padding: 25px 20px 20px; }
+  .home-container .hero {
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+    .home-container .hero img {
+      width: 100%; }
+
+.crear-container {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+  padding: 25px; }
+  .crear-container .sub-container {
+    float: left;
+    width: 100%;
+    background: #fff;
+    padding: 25px; }
+  .crear-container .list-container {
+    font-size: 1.6rem; }
+    .crear-container .list-container .MuiTableCell-root {
+      font-size: 1.6rem; }
+  .crear-container .row {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px; }
+    .crear-container .row .half {
+      float: left;
+      width: 50%; }
+      .crear-container .row .half:nth-of-type(1) {
+        padding-right: 10px; }
+    .crear-container .row label {
+      float: left;
+      width: 100%;
+      margin-bottom: 5px;
+      font-size: 2.0rem;
+      color: #2B2D42; }
+    .crear-container .row input,
+    .crear-container .row select {
+      float: left;
+      width: 100%;
+      height: 38px;
+      padding: 5px 10px;
+      font-size: 1.8rem;
+      border-radius: 5px;
+      border: 1px solid #B3B3B3; }
+      .crear-container .row input.error,
+      .crear-container .row select.error {
+        border-left: 10px solid #EE2E31;
+        border-color: #EE2E31; }
+    .crear-container .row .error-msg,
+    .crear-container .row .error-hide {
+      float: left;
+      width: 100%;
+      font-size: 12px;
+      color: #EE2E31;
+      margin-top: 5px; }
+    .crear-container .row .error-hide {
+      color: transparent; }
+    .crear-container .row .save {
+      float: right;
+      border: none;
+      font-size: 1.4rem;
+      background: #ADC698;
+      color: white;
+      padding: 10px 15px; }
