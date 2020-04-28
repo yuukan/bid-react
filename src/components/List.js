@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { Star } from '@material-ui/icons/';
+import { CloudUpload } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -77,6 +77,15 @@ class List extends Component {
                                     options={{
                                         pageSize: 20
                                     }}
+                                    actions={[
+                                        rowData => ({
+                                            icon: CloudUpload,
+                                            tooltip: 'Subir Documentos',
+                                            onClick: (event, rowData) => {
+                                                this.props.history.push("/subir-documentos/" + rowData.id);
+                                            },
+                                        })
+                                    ]}
                                     localization={{
                                         pagination: {
                                             labelDisplayedRows: '{from}-{to} de {count}',
@@ -87,7 +96,7 @@ class List extends Component {
                                             searchPlaceholder: 'Buscar'
                                         },
                                         header: {
-                                            actions: 'Estados'
+                                            actions: 'Acciones'
                                         },
                                         body: {
                                             emptyDataSourceMessage: 'No existen ordenes',
