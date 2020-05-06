@@ -11,7 +11,7 @@ function CrearOperacion(props) {
     const onSubmit = (values, e) => {
         axios.post(props.url + "api/crear-operacion", values)
             .then(function () {
-                swal("Success", "!Operación creada!", "success");
+                swal("Éxito", "!Operación creada!", "success");
                 props.getProcesses();
                 e.target.reset();
             })

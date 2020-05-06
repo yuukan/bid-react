@@ -30,6 +30,57 @@
                 padding-right: 10px;
             }
         }
+        &.file-input{
+            .label{
+                float: left;
+                width: 100%;
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            input{
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+            input + label{
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: white;
+                background-color: $blue;
+                display: inline-block;
+                cursor:pointer;
+                width: auto;
+                padding: 10px 15px;
+                transition: all 0.5s;
+                &.active{
+                    background: white;
+                    color: $blue;
+                    border-bottom: 4px solid $blue;
+                }
+                svg{
+                    margin-right: 10px;
+                }
+            }
+            input:focus + label{
+                outline: 1px dotted $blue;
+                outline: -webkit-focus-ring-color auto 5px;
+                &.active{
+                    background: white;
+                    color: $blue !important;
+                    border-bottom: 4px solid $blue;
+                }
+            }
+            input:focus + label,
+            input + label:hover {
+                background-color: lighten($blue,10);
+                &.active{
+                    color: white;
+                }
+            }
+        }
         label{
             float: left;
             width: 100%;
@@ -69,6 +120,10 @@
             background: $green;
             color: white;
             padding: 10px 15px;
+            cursor: pointer;
+            &:hover{
+                background: darken($green, 10);
+            }
         }
     }
 }
