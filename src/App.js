@@ -7,14 +7,15 @@ import Header from './components/Header';
 import Home from './components/Home';
 import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
+import UploadDocuments from './components/UploadDocuments';
 import axios from 'axios';
 // We import the css
 import './css/App.css';
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlusHexagon, faSave } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlusHexagon, faSave);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList);
 
 let url = "http://192.241.219.113/bid/public/";
 
@@ -171,6 +172,14 @@ class App extends Component {
                         {...props}
                         url={url}
                         processes={this.state.processes}
+                      />} />
+
+                  <Route path="/subir-documentos/:id"
+                    render={(props) =>
+                      <UploadDocuments
+                        {...props}
+                        url={url}
+                        getProcesses={this.getProcesses}
                       />} />
 
 

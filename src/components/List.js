@@ -87,7 +87,7 @@ class List extends Component {
                                         }),
                                         rowData => ({
                                             icon: Visibility,
-                                            tooltip: 'Ver Detalle',
+                                            tooltip: 'Ver plan de adquisiciones',
                                             hidden: rowData.adquisiciones === "",
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/view-plan/" + rowData.id);
