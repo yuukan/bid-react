@@ -90,7 +90,7 @@ class List extends Component {
                                             tooltip: 'Ver plan de adquisiciones',
                                             hidden: rowData.adquisiciones === "",
                                             onClick: (event, rowData) => {
-                                                this.props.history.push("/view-plan/" + rowData.id);
+                                                this.props.history.push("/ver-plan/" + rowData.id);
                                             },
                                         })
                                     ]}

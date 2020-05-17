@@ -8,6 +8,7 @@ import Home from './components/Home';
 import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
 import UploadDocuments from './components/UploadDocuments';
+import ViewPlan from './components/ViewPlan';
 import axios from 'axios';
 // We import the css
 import './css/App.css';
@@ -177,6 +178,14 @@ class App extends Component {
                   <Route path="/subir-documentos/:id"
                     render={(props) =>
                       <UploadDocuments
+                        {...props}
+                        url={url}
+                        getProcesses={this.getProcesses}
+                      />} />
+
+                  <Route path="/ver-plan/:id"
+                    render={(props) =>
+                      <ViewPlan
                         {...props}
                         url={url}
                         getProcesses={this.getProcesses}
