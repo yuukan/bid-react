@@ -52,6 +52,7 @@ function ViewPlan(props) {
                 urlDocs={props.urlDocs}
                 url={props.url}
                 removeLine={removeLine}
+                history={props.history}
             />
 
         </div>

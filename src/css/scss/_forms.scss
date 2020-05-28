@@ -194,5 +194,18 @@
                 background: darken($green, 10);
             }
         }
+        .cancel{
+            float: right;
+            border: none;
+            font-size: 0.7rem;
+            background: $purple;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            &:hover{
+                background: darken($purple, 10);
+            }
+        }
     }
 }

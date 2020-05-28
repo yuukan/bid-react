@@ -117,7 +117,7 @@ export default function PlanDetail(props) {
                                                 icon: Edit,
                                                 tooltip: 'Editar Fila',
                                                 onClick: (event, rowData) => {
-                                                    this.props.history.push("/editar-detalle-plan/" + rowData.id);
+                                                    props.history.push("/editar-detalle-plan/" + rowData.id);
                                                 },
                                             })
                                         ]}

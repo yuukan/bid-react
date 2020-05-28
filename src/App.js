@@ -9,14 +9,15 @@ import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
 import UploadDocuments from './components/UploadDocuments';
 import ViewPlan from './components/ViewPlan';
+import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
 // We import the css
 import './css/App.css';
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft);
 
 let url = "http://192.241.219.113/bid/public/";
 let urlDocs = "http://192.241.219.113/bid/storage/app/";
@@ -35,7 +36,11 @@ class App extends Component {
       userData: null,
       types: null,
       processes: null,
-      current: "home"
+      current: "home",
+      tipo_plan: null,
+      metodo_seleccion: null,
+      componente_asociado: null,
+      metodo_revision: null
     };
   }
 
@@ -45,11 +50,43 @@ class App extends Component {
     if (id) {
       this.changeLogged(true);
     }
-    // Get the empresas
+    // Get the tipos de proceso
     let t = this;
     axios.post(url + "api/get-process-type")
       .then(function (response) {
         t.setState({ types: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Tipo Plan
+    axios.post(url + "api/get-tipo-plan")
+      .then(function (response) {
+        t.setState({ tipo_plan: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Metodo Selección
+    axios.post(url + "api/get-metodo-seleccion")
+      .then(function (response) {
+        t.setState({ metodo_seleccion: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Componente Asociado
+    axios.post(url + "api/get-componente-asociado")
+      .then(function (response) {
+        t.setState({ componente_asociado: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Metodo de Revisión
+    axios.post(url + "api/get-metodo-revision")
+      .then(function (response) {
+        t.setState({ metodo_revision: response.data });
       })
       .catch(function (error) {
         console.log(error);
@@ -192,6 +229,18 @@ class App extends Component {
                         urlDocs={urlDocs}
                         getProcesses={this.getProcesses}
                         processes={this.state.processes}
+                      />} />
+
+                  <Route path="/editar-detalle-plan/:id"
+                    render={(props) =>
+                      <EditarDetallePlan
+                        {...props}
+                        url={url}
+                        types={this.state.types}
+                        tipo_plan={this.state.tipo_plan}
+                        metodo_seleccion={this.state.metodo_seleccion}
+                        componente_asociado={this.state.componente_asociado}
+                        metodo_revision={this.state.metodo_revision}
                       />} />
 
 

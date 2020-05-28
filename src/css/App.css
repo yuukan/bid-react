@@ -461,3 +461,14 @@ header {
       cursor: pointer; }
       .crear-container .row .save:hover {
         background: #93b477; }
+    .crear-container .row .cancel {
+      float: right;
+      border: none;
+      font-size: 0.7rem;
+      background: #861657;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-right: 10px; }
+      .crear-container .row .cancel:hover {
+        background: #5a0f3b; }
