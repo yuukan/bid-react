@@ -30,6 +30,47 @@
                 padding-right: 10px;
             }
         }
+        &.table{
+            th,
+            td{
+                font-size: 0.7rem;
+            }
+            input{
+                border: 0;
+            }
+        }
+        &.plan-header{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            .fifth{
+                width: 32%;
+                margin-bottom: 1.33%;
+                background: white;
+                box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+                .title{
+                    float: left; 
+                    width: 100%;
+                    background: $blue;
+                    color: white;
+                    padding: 10px;
+                    font-size: 0.9rem;
+                    line-height: normal;
+                }
+                a{
+                    float: left;
+                    width: 100%;
+                    padding: 10px;
+                    text-align: center;
+                    color: lighten($blue,20);
+                    text-decoration: none;
+                    svg{
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
         &.file-input{
             .label{
                 float: left;
@@ -78,6 +119,34 @@
                 background-color: lighten($blue,10);
                 &.active{
                     color: white;
+                }
+            }
+            .checkbox{
+                float: left;
+                input[type="checkbox"]{
+                    width: auto;
+                    height: auto;
+                    opacity: 1;
+                    float: left;
+                    overflow: auto;
+                    position: relative;
+                    z-index: 0;
+                    &:focus + label,
+                    & + label:hover {
+                        background-color: transparent;
+                        &.active{
+                            color: lighten($blue,10);
+                        }
+                    }
+                }
+                label{
+                    background: transparent;
+                    color: black;
+                    font-weight: normal;
+                    font-size: 0.7rem;
+                    padding: 4px;
+                    cursor: auto;
+                    color: lighten($blue,10);
                 }
             }
         }

@@ -15,10 +15,11 @@ import './css/App.css';
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload);
 
 let url = "http://192.241.219.113/bid/public/";
+let urlDocs = "http://192.241.219.113/bid/storage/app/";
 
 class App extends Component {
   constructor(props) {
@@ -188,7 +189,9 @@ class App extends Component {
                       <ViewPlan
                         {...props}
                         url={url}
+                        urlDocs={urlDocs}
                         getProcesses={this.getProcesses}
+                        processes={this.state.processes}
                       />} />
 
 

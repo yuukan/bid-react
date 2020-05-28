@@ -9,31 +9,36 @@ function UploadDocuments(props) {
     const [pep, setPep] = useState(null);
     const [adquisiciones, setAdquisiciones] = useState(null);
     const [contrato, setContrato] = useState(null);
+    const [certifico, setCertifico] = useState(false);
 
     //####################################Save Profile####################################
     const onSubmit = (e) => {
         e.preventDefault();
         if (pod && matriz && pep && adquisiciones && contrato) {
-            const data = new FormData()
-            data.append('pod', pod);
-            data.append('matriz', matriz);
-            data.append('pep', pep);
-            data.append('adquisiciones', adquisiciones);
-            data.append('contrato', contrato);
-            data.append('id', props.match.params.id);
+            if (certifico) {
+                const data = new FormData()
+                data.append('pod', pod);
+                data.append('matriz', matriz);
+                data.append('pep', pep);
+                data.append('adquisiciones', adquisiciones);
+                data.append('contrato', contrato);
+                data.append('id', props.match.params.id);
 
-            axios.post(props.url + "api/upload-documents", data)
-                .then(function () {
-                    swal("Éxito", "!Operación creada!", "success")
-                        .then(() => {
-                            props.history.push("/lista");
-                        });
-                    props.getProcesses();
-                    // e.target.reset();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                axios.post(props.url + "api/upload-documents", data)
+                    .then(function () {
+                        swal("Éxito", "!Operación creada!", "success")
+                            .then(() => {
+                                props.history.push("/lista");
+                            });
+                        props.getProcesses();
+                        // e.target.reset();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                swal("Atención", "!Debe de marcar la certificación!", "error");
+            }
         } else {
             swal("Atención", "!Debe de agregar todos los Archivos!", "error");
         }
@@ -41,6 +46,10 @@ function UploadDocuments(props) {
     };
     //####################################Save Profile####################################
 
+    //####################################Change Checkbox Handler####################################
+    const onChangeCheckbox = event => {
+        setCertifico(!certifico);
+    }
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
         if (event.target.name === "pod") {
@@ -119,6 +128,18 @@ function UploadDocuments(props) {
                                     adquisiciones ? adquisiciones.name : "Seleccione un archivo"
                                 }
                             </label>
+                            <div className="checkbox">
+                                <input
+                                    type="checkbox"
+                                    name="agree"
+                                    id="agree"
+                                    onChange={onChangeCheckbox}
+                                    value={certifico}
+                                />
+                                <label htmlFor="agree">
+                                    Yo certificó que el documento corresponde al plan de adquisiciones vigentes aprobado.
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div className="row file-input">
