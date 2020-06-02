@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-function UploadDocuments(props) {
+export default function UploadDocuments(props) {
     const [pod, setPod] = useState(null);
     const [matriz, setMatriz] = useState(null);
     const [pep, setPep] = useState(null);
     const [contrato, setContrato] = useState(null);
+    const [disabled, setDisabled] = useState(false);
 
     //####################################Save Profile####################################
     const onSubmit = (e) => {
@@ -20,9 +22,11 @@ function UploadDocuments(props) {
             data.append('contrato', contrato);
             data.append('id', props.match.params.id);
 
+            setDisabled(true);
             axios.post(props.url + "api/upload-documents", data)
                 .then(function () {
-                    swal("Éxito", "!Operación creada!", "success")
+                    setDisabled(false);
+                    swal("Éxito", "!Documentos Cargados!", "success")
                         .then(() => {
                             props.history.push("/lista");
                         });
@@ -120,8 +124,9 @@ function UploadDocuments(props) {
                     </div>
 
                     <div className="row">
-                        <button type="submit" className="save">
+                        <button type="submit" className="save" disabled={disabled}>
                             <FontAwesomeIcon icon="save" /> Guardar
+                            <LinearProgress />
                         </button>
                     </div>
                 </form>
@@ -129,5 +134,3 @@ function UploadDocuments(props) {
         </div>
     );
 }
-
-export default UploadDocuments;
