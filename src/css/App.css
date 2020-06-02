@@ -458,9 +458,17 @@ header {
       background: #ADC698;
       color: white;
       padding: 10px 15px;
-      cursor: pointer; }
+      cursor: pointer;
+      position: relative; }
       .crear-container .row .save:hover {
         background: #93b477; }
+      .crear-container .row .save:disabled, .crear-container .row .save[disabled] {
+        background: #dbdbdb;
+        color: #999999; }
+        .crear-container .row .save:disabled .MuiLinearProgress-root, .crear-container .row .save[disabled] .MuiLinearProgress-root {
+          opacity: 1; }
+      .crear-container .row .save .MuiLinearProgress-root {
+        opacity: 0; }
     .crear-container .row .cancel {
       float: right;
       border: none;

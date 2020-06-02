@@ -190,8 +190,20 @@
             color: white;
             padding: 10px 15px;
             cursor: pointer;
+            position: relative;
             &:hover{
                 background: darken($green, 10);
+            }
+            &:disabled,
+            &[disabled]{
+                background: $lighterGray;
+                color: $lightGray;
+                .MuiLinearProgress-root{
+                    opacity: 1;
+                }
+            }
+            .MuiLinearProgress-root{
+                opacity: 0;
             }
         }
         .cancel{

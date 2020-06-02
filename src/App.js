@@ -8,6 +8,7 @@ import Home from './components/Home';
 import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
 import UploadDocuments from './components/UploadDocuments';
+import UploadPlan from './components/UploadPlan';
 import ViewPlan from './components/ViewPlan';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
@@ -216,6 +217,15 @@ class App extends Component {
                   <Route path="/subir-documentos/:id"
                     render={(props) =>
                       <UploadDocuments
+                        {...props}
+                        url={url}
+                        getProcesses={this.getProcesses}
+                      />} />
+
+                  <Route
+                    path="/subir-plan/:id"
+                    render={(props) =>
+                      <UploadPlan
                         {...props}
                         url={url}
                         getProcesses={this.getProcesses}
