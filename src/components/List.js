@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { CloudUpload, Visibility } from '@material-ui/icons/';
+import { CloudUpload, Visibility, Publish } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -83,6 +83,13 @@ class List extends Component {
                                             tooltip: 'Subir Documentos',
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-documentos/" + rowData.id);
+                                            },
+                                        }),
+                                        rowData => ({
+                                            icon: Publish,
+                                            tooltip: 'Subir Plan',
+                                            onClick: (event, rowData) => {
+                                                this.props.history.push("/subir-plan/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
