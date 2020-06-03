@@ -9,6 +9,7 @@ import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
 import UploadDocuments from './components/UploadDocuments';
 import UploadPlan from './components/UploadPlan';
+import AprobacionJefeUnidadEjecutora from './components/AprobacionJefeUnidadEjecutora';
 import ViewPlan from './components/ViewPlan';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
@@ -17,8 +18,8 @@ import './css/App.css';
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes);
 
 let url = "http://192.241.219.113/bid/public/";
 let urlDocs = "http://192.241.219.113/bid/storage/app/";
@@ -229,6 +230,17 @@ class App extends Component {
                         {...props}
                         url={url}
                         getProcesses={this.getProcesses}
+                      />} />
+
+                  <Route
+                    path="/aprobacion-jefe-unidad-ejecutora/:id"
+                    render={(props) =>
+                      <AprobacionJefeUnidadEjecutora
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
                       />} />
 
                   <Route path="/ver-plan/:id"

@@ -8,6 +8,9 @@
         width: 100%;
         background: $white;
         padding: 25px;
+        &.space-bellow{
+            margin-bottom: 25px;
+        }
     }
     .list-container{
         font-size: 0.8rem;
@@ -23,6 +26,14 @@
         float: left;
         width: 100%;
         margin-bottom: 5px;
+        .full{
+            float: left;
+            width: 100%;
+            .switch{
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+        }
         .half{
             float: left;
             width: 50%;
@@ -157,7 +168,7 @@
             font-size: 1.0rem;
             color: $black;
         }
-        input,
+        input:not([type=checkbox]),
         select{
             float: left;
             width: 100%;

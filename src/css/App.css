@@ -76,6 +76,12 @@ h1 {
   font-weight: bold;
   margin-bottom: 20px; }
 
+h2 {
+  color: #0b4f76;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 20px; }
+
 .landing {
   background: url(../images/bg.png);
   width: 100%;
@@ -310,6 +316,8 @@ header {
     width: 100%;
     background: #fff;
     padding: 25px; }
+    .crear-container .sub-container.space-bellow {
+      margin-bottom: 25px; }
   .crear-container .list-container {
     font-size: 0.8rem; }
     .crear-container .list-container .MuiTableCell-root,
@@ -321,6 +329,12 @@ header {
     float: left;
     width: 100%;
     margin-bottom: 5px; }
+    .crear-container .row .full {
+      float: left;
+      width: 100%; }
+      .crear-container .row .full .switch {
+        font-size: 1rem;
+        margin-bottom: 15px; }
     .crear-container .row .half {
       float: left;
       width: 50%; }
@@ -429,7 +443,7 @@ header {
       margin-bottom: 5px;
       font-size: 1.0rem;
       color: #2B2D42; }
-    .crear-container .row input,
+    .crear-container .row input:not([type=checkbox]),
     .crear-container .row select {
       float: left;
       width: 100%;
@@ -438,7 +452,7 @@ header {
       font-size: 0.9rem;
       border-radius: 5px;
       border: 1px solid #B3B3B3; }
-      .crear-container .row input.error,
+      .crear-container .row input:not([type=checkbox]).error,
       .crear-container .row select.error {
         border-left: 10px solid #EE2E31;
         border-color: #EE2E31; }

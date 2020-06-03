@@ -61,6 +61,54 @@ const columns = [
 export default function PlanDetail(props) {
 
     if (props && props.rows) {
+
+        let actions = [];
+        if (props.edit) {
+            actions = [
+                () => ({
+                    icon: DeleteOutline,
+                    tooltip: 'Borrar Fila',
+                    onClick: (event, rowData) => {
+                        // this.props.history.push("/subir-documentos/" + rowData.id);
+                        swal({
+                            title: "¿Desea eliminar la fila?",
+                            text: "Esto no se puede ",
+                            icon: "error",
+                            buttons: ["No", "Sí"],
+                            dangerMode: true,
+                        })
+                            .then((value) => {
+                                if (value) {
+                                    axios.post(props.url + "api/delete-plan-detail",
+                                        {
+                                            id: rowData.id
+                                        }
+                                    )
+                                        .then(function (response) {
+                                            props.removeLine(response.data);
+                                            swal("¡Línea eliminada con éxito!", "", "success");
+                                        })
+                                        .catch(function (error) {
+                                            console.log(error);
+                                        });
+                                }
+                            });
+                    },
+                }),
+                rowData => ({
+                    icon: Edit,
+                    tooltip: 'Editar Fila',
+                    onClick: (event, rowData) => {
+                        props.history.push("/editar-detalle-plan/" + rowData.id);
+                    },
+                })
+            ];
+        } else {
+
+        }
+
+
+
         return (
             <div className="sub-container">
                 <div className="row table">
@@ -82,45 +130,7 @@ export default function PlanDetail(props) {
                                             },
                                             search: false
                                         }}
-                                        actions={[
-                                            () => ({
-                                                icon: DeleteOutline,
-                                                tooltip: 'Borrar Fila',
-                                                onClick: (event, rowData) => {
-                                                    // this.props.history.push("/subir-documentos/" + rowData.id);
-                                                    swal({
-                                                        title: "¿Desea eliminar la fila?",
-                                                        text: "Esto no se puede ",
-                                                        icon: "error",
-                                                        buttons: ["No", "Sí"],
-                                                        dangerMode: true,
-                                                    })
-                                                        .then((value) => {
-                                                            if (value) {
-                                                                axios.post(props.url + "api/delete-plan-detail",
-                                                                    {
-                                                                        id: rowData.id
-                                                                    }
-                                                                )
-                                                                    .then(function (response) {
-                                                                        props.removeLine(response.data);
-                                                                        swal("¡Línea eliminada con éxito!", "", "success");
-                                                                    })
-                                                                    .catch(function (error) {
-                                                                        console.log(error);
-                                                                    });
-                                                            }
-                                                        });
-                                                },
-                                            }),
-                                            rowData => ({
-                                                icon: Edit,
-                                                tooltip: 'Editar Fila',
-                                                onClick: (event, rowData) => {
-                                                    props.history.push("/editar-detalle-plan/" + rowData.id);
-                                                },
-                                            })
-                                        ]}
+                                        actions={actions}
                                         localization={{
                                             pagination: {
                                                 labelDisplayedRows: '{from}-{to} de {count}',
