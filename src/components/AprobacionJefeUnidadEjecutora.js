@@ -5,17 +5,18 @@ import swal from 'sweetalert';
 
 //Components
 import PlanHeader from './PlanHeader';
-import PlanDetail from './PlanDetail';
 import Switch from '@material-ui/core/Switch';
 
 export default function AprobacionJefeUnidadEjecutora(props) {
 
-    const [rows, setRows] = useState(null);
     const [plan, setPlan] = useState(null);
     const [state, setState] = useState({
         checkedA: false,
         checkedB: false,
         checkedC: false,
+        checkedD: false,
+        checkedE: false,
+        checkedF: false,
     });
 
     const handleChange = (event) => {
@@ -24,18 +25,6 @@ export default function AprobacionJefeUnidadEjecutora(props) {
 
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
-        axios.post(props.url + "api/get-plan-items",
-            {
-                id: props.match.params.id
-            }
-        )
-            .then(function (response) {
-                setRows(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
         if (props && props.processes) {
             let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
             setPlan(plan);
@@ -45,7 +34,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        if (state.checkedA && state.checkedB && state.checkedC) {
+        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF) {
             axios.post(props.url + "api/aprobacion-jefe-unidad-ejecutora",
                 {
                     id: props.match.params.id,
@@ -109,6 +98,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
             <PlanHeader
                 plan={plan}
                 urlDocs={props.urlDocs}
+                soloAdquisiciones={true}
             />
             <div className="sub-container space-bellow">
                 <div className="row">
@@ -123,9 +113,9 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                                 color="primary"
                                 name="checkedA"
                                 id="checkedA"
-                                inputProps={{ 'aria-label': '¿Aquí va la pregunta?' }}
+                                inputProps={{ 'aria-label': 'Los diseños son completos, el alcance del proyecto es completo' }}
                             />
-                            ¿Aquí va la pregunta?
+                            Los diseños son completos, el alcance del proyecto es completo
                         </label>
                     </div>
                     <div className="full">
@@ -136,9 +126,9 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                                 color="primary"
                                 name="checkedB"
                                 id="checkedB"
-                                inputProps={{ 'aria-label': '¿Aquí va la pregunta?' }}
+                                inputProps={{ 'aria-label': 'Los planos son completos y con las debidas autorizaciones' }}
                             />
-                            ¿Aquí va la pregunta?
+                            Los planos son completos y con las debidas autorizaciones
                         </label>
                     </div>
                     <div className="full">
@@ -149,9 +139,48 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                                 color="primary"
                                 name="checkedC"
                                 id="checkedC"
-                                inputProps={{ 'aria-label': '¿Aquí va la pregunta?' }}
+                                inputProps={{ 'aria-label': 'Los costos estan actualizados a la fecha' }}
                             />
-                            ¿Aquí va la pregunta?
+                            Los costos estan actualizados a la fecha
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedD" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedD"
+                                id="checkedD"
+                                inputProps={{ 'aria-label': 'En el mercado existen oferentes ' }}
+                            />
+                            En el mercado existen oferentes
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedE" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedE"
+                                id="checkedE"
+                                inputProps={{ 'aria-label': 'Los permisos, licencias y derechos estan autorizados' }}
+                            />
+                            Los permisos, licencias y derechos estan autorizados
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedF" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedF"
+                                id="checkedF"
+                                inputProps={{ 'aria-label': 'La tecnologia propuesta es de vanguardia' }}
+                            />
+                            La tecnologia propuesta es de vanguardia
                         </label>
                     </div>
                     <div className="full">
@@ -164,13 +193,6 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     </div>
                 </div>
             </div>
-            <PlanDetail
-                rows={rows}
-                urlDocs={props.urlDocs}
-                url={props.url}
-                history={props.history}
-            />
-
         </div>
     );
 }
