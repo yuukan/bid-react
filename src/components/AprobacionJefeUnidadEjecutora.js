@@ -52,7 +52,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                 });
 
         } else {
-            swal("Alerta", "Debe de marcar las 3 preguntas.", "error");
+            swal("Alerta", "Debe de marcar las 6 preguntas.", "error");
         }
     }
 
@@ -147,7 +147,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     <div className="full">
                         <label htmlFor="checkedD" className="switch">
                             <Switch
-                                checked={state.checkedC}
+                                checked={state.checkedD}
                                 onChange={handleChange}
                                 color="primary"
                                 name="checkedD"
@@ -160,7 +160,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     <div className="full">
                         <label htmlFor="checkedE" className="switch">
                             <Switch
-                                checked={state.checkedC}
+                                checked={state.checkedE}
                                 onChange={handleChange}
                                 color="primary"
                                 name="checkedE"
@@ -173,7 +173,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     <div className="full">
                         <label htmlFor="checkedF" className="switch">
                             <Switch
-                                checked={state.checkedC}
+                                checked={state.checkedF}
                                 onChange={handleChange}
                                 color="primary"
                                 name="checkedF"
