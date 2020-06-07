@@ -42,7 +42,9 @@ class App extends Component {
       tipo_plan: null,
       metodo_seleccion: null,
       componente_asociado: null,
-      metodo_revision: null
+      metodo_revision: null,
+      ejecutor: null,
+      tipo_operacion: null
     };
   }
 
@@ -89,6 +91,22 @@ class App extends Component {
     axios.post(url + "api/get-metodo-revision")
       .then(function (response) {
         t.setState({ metodo_revision: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Ejecutor
+    axios.post(url + "api/get-ejecutor")
+      .then(function (response) {
+        t.setState({ ejecutor: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // Get Tipo  Operacion
+    axios.post(url + "api/get-tipo-operacion")
+      .then(function (response) {
+        t.setState({ tipo_operacion: response.data });
       })
       .catch(function (error) {
         console.log(error);
@@ -203,7 +221,8 @@ class App extends Component {
                       <CrearOperacion
                         {...props}
                         url={url}
-                        types={this.state.types}
+                        tipo_operacion={this.state.tipo_operacion}
+                        ejecutor={this.state.ejecutor}
                         getProcesses={this.getProcesses}
                       />} />
 

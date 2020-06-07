@@ -48,7 +48,7 @@ class Header extends Component {
                             <li>
                                 <Link className={this.props.current === "crear" ? "active" : ""} to="/crear-operacion" onClick={() => { this.props.changeCurrent("crear"); this.changeMenuStatus(); }}>
                                     <FontAwesomeIcon icon="plus" />
-                                    Crear Operción
+                                    Crear Operación
                                 </Link>
                             </li>
                             <li>

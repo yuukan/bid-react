@@ -1,25 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useForm } from "react-hook-form";
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 function CrearOperacion(props) {
     const { handleSubmit, register, errors } = useForm();
+    const [disabled, setDisabled] = useState(false);
 
     //####################################Save Profile####################################
     const onSubmit = (values, e) => {
+        setDisabled(true);
         axios.post(props.url + "api/crear-operacion", values)
             .then(function () {
                 swal("Éxito", "!Operación creada!", "success");
                 props.getProcesses();
                 e.target.reset();
+                setDisabled(false);
             })
             .catch(function (error) {
                 console.log(error);
             });
     };
     //####################################Save Profile####################################
+
+
+    let tipo_operacion = "";
+    if (props && props.tipo_operacion) {
+        // tipo_plan 
+        tipo_operacion = props.tipo_operacion.map((key, idx) => {
+            return (
+                <option value={key.id} key={`to${idx}`}>
+                    {key.type}
+                </option>
+            );
+        });
+    }
+
+    let ejecutor = "";
+    if (props && props.ejecutor) {
+        // tipo_plan 
+        ejecutor = props.ejecutor.map((key, idx) => {
+            return (
+                <option value={key.id} key={`to${idx}`}>
+                    {key.nombre}
+                </option>
+            );
+        });
+    }
 
     //####################################Return####################################
     return (
@@ -55,23 +84,14 @@ function CrearOperacion(props) {
                                 name="tipo_operacion"
                                 id="tipo_operacion"
                                 ref={register({
-                                    required: 'Obligatorio',
-                                    pattern: {
-                                        value: /^[1-9]\d*(\.\d+)?$/i,
-                                        message: "Debe de ser Número"
-                                    }
+                                    required: 'Obligatorio'
                                 })}
                                 className={errors.tipo_operacion ? 'error' : ''}
                             >
                                 <option value="">
                                     Seleccione un tipo de operación
                                 </option>
-                                <option value="1">
-                                    Tipo 1
-                                </option>
-                                <option value="2">
-                                    Tipo 2
-                                </option>
+                                {tipo_operacion}
                             </select>
                             <div className={errors.tipo_operacion ? 'error-msg' : 'error-hide'}>
                                 {errors.tipo_operacion ? errors.tipo_operacion.message : 'Error'}
@@ -180,23 +200,28 @@ function CrearOperacion(props) {
                             <label htmlFor="ejecutor">
                                 Ejecutor
                             </label>
-                            <input
-                                type="text"
+                            <select
                                 name="ejecutor"
                                 id="ejecutor"
                                 ref={register({
                                     required: 'Obligatorio'
                                 })}
                                 className={errors.ejecutor ? 'error' : ''}
-                            />
+                            >
+                                <option value="">
+                                    Seleccione un ejecutor
+                                </option>
+                                {ejecutor}
+                            </select>
                             <div className={errors.ejecutor ? 'error-msg' : 'error-hide'}>
                                 {errors.ejecutor ? errors.ejecutor.message : 'Error'}
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <button type="submit" className="save">
+                        <button type="submit" className="save" disabled={disabled}>
                             <FontAwesomeIcon icon="save" /> Guardar
+                            <LinearProgress />
                         </button>
                     </div>
                 </form>
