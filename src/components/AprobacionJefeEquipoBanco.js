@@ -92,7 +92,7 @@ export default function AprobacionJefeEquipoBanco(props) {
                         console.log(error);
                     });
             } else {
-
+                swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
             }
         }));
     }

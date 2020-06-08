@@ -86,7 +86,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                         console.log(error);
                     });
             } else {
-
+                swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
             }
         }));
     }
