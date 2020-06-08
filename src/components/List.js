@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { CloudUpload, Visibility, Publish, ThumbUp, EmojiObjects } from '@material-ui/icons/';
+import { CloudUpload, Visibility, Publish, ThumbUp, EmojiObjects, Assignment } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -106,6 +106,14 @@ class List extends Component {
                                             hidden: rowData.adquisiciones === "",
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
+                                            },
+                                        }),
+                                        rowData => ({
+                                            icon: Assignment,
+                                            tooltip: 'Concepto obligatorio',
+                                            hidden: rowData.adquisiciones === "",
+                                            onClick: (event, rowData) => {
+                                                this.props.history.push("/concepto-obligatorio/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
