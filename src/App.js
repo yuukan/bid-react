@@ -10,6 +10,7 @@ import List from './components/List';
 import UploadDocuments from './components/UploadDocuments';
 import UploadPlan from './components/UploadPlan';
 import AprobacionJefeUnidadEjecutora from './components/AprobacionJefeUnidadEjecutora';
+import AprobacionJefeEquipoBanco from './components/AprobacionJefeEquipoBanco';
 import ViewPlan from './components/ViewPlan';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
@@ -249,6 +250,28 @@ class App extends Component {
                         {...props}
                         url={url}
                         getProcesses={this.getProcesses}
+                      />} />
+
+                  <Route
+                    path="/aprobacion-jefe-unidad-ejecutora/:id"
+                    render={(props) =>
+                      <AprobacionJefeUnidadEjecutora
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
+                      />} />
+
+                  <Route
+                    path="/aprobacion-jefe-equipo-banco/:id"
+                    render={(props) =>
+                      <AprobacionJefeEquipoBanco
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
                       />} />
 
                   <Route

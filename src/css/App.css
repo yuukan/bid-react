@@ -492,5 +492,12 @@ header {
       padding: 10px 15px;
       cursor: pointer;
       margin-right: 10px; }
+      .crear-container .row .cancel:disabled, .crear-container .row .cancel[disabled] {
+        background: #dbdbdb;
+        color: #999999; }
+        .crear-container .row .cancel:disabled .MuiLinearProgress-root, .crear-container .row .cancel[disabled] .MuiLinearProgress-root {
+          opacity: 1; }
+      .crear-container .row .cancel .MuiLinearProgress-root {
+        opacity: 0; }
       .crear-container .row .cancel:hover {
         background: #5a0f3b; }

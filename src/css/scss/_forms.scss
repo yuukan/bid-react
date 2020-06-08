@@ -226,6 +226,17 @@
             padding: 10px 15px;
             cursor: pointer;
             margin-right: 10px;
+            &:disabled,
+            &[disabled]{
+                background: $lighterGray;
+                color: $lightGray;
+                .MuiLinearProgress-root{
+                    opacity: 1;
+                }
+            }
+            .MuiLinearProgress-root{
+                opacity: 0;
+            }
             &:hover{
                 background: darken($purple, 10);
             }
