@@ -23,6 +23,8 @@ export default function UploadDocuments(props) {
             data.append('id', props.match.params.id);
 
             setDisabled(true);
+            let user = localStorage.getItem("bidID");
+            data.append('user', user);
             axios.post(props.url + "api/upload-documents", data)
                 .then(function () {
                     setDisabled(false);

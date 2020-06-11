@@ -27,6 +27,8 @@ export default function UploadPlan(props) {
                         data.append('adquisiciones', adquisiciones);
                         data.append('id', props.match.params.id);
 
+                        let user = localStorage.getItem("bidID");
+                        data.append('user', user);
                         axios.post(props.url + "api/upload-plan", data)
                             .then(function () {
                                 setDisabled(false);
