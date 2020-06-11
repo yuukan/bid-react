@@ -81,37 +81,39 @@ class List extends Component {
                                         rowData => ({
                                             icon: CloudUpload,
                                             tooltip: 'Subir Documentos',
+                                            hidden: rowData.estado !== 1,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-documentos/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
-                                            icon: Publish,
+                                            icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
                                             tooltip: 'Subir Plan',
+                                            hidden: rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-plan/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
-                                            icon: ThumbUp,
+                                            icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
                                             tooltip: 'Aprobación jefe unidad ejecutora',
-                                            hidden: rowData.adquisiciones === "",
+                                            hidden: rowData.estado !== 3 && rowData.estado !== 9,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
-                                            icon: EmojiObjects,
+                                            icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
                                             tooltip: 'Aprobación jefe equipo banco',
-                                            hidden: rowData.adquisiciones === "",
+                                            hidden: rowData.estado !== 4 && rowData.estado !== 10,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({
-                                            icon: Assignment,
+                                            icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
                                             tooltip: 'Concepto obligatorio',
-                                            hidden: rowData.adquisiciones === "",
+                                            hidden: rowData.estado !== 5 && rowData.estado !== 11,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/concepto-obligatorio/" + rowData.id);
                                             },
