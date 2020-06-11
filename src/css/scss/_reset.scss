@@ -89,3 +89,20 @@ h2{
 	font-weight: bold;
 	margin-bottom: 20px;
 }
+h3{
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: $purple;
+	background: lighten($lighterGray,10);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	.text{
+		color: lighten($black,10);
+		width: 100%;
+		font-weight: normal;
+		margin-top: 10px;
+		font-size: 1rem;
+	}
+}

@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { CloudUpload, Visibility, Publish, ThumbUp, EmojiObjects, Assignment } from '@material-ui/icons/';
+import { CloudUpload, Visibility, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -116,6 +116,14 @@ class List extends Component {
                                             hidden: rowData.estado !== 5 && rowData.estado !== 11,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/concepto-obligatorio/" + rowData.id);
+                                            },
+                                        }),
+                                        rowData => ({
+                                            icon: VerifiedUser,
+                                            tooltip: 'Aprobación Final',
+                                            hidden: rowData.estado !== 6,
+                                            onClick: (event, rowData) => {
+                                                this.props.history.push("/aprobacion-final/" + rowData.id);
                                             },
                                         }),
                                         rowData => ({

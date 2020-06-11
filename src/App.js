@@ -12,6 +12,7 @@ import UploadPlan from './components/UploadPlan';
 import AprobacionJefeUnidadEjecutora from './components/AprobacionJefeUnidadEjecutora';
 import AprobacionJefeEquipoBanco from './components/AprobacionJefeEquipoBanco';
 import ConceptoObligatorio from './components/ConceptoObligatorio';
+import AprobacionFinal from './components/AprobacionFinal';
 import ViewPlan from './components/ViewPlan';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
@@ -279,6 +280,18 @@ class App extends Component {
                     path="/concepto-obligatorio/:id"
                     render={(props) =>
                       <ConceptoObligatorio
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
+                      />}
+                  />
+
+                  <Route
+                    path="/aprobacion-final/:id"
+                    render={(props) =>
+                      <AprobacionFinal
                         {...props}
                         url={url}
                         urlDocs={urlDocs}

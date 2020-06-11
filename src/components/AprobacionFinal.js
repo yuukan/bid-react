@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 //Components
 import PlanHeader from './PlanHeader';
 import Switch from '@material-ui/core/Switch';
 
-export default function AprobacionJefeUnidadEjecutora(props) {
-
+export default function AprobacionFinal(props) {
     const [plan, setPlan] = useState(null);
+    const [disabled, setDisabled] = useState(false);
     const [state, setState] = useState({
         checkedA: false,
         checkedB: false,
@@ -35,21 +36,34 @@ export default function AprobacionJefeUnidadEjecutora(props) {
     const approve = () => {
         let user = localStorage.getItem("bidID");
         if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF) {
-            axios.post(props.url + "api/aprobacion-jefe-unidad-ejecutora",
-                {
-                    id: props.match.params.id,
-                    user
-                }
-            )
-                .then(function () {
-                    swal("Información", "Se ha enviado la aprobación", "info")
-                        .then(() => {
-                            props.getProcesses();
-                            props.history.push("/lista");
-                        });
-                })
-                .catch(function (error) {
-                    console.log(error);
+            swal({
+                title: "Aprobación!",
+                text: "Yo apruebo el concepto obligatorio y que el plan de adquisiciones cumple con todos los parametros requeridos.",
+                icon: "warning",
+                buttons: ["Cancelar", "Aprobar"],
+                dangerMode: true,
+            })
+                .then((certifico) => {
+                    if (certifico) {
+                        setDisabled(true);
+                        axios.post(props.url + "api/aprobacion-final",
+                            {
+                                id: props.match.params.id,
+                                user
+                            }
+                        )
+                            .then(function () {
+                                swal("Información", "Se ha enviado la aprobación", "info")
+                                    .then(() => {
+                                        setDisabled(false);
+                                        props.getProcesses();
+                                        props.history.push("/lista");
+                                    });
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
                 });
 
         } else {
@@ -70,7 +84,8 @@ export default function AprobacionJefeUnidadEjecutora(props) {
             icon: "error",
         }).then((razon => {
             if (razon) {
-                axios.post(props.url + "api/rechazo-jefe-unidad-ejecutora",
+                setDisabled(true);
+                axios.post(props.url + "api/rechazo-final",
                     {
                         id: props.match.params.id,
                         user,
@@ -80,6 +95,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     .then(function () {
                         swal("Información", "Se ha enviado el rechazo.", "info")
                             .then(() => {
+                                setDisabled(false);
                                 props.getProcesses();
                                 props.history.push("/lista");
                             });
@@ -105,8 +121,14 @@ export default function AprobacionJefeUnidadEjecutora(props) {
             <div className="sub-container space-bellow">
                 <div className="row">
                     <h2>
-                        Aprobación
+                        Aprobación Final Plan de Adquisiciones
                     </h2>
+                    <h3>
+                        Concepto Obligatorio
+                        <div className="text">
+                            {plan ? plan.concepto_obligatorio : ""}
+                        </div>
+                    </h3>
                     <div className="full">
                         <label htmlFor="checkedA" className="switch">
                             <Switch
@@ -186,11 +208,13 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                         </label>
                     </div>
                     <div className="full">
-                        <button type="button" className="save" onClick={approve}>
+                        <button type="button" className="save" onClick={approve} disabled={disabled}>
                             <FontAwesomeIcon icon="save" /> Aprobar
+                            <LinearProgress />
                         </button>
-                        <button type="button" className="cancel" onClick={reject}>
+                        <button type="button" className="cancel" onClick={reject} disabled={disabled}>
                             <FontAwesomeIcon icon="times" /> Rechazar
+                            <LinearProgress />
                         </button>
                     </div>
                 </div>

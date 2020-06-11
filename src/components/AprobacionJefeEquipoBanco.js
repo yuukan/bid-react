@@ -64,7 +64,7 @@ export default function AprobacionJefeEquipoBanco(props) {
     const reject = () => {
         let user = localStorage.getItem("bidID");
         swal({
-            text: '"¿Cuál es la razón para el rechazo?"',
+            text: '¿Cuál es la razón para el rechazo?',
             content: {
                 element: "input",
             },

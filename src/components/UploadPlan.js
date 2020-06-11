@@ -21,8 +21,8 @@ export default function UploadPlan(props) {
                 dangerMode: true,
             })
                 .then((certifico) => {
-                    setDisabled(true);
                     if (certifico) {
+                        setDisabled(true);
                         const data = new FormData()
                         data.append('adquisiciones', adquisiciones);
                         data.append('id', props.match.params.id);
