@@ -37,24 +37,40 @@ export default function ConceptoObligatorio(props) {
     const approve = () => {
         let user = localStorage.getItem("bidID");
         if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF) {
-            setDisabled(true);
-            axios.post(props.url + "api/si-concepto-obligatorio",
-                {
-                    id: props.match.params.id,
-                    user
-                }
-            )
-                .then(function () {
-                    setDisabled(false);
-                    swal("Información", "Se ha enviado el Concepto Obligatorio a aprobación", "info")
-                        .then(() => {
-                            props.getProcesses();
-                            props.history.push("/lista");
+            swal({
+                text: 'Ingrese el Concepto Obligatorio',
+                content: {
+                    element: "input",
+                },
+                button: {
+                    text: "Enviar"
+                },
+                icon: "success",
+            }).then((razon => {
+                if (razon) {
+                    setDisabled(true);
+                    axios.post(props.url + "api/si-concepto-obligatorio",
+                        {
+                            id: props.match.params.id,
+                            user,
+                            razon
+                        }
+                    )
+                        .then(function () {
+                            setDisabled(false);
+                            swal("Información", "Se ha enviado el Concepto Obligatorio a aprobación", "info")
+                                .then(() => {
+                                    props.getProcesses();
+                                    props.history.push("/lista");
+                                });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
                         });
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                } else {
+                    swal("Información", "Debe de ingresar el Concepto Obligatorio.", "error")
+                }
+            }));
 
         } else {
             swal("Alerta", "Debe de marcar las 6 preguntas.", "error");
@@ -64,7 +80,7 @@ export default function ConceptoObligatorio(props) {
     const reject = () => {
         let user = localStorage.getItem("bidID");
         swal({
-            text: '"¿Cuál es la razón para el rechazo?"',
+            text: '¿Cuál es la razón para el rechazo?',
             content: {
                 element: "input",
             },
