@@ -44,6 +44,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                 .then(function () {
                     swal("Información", "Se ha enviado la aprobación", "info")
                         .then(() => {
+                            props.getProcesses();
                             props.history.push("/lista");
                         });
                 })
@@ -79,6 +80,7 @@ export default function AprobacionJefeUnidadEjecutora(props) {
                     .then(function () {
                         swal("Información", "Se ha enviado el rechazo.", "info")
                             .then(() => {
+                                props.getProcesses();
                                 props.history.push("/lista");
                             });
                     })

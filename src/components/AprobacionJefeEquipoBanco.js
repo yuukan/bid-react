@@ -48,6 +48,7 @@ export default function AprobacionJefeEquipoBanco(props) {
                     setDisabled(false);
                     swal("Información", "Se ha enviado a Concepto Obligatorio", "info")
                         .then(() => {
+                            props.getProcesses();
                             props.history.push("/lista");
                         });
                 })
@@ -85,6 +86,7 @@ export default function AprobacionJefeEquipoBanco(props) {
                         setDisabled(false);
                         swal("Información", "Se ha enviado el rechazo.", "info")
                             .then(() => {
+                                props.getProcesses();
                                 props.history.push("/lista");
                             });
                     })

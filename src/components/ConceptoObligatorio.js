@@ -48,6 +48,7 @@ export default function ConceptoObligatorio(props) {
                     setDisabled(false);
                     swal("Información", "Se ha enviado el Concepto Obligatorio a aprobación", "info")
                         .then(() => {
+                            props.getProcesses();
                             props.history.push("/lista");
                         });
                 })
@@ -85,6 +86,7 @@ export default function ConceptoObligatorio(props) {
                         setDisabled(false);
                         swal("Información", "Se ha enviado el rechazo.", "info")
                             .then(() => {
+                                props.getProcesses();
                                 props.history.push("/lista");
                             });
                     })
