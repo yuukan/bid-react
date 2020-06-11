@@ -81,7 +81,6 @@ class List extends Component {
                                         rowData => ({
                                             icon: CloudUpload,
                                             tooltip: 'Subir Documentos',
-                                            hidden: rowData.estado !== 1,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-documentos/" + rowData.id);
                                             },
@@ -89,7 +88,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
                                             tooltip: 'Subir Plan',
-                                            hidden: rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
+                                            hidden: rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-plan/" + rowData.id);
                                             },
