@@ -356,6 +356,14 @@ header {
       width: 50%; }
       .crear-container .row .half:nth-of-type(1) {
         padding-right: 10px; }
+      .crear-container .row .half a.download {
+        float: left;
+        width: 100%;
+        padding: 10px;
+        color: #79a058;
+        text-decoration: none; }
+        .crear-container .row .half a.download svg {
+          margin-right: 10px; }
     .crear-container .row.table th,
     .crear-container .row.table td {
       font-size: 0.7rem; }
@@ -384,7 +392,7 @@ header {
           width: 100%;
           padding: 10px;
           text-align: center;
-          color: #148dd3;
+          color: #79a058;
           text-decoration: none; }
           .crear-container .row.plan-header .fifth a svg {
             margin-right: 10px; }

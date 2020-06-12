@@ -242,7 +242,9 @@ class App extends Component {
                       <UploadDocuments
                         {...props}
                         url={url}
+                        urlDocs={urlDocs}
                         getProcesses={this.getProcesses}
+                        processes={this.state.processes}
                       />} />
 
                   <Route

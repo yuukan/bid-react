@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function UploadDocuments(props) {
+    const [plan, setPlan] = useState(null);
     const [pod, setPod] = useState(null);
     const [matriz, setMatriz] = useState(null);
     const [pep, setPep] = useState(null);
@@ -14,12 +15,17 @@ export default function UploadDocuments(props) {
     //####################################Save Profile####################################
     const onSubmit = (e) => {
         e.preventDefault();
-        if (pod && matriz && pep && contrato) {
+        if (pod || matriz || pep || contrato) {
             const data = new FormData()
-            data.append('pod', pod);
-            data.append('matriz', matriz);
-            data.append('pep', pep);
-            data.append('contrato', contrato);
+            if (pod)
+                data.append('pod', pod);
+            if (matriz)
+                data.append('matriz', matriz);
+            if (pep)
+                data.append('pep', pep);
+            if (contrato)
+                data.append('contrato', contrato);
+
             data.append('id', props.match.params.id);
 
             setDisabled(true);
@@ -45,6 +51,13 @@ export default function UploadDocuments(props) {
     };
     //####################################Save Profile####################################
 
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        if (props && props.processes) {
+            let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
+            setPlan(plan);
+        }
+    }, [props]);
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
         if (event.target.name === "pod") {
@@ -82,6 +95,15 @@ export default function UploadDocuments(props) {
                                     pod ? pod.name : "Seleccione un Archivo"
                                 }
                             </label>
+                            {
+                                plan && plan.pod ?
+                                    (
+                                        <a target="_blank" className="download" rel="noopener noreferrer" href={props.urlDocs + plan.pod}>
+                                            <FontAwesomeIcon icon="download" />
+                                            Descargar
+                                        </a>
+                                    ) : ""
+                            }
                         </div>
                         <div className="half">
                             <div className="label">
@@ -94,6 +116,15 @@ export default function UploadDocuments(props) {
                                     matriz ? matriz.name : "Seleccione un archivo"
                                 }
                             </label>
+                            {
+                                plan && plan.matriz ?
+                                    (
+                                        <a target="_blank" className="download" rel="noopener noreferrer" href={props.urlDocs + plan.matriz}>
+                                            <FontAwesomeIcon icon="download" />
+                                            Descargar
+                                        </a>
+                                    ) : ""
+                            }
                         </div>
                     </div>
                     <div className="row file-input">
@@ -108,9 +139,16 @@ export default function UploadDocuments(props) {
                                     pep ? pep.name : "Seleccione un archivo"
                                 }
                             </label>
+                            {
+                                plan && plan.pep ?
+                                    (
+                                        <a target="_blank" className="download" rel="noopener noreferrer" href={props.urlDocs + plan.pep}>
+                                            <FontAwesomeIcon icon="download" />
+                                            Descargar
+                                        </a>
+                                    ) : ""
+                            }
                         </div>
-                    </div>
-                    <div className="row file-input">
                         <div className="half">
                             <div className="label">
                                 Contrato / Convenio Firmado
@@ -122,6 +160,15 @@ export default function UploadDocuments(props) {
                                     contrato ? contrato.name : "Seleccione un archivo"
                                 }
                             </label>
+                            {
+                                plan && plan.contrato ?
+                                    (
+                                        <a target="_blank" className="download" rel="noopener noreferrer" href={props.urlDocs + plan.contrato}>
+                                            <FontAwesomeIcon icon="download" />
+                                            Descargar
+                                        </a>
+                                    ) : ""
+                            }
                         </div>
                     </div>
 
