@@ -16,13 +16,18 @@ import AprobacionFinal from './components/AprobacionFinal';
 import ViewPlan from './components/ViewPlan';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
-// We import the css
+// #################################################################
+// Item 
+// #################################################################
+import SubirDocumentosItem from './components/item/SubirDocumentos';
+
 import './css/App.css';
+// We import the css
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash);
 
 let url = "http://192.241.219.113/bid/public/";
 let urlDocs = "http://192.241.219.113/bid/storage/app/";
@@ -334,6 +339,18 @@ class App extends Component {
                         componente_asociado={this.state.componente_asociado}
                         metodo_revision={this.state.metodo_revision}
                       />} />
+
+                    {/* Items routes */}
+                      <Route path="/subir-documentos-item/:id/:parent"
+                    render={(props) =>
+                      <SubirDocumentosItem
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
+                      />} />
+
 
 
                 </div>

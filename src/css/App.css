@@ -364,6 +364,36 @@ header {
         text-decoration: none; }
         .crear-container .row .half a.download svg {
           margin-right: 10px; }
+    .crear-container .row.flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 50px 0; }
+    .crear-container .row .quarter {
+      float: left;
+      width: 24%;
+      background: #79a058;
+      margin-bottom: 20px; }
+      .crear-container .row .quarter a {
+        color: #e1eada;
+        float: left;
+        width: calc(100% - 25px);
+        font-size: 0.8rem;
+        text-decoration: none;
+        padding: 10px;
+        line-height: normal; }
+        .crear-container .row .quarter a:hover {
+          text-decoration: underline; }
+        .crear-container .row .quarter a svg {
+          margin-right: 5px;
+          height: 100%; }
+      .crear-container .row .quarter svg.fa-trash {
+        float: right;
+        color: white;
+        font-size: 0.6rem;
+        margin-right: 10px;
+        margin-top: 10px;
+        cursor: pointer; }
     .crear-container .row.table th,
     .crear-container .row.table td {
       font-size: 0.7rem; }
@@ -507,6 +537,24 @@ header {
           opacity: 1; }
       .crear-container .row .save .MuiLinearProgress-root {
         opacity: 0; }
+    .crear-container .row .completar-informacion {
+      float: right;
+      border: none;
+      font-size: 0.7rem;
+      background: #861657;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      position: relative; }
+      .crear-container .row .completar-informacion:hover {
+        background: #5a0f3b; }
+      .crear-container .row .completar-informacion:disabled, .crear-container .row .completar-informacion[disabled] {
+        background: #dbdbdb;
+        color: #999999; }
+        .crear-container .row .completar-informacion:disabled .MuiLinearProgress-root, .crear-container .row .completar-informacion[disabled] .MuiLinearProgress-root {
+          opacity: 1; }
+      .crear-container .row .completar-informacion .MuiLinearProgress-root {
+        opacity: 0; }
     .crear-container .row .cancel {
       float: right;
       border: none;
@@ -525,3 +573,6 @@ header {
         opacity: 0; }
       .crear-container .row .cancel:hover {
         background: #5a0f3b; }
+
+.pull-left {
+  float: left; }

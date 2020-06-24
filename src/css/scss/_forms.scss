@@ -51,6 +51,42 @@
                 }
             }
         }
+        &.flex{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+        .quarter{
+            float: left;
+            width: 24%;
+            background: darken($green,20);
+            margin-bottom: 20px;
+            a{
+                color: lighten($green,20);
+                float: left;
+                width: calc(100% - 25px);
+                font-size: 0.8rem;
+                text-decoration: none;
+                padding:10px;
+                line-height: normal;;
+                &:hover{
+                    text-decoration: underline;
+                }
+                svg{
+                    margin-right: 5px;
+                    height:100%;
+                }
+            }
+            svg.fa-trash{
+                float:right;
+                color: white;
+                font-size: 0.6rem;
+                margin-right: 10px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+        }
         &.table{
             th,
             td{
@@ -228,6 +264,30 @@
                 opacity: 0;
             }
         }
+        .completar-informacion{
+            float: right;
+            border: none;
+            font-size: 0.7rem;
+            background: $purple;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            position: relative;
+            &:hover{
+                background: darken($purple, 10);
+            }
+            &:disabled,
+            &[disabled]{
+                background: $lighterGray;
+                color: $lightGray;
+                .MuiLinearProgress-root{
+                    opacity: 1;
+                }
+            }
+            .MuiLinearProgress-root{
+                opacity: 0;
+            }
+        }
         .cancel{
             float: right;
             border: none;
@@ -253,4 +313,8 @@
             }
         }
     }
+}
+
+.pull-left{
+    float:left;
 }

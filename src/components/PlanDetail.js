@@ -20,6 +20,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
+import { CloudUpload, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -69,7 +70,7 @@ export default function PlanDetail(props) {
                     icon: DeleteOutline,
                     tooltip: 'Borrar Fila',
                     onClick: (event, rowData) => {
-                        // this.props.history.push("/subir-documentos/" + rowData.id);
+                        // props.history.push("/subir-documentos/" + rowData.id);
                         swal({
                             title: "¿Desea eliminar la fila?",
                             text: "Esto no se puede ",
@@ -96,12 +97,52 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: Edit,
-                    tooltip: 'Editar Fila',
+                    icon: CloudUpload,
+                    tooltip: 'Subir Documentos',
                     onClick: (event, rowData) => {
-                        props.history.push("/editar-detalle-plan/" + rowData.id);
+                        props.history.push("/subir-documentos-item/" + rowData.id + "/" + rowData.cs_process_id);
                     },
-                })
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
+                    tooltip: 'Subir Plan',
+                    hidden: rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
+                    onClick: (event, rowData) => {
+                        props.history.push("/subir-plan/" + rowData.id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
+                    tooltip: 'Aprobación jefe unidad ejecutora',
+                    hidden: rowData.estado !== 3 && rowData.estado !== 9,
+                    onClick: (event, rowData) => {
+                        props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
+                    tooltip: 'Aprobación jefe equipo banco',
+                    hidden: rowData.estado !== 4 && rowData.estado !== 10,
+                    onClick: (event, rowData) => {
+                        props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
+                    tooltip: 'Concepto obligatorio',
+                    hidden: rowData.estado !== 5 && rowData.estado !== 11,
+                    onClick: (event, rowData) => {
+                        props.history.push("/concepto-obligatorio/" + rowData.id);
+                    },
+                }),
+                rowData => ({
+                    icon: VerifiedUser,
+                    tooltip: 'Aprobación Final',
+                    hidden: rowData.estado !== 6,
+                    onClick: (event, rowData) => {
+                        props.history.push("/aprobacion-final/" + rowData.id);
+                    },
+                }),
             ];
         } else {
 

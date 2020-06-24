@@ -49,10 +49,12 @@ function ViewPlan(props) {
             />
             <PlanDetail
                 rows={rows}
+                id={props.match.params.id}
                 urlDocs={props.urlDocs}
                 url={props.url}
                 removeLine={removeLine}
                 history={props.history}
+                edit={true}
             />
 
         </div>
