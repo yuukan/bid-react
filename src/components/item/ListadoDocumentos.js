@@ -65,7 +65,12 @@ export default function ListadoDocumentos(props) {
                         <FontAwesomeIcon icon="download" />
                         {key.name}
                     </a>
-                    <FontAwesomeIcon icon="trash" onClick={()=>delete_file(key.id)} />
+                    {
+                        props.delete ?
+                        (
+                            <FontAwesomeIcon icon="trash" onClick={()=>delete_file(key.id)} />
+                        ): ""
+                    }
                 </div>
             );
         });

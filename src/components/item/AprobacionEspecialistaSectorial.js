@@ -42,7 +42,7 @@ export default function AprobacionEspecialistaSectorial(props) {
                 }
             )
                 .then(function () {
-                    swal("Información", "Se ha enviado la certificación", "info")
+                    swal("Información", "Certificación completa", "info")
                         .then(() => {
                             props.getProcesses();
                             props.history.goBack();

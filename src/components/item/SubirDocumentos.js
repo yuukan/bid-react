@@ -136,6 +136,7 @@ export default function SubirDocumentos(props) {
                         id={props.match.params.id}
                         url={props.url}
                         urlDocs={props.urlDocs}
+                        delete={true}
                     />
 
                     <div className="row">
