@@ -21,7 +21,7 @@ import axios from 'axios';
 // #################################################################
 import SubirDocumentosItem from './components/item/SubirDocumentos';
 import AprobacionFinanciera from './components/item/AprobacionFinanciera';
-import AprobacionJefeUnidadEjecutoraItem from './components/item/AprobacionJefeUnidadEjecutora';
+import CertificacionTecnica from './components/item/CertificacionTecnica';
 
 import './css/App.css';
 // We import the css
@@ -364,9 +364,9 @@ class App extends Component {
                         />} />
 
                       <Route
-                      path="/item/aprobacion-jefe-unidad-ejecutora/:id/:description"
+                      path="/item/certificacion-tecnica/:id/:descripcion"
                       render={(props) =>
-                        <AprobacionJefeUnidadEjecutoraItem
+                        <CertificacionTecnica
                           {...props}
                           url={url}
                           urlDocs={urlDocs}

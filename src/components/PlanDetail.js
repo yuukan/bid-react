@@ -20,7 +20,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
+import { CloudUpload, EmojiObjects, Assignment, VerifiedUser,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -97,7 +97,7 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: CloudUpload,
+                    icon: () => rowData.estado === 16 ? <CloudUpload color="error" /> : <CloudUpload />,
                     tooltip: 'Subir Documentos',
                     onClick: (event, rowData) => {
                         props.history.push("/subir-documentos-item/" + rowData.id + "/" + rowData.cs_process_id);
@@ -106,15 +106,15 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <LocalAtm />,
                     tooltip: 'Aprobación presupuestaria',
-                    hidden: rowData.estado !== 12,
+                    hidden: !(rowData.estado === 12 || rowData.estado === 15 || rowData.estado === 16),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-presupuestaria/" + rowData.id+"/"+rowData.actividad);
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 12 ? <SettingsInputComposite color="error" /> : <SettingsInputComposite />,
+                    icon: () => <SettingsInputComposite />,
                     tooltip: 'Certificación Técnica',
-                    hidden: !(rowData.estado === 12 || rowData.estado === 13 || rowData.estado === 14),
+                    hidden: !(rowData.estado === 12),
                     onClick: (event, rowData) => {
                         props.history.push("/item/certificacion-tecnica/" + rowData.id+"/"+rowData.actividad);
                     },
