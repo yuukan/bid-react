@@ -153,6 +153,13 @@ export default function PlanDetail(props) {
                                                 color: '#FFF',
                                                 textAlign: 'center'
                                             },
+                                            rowStyle: rowData => {
+                                                if(rowData.estado === 17) {
+                                                  return {backgroundColor: 'green',color:'white'};
+                                                }
+                                                
+                                                return {};
+                                            },
                                             search: false
                                         }}
                                         actions={actions}
