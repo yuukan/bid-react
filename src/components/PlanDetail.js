@@ -20,7 +20,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload, EmojiObjects, Assignment, VerifiedUser,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
+import { CloudUpload, EmojiObjects, AssignmentTurnedIn,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -97,7 +97,7 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 16 ? <CloudUpload color="error" /> : <CloudUpload />,
+                    icon: () => rowData.estado === 16 || rowData.estado === 18 ? <CloudUpload color="error" /> : <CloudUpload />,
                     tooltip: 'Subir Documentos',
                     onClick: (event, rowData) => {
                         props.history.push("/subir-documentos-item/" + rowData.id + "/" + rowData.cs_process_id);
@@ -120,29 +120,13 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
-                    tooltip: 'Aprobación jefe equipo banco',
-                    hidden: rowData.estado !== 4 && rowData.estado !== 10,
+                    icon: () => <AssignmentTurnedIn />,
+                    tooltip: 'Aprobación Especialista Sectorial',
+                    hidden: rowData.estado !== 15,
                     onClick: (event, rowData) => {
-                        props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
+                        props.history.push("/item/certificacion-especialista-sectorial/" + rowData.id+"/"+rowData.actividad);
                     },
-                }),
-                rowData => ({
-                    icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
-                    tooltip: 'Concepto obligatorio',
-                    hidden: rowData.estado !== 5 && rowData.estado !== 11,
-                    onClick: (event, rowData) => {
-                        props.history.push("/concepto-obligatorio/" + rowData.id);
-                    },
-                }),
-                rowData => ({
-                    icon: VerifiedUser,
-                    tooltip: 'Aprobación Final',
-                    hidden: rowData.estado !== 6,
-                    onClick: (event, rowData) => {
-                        props.history.push("/aprobacion-final/" + rowData.id);
-                    },
-                }),
+                })
             ];
         } else {
 

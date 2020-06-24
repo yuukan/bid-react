@@ -116,7 +116,7 @@ export default function CertificacionTecnica(props) {
                                 id="checkedA"
                                 inputProps={{ 'aria-label': 'Certificaco que cumple con todos los requerimientos técnicos.' }}
                             />
-                            Certificaco que cumple con todos los requerimientos técnicos.
+                            Certifico que cumple con todos los requerimientos técnicos.
                         </label>
                     </div>
                     <div className="full">

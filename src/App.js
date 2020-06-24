@@ -22,6 +22,7 @@ import axios from 'axios';
 import SubirDocumentosItem from './components/item/SubirDocumentos';
 import AprobacionFinanciera from './components/item/AprobacionFinanciera';
 import CertificacionTecnica from './components/item/CertificacionTecnica';
+import AprobacionEspecialistaSectorial from './components/item/AprobacionEspecialistaSectorial';
 
 import './css/App.css';
 // We import the css
@@ -354,7 +355,7 @@ class App extends Component {
                       />} />
 
                       <Route
-                      path="/item/aprobacion-presupuestaria/:id/:descripcion"
+                      path="/item/aprobacion-presupuestaria/:id/:description"
                       render={(props) =>
                         <AprobacionFinanciera
                           {...props}
@@ -364,9 +365,19 @@ class App extends Component {
                         />} />
 
                       <Route
-                      path="/item/certificacion-tecnica/:id/:descripcion"
+                      path="/item/certificacion-tecnica/:id/:description"
                       render={(props) =>
                         <CertificacionTecnica
+                          {...props}
+                          url={url}
+                          urlDocs={urlDocs}
+                          getProcesses={this.getProcesses}
+                        />} />
+
+                      <Route
+                      path="/item/certificacion-especialista-sectorial/:id/:description"
+                      render={(props) =>
+                        <AprobacionEspecialistaSectorial
                           {...props}
                           url={url}
                           urlDocs={urlDocs}
