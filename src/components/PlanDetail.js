@@ -20,7 +20,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser } from '@material-ui/icons/';
+import { CloudUpload, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -104,19 +104,19 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
-                    tooltip: 'Subir Plan',
-                    hidden: rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
+                    icon: () => <LocalAtm />,
+                    tooltip: 'Aprobación presupuestaria',
+                    hidden: rowData.estado !== 12,
                     onClick: (event, rowData) => {
-                        props.history.push("/subir-plan/" + rowData.id);
+                        props.history.push("/item/aprobacion-presupuestaria/" + rowData.id+"/"+rowData.actividad);
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
-                    tooltip: 'Aprobación jefe unidad ejecutora',
-                    hidden: rowData.estado !== 3 && rowData.estado !== 9,
+                    icon: () => rowData.estado === 12 ? <SettingsInputComposite color="error" /> : <SettingsInputComposite />,
+                    tooltip: 'Certificación Técnica',
+                    hidden: !(rowData.estado === 12 || rowData.estado === 13 || rowData.estado === 14),
                     onClick: (event, rowData) => {
-                        props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
+                        props.history.push("/item/certificacion-tecnica/" + rowData.id+"/"+rowData.actividad);
                     },
                 }),
                 rowData => ({

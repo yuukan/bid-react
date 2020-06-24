@@ -20,6 +20,8 @@ import axios from 'axios';
 // Item 
 // #################################################################
 import SubirDocumentosItem from './components/item/SubirDocumentos';
+import AprobacionFinanciera from './components/item/AprobacionFinanciera';
+import AprobacionJefeUnidadEjecutoraItem from './components/item/AprobacionJefeUnidadEjecutora';
 
 import './css/App.css';
 // We import the css
@@ -351,6 +353,25 @@ class App extends Component {
                         processes={this.state.processes}
                       />} />
 
+                      <Route
+                      path="/item/aprobacion-presupuestaria/:id/:descripcion"
+                      render={(props) =>
+                        <AprobacionFinanciera
+                          {...props}
+                          url={url}
+                          urlDocs={urlDocs}
+                          getProcesses={this.getProcesses}
+                        />} />
+
+                      <Route
+                      path="/item/aprobacion-jefe-unidad-ejecutora/:id/:description"
+                      render={(props) =>
+                        <AprobacionJefeUnidadEjecutoraItem
+                          {...props}
+                          url={url}
+                          urlDocs={urlDocs}
+                          getProcesses={this.getProcesses}
+                        />} />
 
 
                 </div>
