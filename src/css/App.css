@@ -370,14 +370,15 @@ header {
           margin-right: 10px; }
     .crear-container .row.flex {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       flex-wrap: wrap;
       margin: 50px 0; }
     .crear-container .row .quarter {
       float: left;
       width: 24%;
       background: #79a058;
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      margin-right: 1%; }
       .crear-container .row .quarter a {
         color: #e1eada;
         float: left;
@@ -580,3 +581,9 @@ header {
 
 .pull-left {
   float: left; }
+
+.MuiTableCell-root {
+  font-weight: 300 !important; }
+
+.space-bellow {
+  margin-bottom: 25px !important; }

@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function ListadoDocumentos(props) {
+export default function ListadoDocumentosBaseSubidos(props) {
     const [row, setRow] = useState(null);
 
     //####################################Save Profile####################################
@@ -14,7 +14,7 @@ export default function ListadoDocumentos(props) {
     }, [props]);
     //####################################Get the list of files for this item####################
     const getFiles = () => {
-        axios.post(props.url + "api/get-plan-items-files",
+        axios.post(props.url + "api/get-plan-items-base-files",
             {
                 id: props.id
             }
@@ -38,7 +38,7 @@ export default function ListadoDocumentos(props) {
             .then((certifico) => {
                 if (certifico) {
                     let user = localStorage.getItem("bidID");
-                    axios.post(props.url + "api/delete-item-file",
+                    axios.post(props.url + "api/delete-item-base-file",
                         {
                             id: id,
                             user

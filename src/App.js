@@ -23,6 +23,11 @@ import SubirDocumentosItem from './components/item/SubirDocumentos';
 import AprobacionFinanciera from './components/item/AprobacionFinanciera';
 import CertificacionTecnica from './components/item/CertificacionTecnica';
 import AprobacionEspecialistaSectorial from './components/item/AprobacionEspecialistaSectorial';
+import SubirDocumentosBase from './components/item/SubirDocumentosBase';
+import AprobacionDirector from './components/item/AprobacionDirector';
+import ValidacionJefeEquipo from './components/item/ValidacionJefeEquipo';
+import ConceptoObligatorioItem from './components/item/ConceptoObligatorio';
+import AprobacionFinalItem from './components/item/AprobacionFinal';
 
 import './css/App.css';
 // We import the css
@@ -383,6 +388,56 @@ class App extends Component {
                           urlDocs={urlDocs}
                           getProcesses={this.getProcesses}
                         />} />
+
+                      <Route
+                      path="/item/subir-documentos-base/:id/:description/:tipo/:parent"
+                      render={(props) =>
+                        <SubirDocumentosBase
+                          {...props}
+                          url={url}
+                          urlDocs={urlDocs}
+                          getProcesses={this.getProcesses}
+                        />} />
+
+                      <Route
+                        path="/item/aprobacion-director/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <AprobacionDirector
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                          path="/item/validacion-jefe-equipo/:id/:description/:tipo/:parent"
+                          render={(props) =>
+                            <ValidacionJefeEquipo
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
+
+                      <Route
+                        path="/item/concepto-obligatorio/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <ConceptoObligatorioItem
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/aprobacion-final/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <AprobacionFinalItem
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
 
 
                 </div>

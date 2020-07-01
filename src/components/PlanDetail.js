@@ -1,7 +1,5 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import swal from 'sweetalert';
-import axios from 'axios';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
 import MaterialTable from 'material-table';
@@ -20,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload, EmojiObjects, AssignmentTurnedIn,LocalAtm,SettingsInputComposite } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -57,7 +55,7 @@ const columns = [
     { title: 'Método de Revisión', field: 'metodo_revision' },
     { title: 'Aviso Especial Adquisición', field: 'aviso_especial_adquisicion' },
     { title: 'Firma Contrato', field: 'firma_contrato' },
-    { title: 'Comentarios Métedo Seleccion', field: 'comentarios_metodo_seleccion' },
+    { title: 'Comentarios Método Seleccion', field: 'comentarios_metodo_seleccion' },
 ];
 export default function PlanDetail(props) {
 
@@ -66,36 +64,36 @@ export default function PlanDetail(props) {
         let actions = [];
         if (props.edit) {
             actions = [
-                () => ({
-                    icon: DeleteOutline,
-                    tooltip: 'Borrar Fila',
-                    onClick: (event, rowData) => {
-                        // props.history.push("/subir-documentos/" + rowData.id);
-                        swal({
-                            title: "¿Desea eliminar la fila?",
-                            text: "Esto no se puede ",
-                            icon: "error",
-                            buttons: ["No", "Sí"],
-                            dangerMode: true,
-                        })
-                            .then((value) => {
-                                if (value) {
-                                    axios.post(props.url + "api/delete-plan-detail",
-                                        {
-                                            id: rowData.id
-                                        }
-                                    )
-                                        .then(function (response) {
-                                            props.removeLine(response.data);
-                                            swal("¡Línea eliminada con éxito!", "", "success");
-                                        })
-                                        .catch(function (error) {
-                                            console.log(error);
-                                        });
-                                }
-                            });
-                    },
-                }),
+                // () => ({
+                //     icon: DeleteOutline,
+                //     tooltip: 'Borrar Fila',
+                //     onClick: (event, rowData) => {
+                //         // props.history.push("/subir-documentos/" + rowData.id);
+                //         swal({
+                //             title: "¿Desea eliminar la fila?",
+                //             text: "Esto no se puede ",
+                //             icon: "error",
+                //             buttons: ["No", "Sí"],
+                //             dangerMode: true,
+                //         })
+                //             .then((value) => {
+                //                 if (value) {
+                //                     axios.post(props.url + "api/delete-plan-detail",
+                //                         {
+                //                             id: rowData.id
+                //                         }
+                //                     )
+                //                         .then(function (response) {
+                //                             props.removeLine(response.data);
+                //                             swal("¡Línea eliminada con éxito!", "", "success");
+                //                         })
+                //                         .catch(function (error) {
+                //                             console.log(error);
+                //                         });
+                //                 }
+                //             });
+                //     },
+                // }),
                 rowData => ({
                     icon: () => rowData.estado === 16 || rowData.estado === 18 ? <CloudUpload color="error" /> : <CloudUpload />,
                     tooltip: 'Subir Documentos',
@@ -106,9 +104,49 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <LocalAtm />,
                     tooltip: 'Aprobación presupuestaria',
-                    hidden: !(rowData.estado === 12 || rowData.estado === 15 || rowData.estado === 16),
+                    hidden: !(rowData.estado >= 12),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-presupuestaria/" + rowData.id+"/"+rowData.actividad);
+                    },
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 19 || rowData.estado === 21 || rowData.estado === 23 || rowData.estado === 25 || rowData.estado === 27 ? <NoteAdd color="error" /> : <NoteAdd />,
+                    tooltip: 'Cargar Documentos Base',
+                    hidden: !(rowData.estado === 17 || rowData.estado === 21 || rowData.estado === 23 || rowData.estado === 25 || rowData.estado === 27),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/subir-documentos-base/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Aprobación del Director',
+                    hidden: !(rowData.estado === 19),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <OfflinePin />,
+                    tooltip: 'Validación de Jefe de Equipo',
+                    hidden: !(rowData.estado === 20),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/validacion-jefe-equipo/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <Assignment />,
+                    tooltip: 'Concepto Obligatorio',
+                    hidden: !(rowData.estado === 22),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/concepto-obligatorio/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <DoneOutline />,
+                    tooltip: 'Aprobación Final',
+                    hidden: !(rowData.estado === 24),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-final/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
                 rowData => ({
@@ -154,8 +192,12 @@ export default function PlanDetail(props) {
                                                 textAlign: 'center'
                                             },
                                             rowStyle: rowData => {
-                                                if(rowData.estado === 17) {
-                                                  return {backgroundColor: 'green',color:'white'};
+                                                if(rowData.estado ===26) {
+                                                    return {color: '#778967'}; 
+                                                }
+
+                                                if(rowData.estado >= 17 && rowData.estado!=18) {
+                                                  return {backgroundColor: '#ADC698',color:'white'};
                                                 }
                                                 
                                                 return {};

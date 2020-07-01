@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentos from './ListadoDocumentos';
 
 import Switch from '@material-ui/core/Switch';
 
 export default function AprobacionEspecialistaSectorial(props) {
-    const [disabled, setDisabled] = useState(false);
 
     const [state, setState] = useState({
         checkedA: false,

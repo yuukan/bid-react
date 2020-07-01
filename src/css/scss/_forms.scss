@@ -53,7 +53,7 @@
         }
         &.flex{
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             flex-wrap: wrap;
             margin: 50px 0;
         }
@@ -62,6 +62,7 @@
             width: 24%;
             background: darken($green,20);
             margin-bottom: 20px;
+            margin-right: 1%;
             a{
                 color: lighten($green,20);
                 float: left;
@@ -317,4 +318,10 @@
 
 .pull-left{
     float:left;
+}
+.MuiTableCell-root{
+    font-weight: 300 !important;
+}
+.space-bellow{
+    margin-bottom: 25px !important;
 }

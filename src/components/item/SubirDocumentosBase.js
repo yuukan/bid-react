@@ -3,11 +3,12 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
-import ListadoDocumentos from './ListadoDocumentos';
+import ListadoDocumentosBase from './ListadoDocumentosBase';
+import ListadoDocumentosBaseSubidos from './ListadoDocumentosBaseSubidos';
 
 import Switch from '@material-ui/core/Switch';
 
-export default function SubirDocumentos(props) {
+export default function SubirDocumentosBase(props) {
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
 
@@ -47,7 +48,7 @@ export default function SubirDocumentos(props) {
             setDisabled(true);
             let user = localStorage.getItem("bidID");
             data.append('user', user);
-            axios.post(props.url + "api/upload-item-documents", data)
+            axios.post(props.url + "api/upload-item-base-documents", data)
                 .then(function () {
                     setDisabled(false);
                     swal("Éxito", "!Documentos Cargados!", "success");
@@ -75,7 +76,7 @@ export default function SubirDocumentos(props) {
                 .then((certifico) => {
                     if (certifico) {
                         let user = localStorage.getItem("bidID");
-                        axios.post(props.url + "api/completar-informacion-item",
+                        axios.post(props.url + "api/completar-archivos-base-item",
                             {
                                 id: props.match.params.id,
                                 user
@@ -110,10 +111,22 @@ export default function SubirDocumentos(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Carga de Documentos de la Actividad
+                    Carga de Documentos Base
                 </h1>
                 <form onSubmit={onSubmit}>
                     <div className="row file-input">
+                        <h3>
+                            Listado de documentos a descargar
+                        </h3>
+                        <ListadoDocumentosBase
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={true}
+                        />
+                    </div>
+                    <div className="row file-input space-bellow">
                         <div className="half">
                             <div className="label">
                                 Seleccione Documentos
@@ -131,13 +144,15 @@ export default function SubirDocumentos(props) {
                             </button>
                         </div>
                     </div>
-
-                    <ListadoDocumentos
-                        id={props.match.params.id}
-                        url={props.url}
-                        urlDocs={props.urlDocs}
-                        delete={true}
-                    />
+                    <div className="row file-input">
+                        <ListadoDocumentosBaseSubidos
+                                id={props.match.params.id}
+                                tipo={props.match.params.tipo}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                                delete={true}
+                            />
+                    </div>
 
                     <div className="row">
                         <h2>
