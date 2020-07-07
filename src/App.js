@@ -28,6 +28,7 @@ import AprobacionDirector from './components/item/AprobacionDirector';
 import ValidacionJefeEquipo from './components/item/ValidacionJefeEquipo';
 import ConceptoObligatorioItem from './components/item/ConceptoObligatorio';
 import AprobacionFinalItem from './components/item/AprobacionFinal';
+import LlamadoLicitacion from './components/item/LlamadoLicitacion';
 
 import './css/App.css';
 // We import the css
@@ -433,6 +434,16 @@ class App extends Component {
                         path="/item/aprobacion-final/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionFinalItem
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/llamado-licitacion/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <LlamadoLicitacion
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

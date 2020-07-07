@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ListadoDocumentos from './ListadoDocumentos';
+import ListadoDocumentosBaseSubidos from './ListadoDocumentosBaseSubidos';
 
-export default function ListadoDocumentosBaseSubidos(props) {
+export default function ListadoDocumentosLicitacion(props) {
     const [row, setRow] = useState(null);
 
     //####################################Save Profile####################################
@@ -15,7 +15,7 @@ export default function ListadoDocumentosBaseSubidos(props) {
     }, [props]);
     //####################################Get the list of files for this item####################
     const getFiles = () => {
-        axios.post(props.url + "api/get-plan-items-base-files",
+        axios.post(props.url + "api/get-plan-items-licitacion-files",
             {
                 id: props.id
             }
@@ -39,7 +39,7 @@ export default function ListadoDocumentosBaseSubidos(props) {
             .then((certifico) => {
                 if (certifico) {
                     let user = localStorage.getItem("bidID");
-                    axios.post(props.url + "api/delete-item-base-file",
+                    axios.post(props.url + "api/delete-item-licitacion-file",
                         {
                             id: id,
                             user
@@ -80,12 +80,13 @@ export default function ListadoDocumentosBaseSubidos(props) {
     return (
         <div className="row flex">
             <h3 className="full">
-                Listado de documentos base cargados
+                Listado de documentos de licitación cargados
             </h3>
             {files}
-            <ListadoDocumentos
+            <ListadoDocumentosBaseSubidos
                     id={props.id}
                     url={props.url}
+                    tipo={props.tipo}
                     urlDocs={props.urlDocs}
                 />
         </div>

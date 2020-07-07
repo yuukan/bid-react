@@ -87,11 +87,7 @@ h3 {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #861657;
-  background: whitesmoke;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+  color: #861657; }
   h3 .text {
     color: #3f4261;
     width: 100%;
@@ -101,6 +97,12 @@ h3 {
 
 input[type=file] {
   width: 0 !important; }
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #861657; }
 
 .landing {
   background: url(../images/bg.png);
@@ -345,6 +347,13 @@ header {
       font-size: 0.8rem; }
     .crear-container .list-container .MuiSvgIcon-root {
       font-size: 1.25rem; }
+  .crear-container .hero {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    background: whitesmoke; }
   .crear-container .row {
     float: left;
     width: 100%;
@@ -372,7 +381,7 @@ header {
       display: flex;
       justify-content: flex-start;
       flex-wrap: wrap;
-      margin: 50px 0; }
+      margin: 0; }
     .crear-container .row .quarter {
       float: left;
       width: 24%;
@@ -587,3 +596,6 @@ header {
 
 .space-bellow {
   margin-bottom: 25px !important; }
+
+.noBottom {
+  margin-bottom: 0 !important; }

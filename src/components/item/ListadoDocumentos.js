@@ -77,7 +77,10 @@ export default function ListadoDocumentos(props) {
 
     //####################################Return####################################
     return (
-        <div className="row flex">
+        <div className="row flex noBottom">
+            <h3 className="full">
+                Listado de documentos técnicos
+            </h3>
             {files}
         </div>
     );

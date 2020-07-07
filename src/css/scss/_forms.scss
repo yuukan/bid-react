@@ -22,6 +22,14 @@
             font-size: 1.25rem;
         }
     }
+    .hero{
+        float: left;
+        width: 100%;
+        margin-bottom: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        background: whitesmoke;
+    }
     .row{
         float: left;
         width: 100%;
@@ -55,7 +63,7 @@
             display: flex;
             justify-content: flex-start;
             flex-wrap: wrap;
-            margin: 50px 0;
+            margin: 0;
         }
         .quarter{
             float: left;
@@ -324,4 +332,7 @@
 }
 .space-bellow{
     margin-bottom: 25px !important;
+}
+.noBottom{
+    margin-bottom: 0 !important;
 }
