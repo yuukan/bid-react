@@ -29,6 +29,7 @@ import ValidacionJefeEquipo from './components/item/ValidacionJefeEquipo';
 import ConceptoObligatorioItem from './components/item/ConceptoObligatorio';
 import AprobacionFinalItem from './components/item/AprobacionFinal';
 import LlamadoLicitacion from './components/item/LlamadoLicitacion';
+import CertificacionDirector from './components/item/CertificacionDirector';
 
 import './css/App.css';
 // We import the css
@@ -449,6 +450,16 @@ class App extends Component {
                             urlDocs={urlDocs}
                             getProcesses={this.getProcesses}
                           />} />
+
+                      <Route
+                          path="/item/certificacion-director/:id/:description/:tipo/:parent"
+                          render={(props) =>
+                            <CertificacionDirector
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
 
 
                 </div>

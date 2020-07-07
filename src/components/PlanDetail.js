@@ -166,11 +166,19 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => <ShoppingCart />,
+                    icon: () => rowData.estado === 30 || rowData.estado === 32 ? <ShoppingCart color="error" /> : <ShoppingCart />,
                     tooltip: 'Llamado a licitación',
-                    hidden: !(rowData.estado === 26),
+                    hidden: !(rowData.estado === 26 || rowData.estado === 30),
                     onClick: (event, rowData) => {
                         props.history.push("/item/llamado-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Certificación del Director',
+                    hidden: !(rowData.estado === 28),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/certificacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];
