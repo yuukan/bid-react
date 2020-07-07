@@ -30,6 +30,7 @@ import ConceptoObligatorioItem from './components/item/ConceptoObligatorio';
 import AprobacionFinalItem from './components/item/AprobacionFinal';
 import LlamadoLicitacion from './components/item/LlamadoLicitacion';
 import CertificacionDirector from './components/item/CertificacionDirector';
+import CertificacionTecnicaLicitacion from './components/item/CertificacionTecnicaLicitacion';
 
 import './css/App.css';
 // We import the css
@@ -460,7 +461,16 @@ class App extends Component {
                               urlDocs={urlDocs}
                               getProcesses={this.getProcesses}
                             />} />
-
+                      
+                      <Route
+                        path="/item/certificacion-tecnica-licitacion/:id/:description"
+                        render={(props) =>
+                          <CertificacionTecnicaLicitacion
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
 
                 </div>
               )}
