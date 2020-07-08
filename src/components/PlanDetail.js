@@ -166,9 +166,9 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 ? <ShoppingCart color="error" /> : <ShoppingCart />,
+                    icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36 ? <ShoppingCart color="error" /> : <ShoppingCart />,
                     tooltip: 'Llamado a licitación',
-                    hidden: !(rowData.estado === 26 || rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34),
+                    hidden: !(rowData.estado === 26 || rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36),
                     onClick: (event, rowData) => {
                         props.history.push("/item/llamado-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -195,6 +195,14 @@ export default function PlanDetail(props) {
                     hidden: !(rowData.estado === 31),
                     onClick: (event, rowData) => {
                         props.history.push("/item/concepto-obligatorio-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <DoneOutline />,
+                    tooltip: 'Aprobación Final Licitación',
+                    hidden: !(rowData.estado === 33),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-final-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];
@@ -224,7 +232,11 @@ export default function PlanDetail(props) {
                                                 textAlign: 'center'
                                             },
                                             rowStyle: rowData => {
-                                                if(rowData.estado ===26) {
+                                                if(rowData.estado >=35 && rowData.estado!==36) {
+                                                    return {backgroundColor: '#CAA8F5',color:'white'}; 
+                                                }
+
+                                                if(rowData.estado >=26 && rowData.estado!==27) {
                                                     return {color: '#778967'}; 
                                                 }
 
