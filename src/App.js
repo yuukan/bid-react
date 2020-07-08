@@ -31,6 +31,7 @@ import AprobacionFinalItem from './components/item/AprobacionFinal';
 import LlamadoLicitacion from './components/item/LlamadoLicitacion';
 import CertificacionDirector from './components/item/CertificacionDirector';
 import CertificacionTecnicaLicitacion from './components/item/CertificacionTecnicaLicitacion';
+import ConceptoObligatorioLicitacion from './components/item/ConceptoObligatorioLicitacion';
 
 import './css/App.css';
 // We import the css
@@ -471,6 +472,16 @@ class App extends Component {
                             urlDocs={urlDocs}
                             getProcesses={this.getProcesses}
                           />} />
+
+                      <Route
+                          path="/item/concepto-obligatorio-licitacion/:id/:description/:tipo/:parent"
+                          render={(props) =>
+                            <ConceptoObligatorioLicitacion
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
 
                 </div>
               )}
