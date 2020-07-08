@@ -94,6 +94,13 @@ h3 {
     font-weight: normal;
     margin-top: 10px;
     font-size: 1rem; }
+  h3.error {
+    color: #F46036;
+    margin-bottom: 0; }
+    h3.error svg {
+      margin-right: 10px; }
+    h3.error .text {
+      color: #d2370b; }
 
 input[type=file] {
   width: 0 !important; }
@@ -354,6 +361,10 @@ header {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 15px;
     background: whitesmoke; }
+    .crear-container .hero.error {
+      background-color: #fcedee;
+      border: 1px solid #f5c6cb;
+      box-shadow: 0 4px 8px 0 rgba(219, 118, 126, 0.2); }
   .crear-container .row {
     float: left;
     width: 100%;

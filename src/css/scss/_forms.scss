@@ -29,6 +29,11 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         padding: 15px;
         background: whitesmoke;
+        &.error{
+            background-color: #fcedee;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 4px 8px 0 rgba(219,118,126, 0.2);
+        }
     }
     .row{
         float: left;

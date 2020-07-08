@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,6 +10,7 @@ import Switch from '@material-ui/core/Switch';
 export default function LlamadoLicitacion(props) {
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [activity, setActivity] = useState(false);
 
     const [state, setState] = useState({
         checkedA: false,
@@ -33,6 +34,22 @@ export default function LlamadoLicitacion(props) {
         recepcion_ofertas:"",
         conclusion_evaluacion:""
     });
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas, conclusion_evaluacion: response.data[0].conclusion_evaluacion });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [props]);
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -119,6 +136,23 @@ export default function LlamadoLicitacion(props) {
 
     }
 
+    let description = "";
+    if(activity)
+    switch(activity.cs_estado_proceso_id){
+        case(30):
+            description = activity.rechazo_certificacion_director;
+            break;
+        case(32):
+            description = activity.rechazo_certificacion_tecnica_licitacion;
+            break;
+        case(34):
+            description = activity.rechazo_concepto_obligatorio_licitacion;
+            break;
+        case(36):
+            description = activity.rechazo_final_licitacion;
+            break;
+    }
+
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -126,6 +160,20 @@ export default function LlamadoLicitacion(props) {
                 <h1>
                     Llamado a Licitación
                 </h1>
+                {
+                    description!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                {activity.estado}
+                                <div className="text">
+                                    Razón: {description}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
                         <div className="row">
@@ -137,7 +185,7 @@ export default function LlamadoLicitacion(props) {
                                     type="number"
                                     name="nog"
                                     id="nog"
-                                    checked={state.nog}
+                                    value={state2.nog}
                                     onChange={handleChange2}
                                 />
                             </div>
@@ -149,7 +197,7 @@ export default function LlamadoLicitacion(props) {
                                     type="date"
                                     name="recepcion_ofertas"
                                     id="recepcion_ofertas"
-                                    checked={state.recepcion_ofertas}
+                                    value={state2.recepcion_ofertas}
                                     onChange={handleChange2}
                                 />
                             </div>
@@ -161,7 +209,7 @@ export default function LlamadoLicitacion(props) {
                                     type="date"
                                     name="conclusion_evaluacion"
                                     id="conclusion_evaluacion"
-                                    checked={state.conclusion_evaluacion}
+                                    value={state2.conclusion_evaluacion}
                                     onChange={handleChange2}
                                 />
                             </div>

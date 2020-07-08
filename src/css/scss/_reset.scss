@@ -102,6 +102,16 @@ h3{
 		margin-top: 10px;
 		font-size: 1rem;
 	}
+	&.error{
+		color: $error;
+		margin-bottom: 0;
+		svg{
+			margin-right: 10px;
+		}
+		.text{
+			color: darken($error,15);
+		}
+	}
 }
 
 input[type=file]{
