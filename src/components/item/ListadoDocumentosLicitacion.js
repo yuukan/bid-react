@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ListadoDocumentosBaseSubidos from './ListadoDocumentosBaseSubidos';
 
 export default function ListadoDocumentosLicitacion(props) {
     const [row, setRow] = useState(null);
@@ -83,12 +82,6 @@ export default function ListadoDocumentosLicitacion(props) {
                 Listado de documentos de licitación cargados
             </h3>
             {files}
-            <ListadoDocumentosBaseSubidos
-                    id={props.id}
-                    url={props.url}
-                    tipo={props.tipo}
-                    urlDocs={props.urlDocs}
-                />
         </div>
     );
 }

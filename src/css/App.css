@@ -585,7 +585,7 @@ header {
       float: right;
       border: none;
       font-size: 0.7rem;
-      background: #861657;
+      background: #F46036;
       color: white;
       padding: 10px 15px;
       cursor: pointer;
@@ -598,7 +598,7 @@ header {
       .crear-container .row .cancel .MuiLinearProgress-root {
         opacity: 0; }
       .crear-container .row .cancel:hover {
-        background: #5a0f3b; }
+        background: #ea3e0d; }
 
 .pull-left {
   float: left; }

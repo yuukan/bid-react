@@ -58,6 +58,45 @@ export default function LlamadoLicitacion(props) {
         setState2({ ...state2, [event.target.name]: event.target.value });
     };
 
+
+    const solicitar_enmienda = (e) => {
+        let user = localStorage.getItem("bidID");
+        swal({
+            text: '¿Cuál es la razón para la enmienda?',
+            content: {
+                element: "input",
+            },
+            button: {
+                text: "Solicitar"
+            },
+            icon: "info",
+        }).then((razon => {
+            if (razon) {
+                setDisabled(true);
+                axios.post(props.url + "api/solicitar-enmienda",
+                    {
+                        id: props.match.params.id,
+                        user,
+                        razon
+                    }
+                )
+                    .then(function () {
+                        swal("Información", "Se ha enviado la solicitud de enmienda.", "info")
+                            .then(() => {
+                                setDisabled(false);
+                                props.getProcesses();
+                                window.history.back();
+                            });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
+            }
+        }));
+    }
+
     //####################################Save Profile####################################
     const onSubmit = (e) => {
         e.preventDefault();
@@ -150,6 +189,8 @@ export default function LlamadoLicitacion(props) {
             break;
         case(36):
             description = activity.rechazo_final_licitacion;
+            break;
+        default:
             break;
     }
 
@@ -453,6 +494,10 @@ export default function LlamadoLicitacion(props) {
                         
                         <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
                             <FontAwesomeIcon icon="save" /> Completar Información
+                            <LinearProgress />
+                        </button>
+                        <button type="button" className="cancel" disabled={disabled} onClick={solicitar_enmienda}>
+                            <FontAwesomeIcon icon="tools" /> Solicitar Enmienda
                             <LinearProgress />
                         </button>
                     </div>
