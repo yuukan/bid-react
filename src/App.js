@@ -33,6 +33,8 @@ import CertificacionDirector from './components/item/CertificacionDirector';
 import CertificacionTecnicaLicitacion from './components/item/CertificacionTecnicaLicitacion';
 import ConceptoObligatorioLicitacion from './components/item/ConceptoObligatorioLicitacion';
 import AprobacionFinalLicitacion from './components/item/AprobacionFinalLicitacion';
+import Enmiendas from './components/item/Enmiendas';
+import LlamadoLicitacionEnmienda from './components/item/LlamadoLicitacionEnmienda';
 
 import './css/App.css';
 // We import the css
@@ -488,6 +490,27 @@ class App extends Component {
                         path="/item/aprobacion-final-licitacion/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionFinalLicitacion
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+
+                      <Route path="/enmiendas"
+                          render={(props) =>
+                            <Enmiendas
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                              processes={this.state.processes}
+                            />} />
+
+                      <Route
+                        path="/item/llamado-licitacion-enmienda/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <LlamadoLicitacionEnmienda
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

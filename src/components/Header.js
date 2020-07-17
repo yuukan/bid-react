@@ -57,6 +57,12 @@ class Header extends Component {
                                     Listado Ordenes
                                 </Link>
                             </li>
+                            <li>
+                                <Link className={this.props.current === "enmiendas" ? "active" : ""} to="/enmiendas" onClick={() => { this.props.changeCurrent("enmiendas"); this.changeMenuStatus(); }}>
+                                    <FontAwesomeIcon icon="tools" />
+                                    Enmiendas
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="empty-clickable" onClick={this.changeMenuStatus}></div>
