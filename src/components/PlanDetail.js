@@ -201,7 +201,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
                     tooltip: 'Ver Ofertas',
-                    hidden: !(rowData.estado === 30 && rowData.licitacion_ended===1),
+                    hidden: !(rowData.estado >= 30 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
