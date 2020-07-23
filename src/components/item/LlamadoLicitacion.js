@@ -5,34 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosLicitacion from './ListadoDocumentosLicitacion';
 
-import Switch from '@material-ui/core/Switch';
-
 export default function LlamadoLicitacion(props) {
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [activity, setActivity] = useState(false);
 
-    const [state, setState] = useState({
-        checkedA: false,
-        checkedB: false,
-        checkedC: false,
-        checkedD: false,
-        checkedE: false,
-        checkedF: false,
-        checkedG: false,
-        checkedH: false,
-        checkedI: false,
-        checkedJ: false,
-        checkedK: false,
-        checkedL: false,
-        checkedM: false,
-        checkedN: false,
-        checkedO: false,
-    });
     const [state2, setState2] = useState({
         nog: "",
-        recepcion_ofertas:"",
-        conclusion_evaluacion:""
+        recepcion_ofertas:""
     });
 
     // Similar to componentDidMount and componentDidUpdate:
@@ -44,16 +24,13 @@ export default function LlamadoLicitacion(props) {
         )
             .then(function (response) {
                 setActivity(response.data[0]);
-                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "", conclusion_evaluacion: response.data[0].conclusion_evaluacion || "" });
+                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "" });
             })
             .catch(function (error) {
                 console.log(error);
             });
     }, [props]);
 
-    const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-    };
     const handleChange2 = (event) => {
         setState2({ ...state2, [event.target.name]: event.target.value });
     };
@@ -90,9 +67,9 @@ export default function LlamadoLicitacion(props) {
     };
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if(state2.nog==="" || state2.conclusion_evaluacion=== null || state2.conclusion_evaluacion===null){
-            swal("Alerta", "Debe de ingresar el NOG, fecha de conclusieon de evaluación y fecha de recepción de ofertas.", "error");
-        }else if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF && state.checkedG && state.checkedH && state.checkedI && state.checkedJ && state.checkedK && state.checkedL && state.checkedM && state.checkedN && state.checkedO) {
+        if(state2.nog==="" || state2.recepcion_ofertas=== null){
+            swal("Alerta", "Debe de ingresar el NOG y fecha de recepción de ofertas.", "error");
+        }else {
             let s = state2;
             swal({
                 title: "¿Completar Información?",
@@ -109,8 +86,7 @@ export default function LlamadoLicitacion(props) {
                                 id: props.match.params.id,
                                 user,
                                 nog: s.nog,
-                                recepcion_ofertas: s.recepcion_ofertas,
-                                conclusion_evaluacion: s.conclusion_evaluacion
+                                recepcion_ofertas: s.recepcion_ofertas
                             }
                         )
                             .then(function () {
@@ -121,8 +97,6 @@ export default function LlamadoLicitacion(props) {
                             });
                     }
                 });
-        } else {
-            swal("Alerta", "Debe de marcar las 15 preguntas.", "error");
         }
     }
     //####################################Change File Handler####################################
@@ -204,18 +178,6 @@ export default function LlamadoLicitacion(props) {
                                     onChange={handleChange2}
                                 />
                             </div>
-                            <div className="half">
-                                <label htmlFor="fecha_firma">
-                                    Fecha de conclusión de evaluación
-                                </label>
-                                <input
-                                    type="date"
-                                    name="conclusion_evaluacion"
-                                    id="conclusion_evaluacion"
-                                    value={state2.conclusion_evaluacion}
-                                    onChange={handleChange2}
-                                />
-                            </div>
                         </div>
                         <div className="row file-input space-bellow">
                             <h4>
@@ -254,208 +216,9 @@ export default function LlamadoLicitacion(props) {
                         </div>
                     </div>
 
-                    <div className="row">
-                        <h2>
-                            Completar Información
-                        </h2>
-                        <div className="full">
-                            <label htmlFor="checkedA" className="switch">
-                                <Switch
-                                    checked={state.checkedA}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedA"
-                                    id="checkedA"
-                                    inputProps={{ 'aria-label': 'Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.' }}
-                                />
-                                Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedB" className="switch">
-                                <Switch
-                                    checked={state.checkedB}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedB"
-                                    id="checkedB"
-                                    inputProps={{ 'aria-label': ' Los beneficios del proyecto están claramente identificados y se pueden medir.' }}
-                                />
-                                Los beneficios del proyecto están claramente identificados y se pueden medir.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedC" className="switch">
-                                <Switch
-                                    checked={state.checkedC}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedC"
-                                    id="checkedC"
-                                    inputProps={{ 'aria-label': ' La descripción o identificación cada una de las áreas o componentes del proyecto están completas.' }}
-                                />
-                                La descripción o identificación cada una de las áreas o componentes del proyecto están completas.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedD" className="switch">
-                                <Switch
-                                    checked={state.checkedD}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedD"
-                                    id="checkedD"
-                                    inputProps={{ 'aria-label': ' El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.' }}
-                                />
-                                El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedE" className="switch">
-                                <Switch
-                                    checked={state.checkedE}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedE"
-                                    id="checkedE"
-                                    inputProps={{ 'aria-label': 'Planos completos de todas las áreas de trabajo que demanda el proyecto.' }}
-                                />
-                                Planos completos de todas las áreas de trabajo que demanda el proyecto.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedF" className="switch">
-                                <Switch
-                                    checked={state.checkedF}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedF"
-                                    id="checkedF"
-                                    inputProps={{ 'aria-label': 'Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.' }}
-                                />
-                                Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedG" className="switch">
-                                <Switch
-                                    checked={state.checkedG}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedG"
-                                    id="checkedG"
-                                    inputProps={{ 'aria-label': 'Los costos están completos y actualizados.' }}
-                                />
-                                Los costos están completos y actualizados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedH" className="switch">
-                                <Switch
-                                    checked={state.checkedH}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedH"
-                                    id="checkedH"
-                                    inputProps={{ 'aria-label': 'Las especificaciones técnicas están completas y actualizadas' }}
-                                />
-                                Las especificaciones técnicas están completas y actualizadas
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedI" className="switch">
-                                <Switch
-                                    checked={state.checkedI}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedI"
-                                    id="checkedI"
-                                    inputProps={{ 'aria-label': 'El cronograma tentativo de implementación está identificado y definido.' }}
-                                />
-                                El cronograma tentativo de implementación está identificado y definido.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedJ" className="switch">
-                                <Switch
-                                    checked={state.checkedJ}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedJ"
-                                    id="checkedJ"
-                                    inputProps={{ 'aria-label': 'El mercado ha sido evaluado y existen potenciales oferentes' }}
-                                />
-                                El mercado ha sido evaluado y existen potenciales oferentes
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedK" className="switch">
-                                <Switch
-                                    checked={state.checkedK}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedK"
-                                    id="checkedK"
-                                    inputProps={{ 'aria-label': 'Licencias y permisos ambiental están completos y debidamente autorizados' }}
-                                />
-                                Licencias y permisos ambiental están completos y debidamente autorizados
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedL" className="switch">
-                                <Switch
-                                    checked={state.checkedL}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedL"
-                                    id="checkedL"
-                                    inputProps={{ 'aria-label': 'Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada' }}
-                                />
-                                Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedM" className="switch">
-                                <Switch
-                                    checked={state.checkedM}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedM"
-                                    id="checkedM"
-                                    inputProps={{ 'aria-label': 'Derechos de paso están otorgados y saneados.' }}
-                                />
-                                Derechos de paso están otorgados y saneados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedN" className="switch">
-                                <Switch
-                                    checked={state.checkedN}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedN"
-                                    id="checkedN"
-                                    inputProps={{ 'aria-label': 'Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.' }}
-                                />
-                                Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedO" className="switch"> 
-                                <Switch
-                                    checked={state.checkedO}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedO"
-                                    id="checkedO"
-                                    inputProps={{ 'aria-label': 'La supervisión está contratada o estará contratada antes del inicio del proyecto' }}
-                                />
-                                La supervisión está contratada o estará contratada antes del inicio del proyecto
-                            </label>
-                        </div>
-                        
+                    <div className="row">                        
                         <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
-                            <FontAwesomeIcon icon="save" /> Completar Información
+                            <FontAwesomeIcon icon="save" /> Guardar
                             <LinearProgress />
                         </button>
                     </div>
