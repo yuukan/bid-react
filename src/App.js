@@ -38,14 +38,15 @@ import LlamadoLicitacionEnmienda from './components/item/LlamadoLicitacionEnmien
 import SolicitudEnmienda from './components/item/SolicitudEnmienda';
 import RecepcionOfertas from './components/item/RecepcionOfertas';
 import EvaluacionOfertas from './components/item/EvaluacionOfertas';
+import ViewOfertas from './components/item/ViewOfertas';
 
 import './css/App.css';
 // We import the css
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft);
 
 let url = "http://192.241.219.113/bid/public/";
 let urlDocs = "http://192.241.219.113/bid/storage/app/";
@@ -544,6 +545,16 @@ class App extends Component {
                         path="/item/solicitud-enmienda/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <SolicitudEnmienda
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/ver-ofertas/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <ViewOfertas
                             {...props}
                             url={url}
                             urlDocs={urlDocs}
