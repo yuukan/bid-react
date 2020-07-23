@@ -13,8 +13,6 @@ export default function SolicitudEnmienda(props) {
 
     const [state2, setState2] = useState({
         nog: "",
-        recepcion_ofertas:"",
-        conclusion_evaluacion:"",
         descripcion_enmienda: ""
     });
 
@@ -27,7 +25,7 @@ export default function SolicitudEnmienda(props) {
         )
             .then(function (response) {
                 setActivity(response.data[0]);
-                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "", conclusion_evaluacion: response.data[0].conclusion_evaluacion || "", descripcion_enmienda: response.data[0].descripcion_enmienda || "" });
+                setState2({ ...state2, nog: response.data[0].nog, descripcion_enmienda: response.data[0].descripcion_enmienda || "" });
             })
             .catch(function (error) {
                 console.log(error);
@@ -70,8 +68,8 @@ export default function SolicitudEnmienda(props) {
     };
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if(state2.nog==="" || state2.conclusion_evaluacion=== null || state2.conclusion_evaluacion==="" || state2.conclusion_evaluacion===null || state2.conclusion_evaluacion==="" || state2.descripcion_enmienda===null || state2.descripcion_enmienda===""){
-            swal("Alerta", "Debe de ingresar el NOG, fecha de conclusieon de evaluación, fecha de recepción de ofertas y descripción de enmienda.", "error");
+        if(state2.descripcion_enmienda===null || state2.descripcion_enmienda===""){
+            swal("Alerta", "Debe de ingresar la descripción de enmienda.", "error");
         }else{
             setDisabled(true);
             let s = state2;
@@ -89,9 +87,6 @@ export default function SolicitudEnmienda(props) {
                             {
                                 id: props.match.params.id,
                                 user,
-                                nog: s.nog,
-                                recepcion_ofertas: s.recepcion_ofertas,
-                                conclusion_evaluacion: s.conclusion_evaluacion,
                                 descripcion_enmienda: s.descripcion_enmienda
                             }
                         )
@@ -152,7 +147,7 @@ export default function SolicitudEnmienda(props) {
                         <div className="hero error space-bellow">
                             <h3 className="error">
                                 <FontAwesomeIcon icon="exclamation-triangle" />
-                                Solicitud de Enmienda
+                                Solicitud de Enmienda anterior
                                 <div className="text">
                                     Razón: <span dangerouslySetInnerHTML={{__html: description2}} />
                                 </div>
@@ -179,27 +174,11 @@ export default function SolicitudEnmienda(props) {
                         <div className="row">
                             <div className="half">
                                 <label htmlFor="numero">
-                                    NOG
+                                    <strong>
+                                        NOG: 
+                                    </strong>
+                                    {state2.nog}
                                 </label>
-                                <input
-                                    type="number"
-                                    name="nog"
-                                    id="nog"
-                                    value={state2.nog}
-                                    onChange={handleChange2}
-                                />
-                            </div>
-                            <div className="half">
-                                <label htmlFor="fecha_firma">
-                                    Fecha de Recepción de ofertas
-                                </label>
-                                <input
-                                    type="date"
-                                    name="recepcion_ofertas"
-                                    id="recepcion_ofertas"
-                                    value={state2.recepcion_ofertas}
-                                    onChange={handleChange2}
-                                />
                             </div>
                         </div>
                         <div className="row">
@@ -212,19 +191,6 @@ export default function SolicitudEnmienda(props) {
                                     id="descripcion_enmienda"
                                     onChange={handleChange2}
                                     value={state2.descripcion_enmienda}
-                                />
-                            </div>
-
-                            <div className="half">
-                                <label htmlFor="fecha_firma">
-                                    Fecha de conclusión de evaluación
-                                </label>
-                                <input
-                                    type="date"
-                                    name="conclusion_evaluacion"
-                                    id="conclusion_evaluacion"
-                                    value={state2.conclusion_evaluacion}
-                                    onChange={handleChange2}
                                 />
                             </div>
                         </div>
@@ -281,7 +247,7 @@ export default function SolicitudEnmienda(props) {
                     <div className="row">
                         <div className="full">
                             <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
-                                <FontAwesomeIcon icon="save" /> Completar Información
+                                <FontAwesomeIcon icon="save" /> Guardar
                                 <LinearProgress />
                             </button>
                         </div>

@@ -541,6 +541,9 @@ header {
       margin-bottom: 5px;
       font-size: 1.0rem;
       color: #2B2D42; }
+      .crear-container .row label strong {
+        font-weight: bold;
+        margin-right: 10px; }
     .crear-container .row input:not([type=checkbox]),
     .crear-container .row select {
       float: left;

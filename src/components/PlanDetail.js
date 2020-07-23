@@ -184,7 +184,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <VerifiedUser />,
                     tooltip: 'Certificación del Director',
-                    hidden: !(rowData.estado === 28),
+                    hidden: !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/certificacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },

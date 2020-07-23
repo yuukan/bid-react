@@ -239,6 +239,10 @@
             margin-bottom: 5px;
             font-size: 1.0rem;
             color: $black;
+            strong{
+                font-weight: bold;
+                margin-right: 10px;
+            }
         }
         input:not([type=checkbox]),
         select{
