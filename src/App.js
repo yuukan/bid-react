@@ -37,6 +37,7 @@ import Enmiendas from './components/item/Enmiendas';
 import LlamadoLicitacionEnmienda from './components/item/LlamadoLicitacionEnmienda';
 import SolicitudEnmienda from './components/item/SolicitudEnmienda';
 import RecepcionOfertas from './components/item/RecepcionOfertas';
+import EvaluacionOfertas from './components/item/EvaluacionOfertas';
 
 import './css/App.css';
 // We import the css
@@ -523,6 +524,16 @@ class App extends Component {
                           path="/item/recepcion-ofertas/:id/:description/:tipo/:parent"
                           render={(props) =>
                             <RecepcionOfertas
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
+
+                      <Route
+                          path="/item/evaluacion-ofertas/:id/:description/:tipo/:parent"
+                          render={(props) =>
+                            <EvaluacionOfertas
                               {...props}
                               url={url}
                               urlDocs={urlDocs}
