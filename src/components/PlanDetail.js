@@ -174,7 +174,7 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36 ? <ShoppingCart color="error" /> : <ShoppingCart />,
+                    icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36 ? <ShoppingCart color="error" /> : rowData.estado === 42 ? <ShoppingCart color="primary" /> : <ShoppingCart />,
                     tooltip: 'Llamado a licitación',
                     hidden: !(rowData.estado >= 26),
                     onClick: (event, rowData) => {

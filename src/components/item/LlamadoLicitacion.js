@@ -151,6 +151,17 @@ export default function LlamadoLicitacion(props) {
                         </div>
                     ) : ""
                 }
+                {
+                    activity.cs_estado_proceso_id===42 ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Enmienda aprobada
+                            </h3>
+                        </div>
+                    ) : ""
+                }
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
                         <div className="row">
