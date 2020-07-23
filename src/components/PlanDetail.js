@@ -166,6 +166,14 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
+                    icon: () => rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43 ? <Healing color="error" /> : <Healing />,
+                    tooltip: 'Solicitud Enmienda',
+                    hidden: !((rowData.estado!=27 && rowData.estado > 25) || rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/solicitud-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
                     icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36 ? <ShoppingCart color="error" /> : <ShoppingCart />,
                     tooltip: 'Llamado a licitación',
                     hidden: !(rowData.estado >= 26),
@@ -203,14 +211,6 @@ export default function PlanDetail(props) {
                     hidden: !(rowData.estado === 33),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-final-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
-                    },
-                }),
-                rowData => ({
-                    icon: () => rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43 ? <Healing color="error" /> : <Healing />,
-                    tooltip: 'Solicitud Enmienda',
-                    hidden: !((rowData.estado!=27 && rowData.estado > 25) || rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/solicitud-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];
