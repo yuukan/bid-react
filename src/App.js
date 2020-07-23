@@ -35,12 +35,8 @@ import ConceptoObligatorioLicitacion from './components/item/ConceptoObligatorio
 import AprobacionFinalLicitacion from './components/item/AprobacionFinalLicitacion';
 import Enmiendas from './components/item/Enmiendas';
 import LlamadoLicitacionEnmienda from './components/item/LlamadoLicitacionEnmienda';
-import CertificacionDirectorEnmienda from './components/item/CertificacionDirectorEnmienda';
-import CertificacionTecnicaLicitacionEnmienda from './components/item/CertificacionTecnicaLicitacionEnmienda';
-import ConceptoObligatorioLicitacionEnmienda from './components/item/ConceptoObligatorioLicitacionEnmienda';
-import AprobacionFinalLicitacionEnmienda from './components/item/AprobacionFinalLicitacionEnmienda';
 import SolicitudEnmienda from './components/item/SolicitudEnmienda';
-
+import RecepcionOfertas from './components/item/RecepcionOfertas';
 
 import './css/App.css';
 // We import the css
@@ -524,44 +520,14 @@ class App extends Component {
                           />} />
 
                       <Route
-                          path="/item/certificacion-director-enmienda/:id/:description/:tipo/:parent"
+                          path="/item/recepcion-ofertas/:id/:description/:tipo/:parent"
                           render={(props) =>
-                            <CertificacionDirectorEnmienda
+                            <RecepcionOfertas
                               {...props}
                               url={url}
                               urlDocs={urlDocs}
                               getProcesses={this.getProcesses}
                             />} />
-
-                      <Route
-                        path="/item/certificacion-tecnica-licitacion-enmienda/:id/:description"
-                        render={(props) =>
-                          <CertificacionTecnicaLicitacionEnmienda
-                            {...props}
-                            url={url}
-                            urlDocs={urlDocs}
-                            getProcesses={this.getProcesses}
-                          />} />
-
-                      <Route
-                          path="/item/concepto-obligatorio-licitacion-enmienda/:id/:description/:tipo/:parent"
-                          render={(props) =>
-                            <ConceptoObligatorioLicitacionEnmienda
-                              {...props}
-                              url={url}
-                              urlDocs={urlDocs}
-                              getProcesses={this.getProcesses}
-                            />} />
-
-                      <Route
-                        path="/item/aprobacion-final-licitacion-enmienda/:id/:description/:tipo/:parent"
-                        render={(props) =>
-                          <AprobacionFinalLicitacionEnmienda
-                            {...props}
-                            url={url}
-                            urlDocs={urlDocs}
-                            getProcesses={this.getProcesses}
-                          />} />
 
                       <Route
                         path="/item/solicitud-enmienda/:id/:description/:tipo/:parent"

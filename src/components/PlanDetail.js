@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -182,37 +182,45 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => <VerifiedUser />,
-                    tooltip: 'Certificación del Director',
+                    icon: () => <PostAdd />,
+                    tooltip: 'Recepción de Ofertas',
                     hidden: !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
-                        props.history.push("/item/certificacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                        props.history.push("/item/recepcion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
-                rowData => ({
-                    icon: () => <SettingsInputComposite />,
-                    tooltip: 'Certificación Técnica Licitación',
-                    hidden: !(rowData.estado === 29),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/certificacion-tecnica-licitacion/" + rowData.id+"/"+rowData.actividad);
-                    },
-                }),
-                rowData => ({
-                    icon: () => <Assignment />,
-                    tooltip: 'Concepto Obligatorio Licitación',
-                    hidden: !(rowData.estado === 31),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/concepto-obligatorio-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
-                    },
-                }),
-                rowData => ({
-                    icon: () => <DoneOutline />,
-                    tooltip: 'Aprobación Final Licitación',
-                    hidden: !(rowData.estado === 33),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/aprobacion-final-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
-                    },
-                }),
+                // rowData => ({
+                //     icon: () => <VerifiedUser />,
+                //     tooltip: 'Certificación del Director',
+                //     hidden: !(rowData.estado === 28 && rowData.licitacion_ended===1),
+                //     onClick: (event, rowData) => {
+                //         props.history.push("/item/certificacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                //     },
+                // }),
+                // rowData => ({
+                //     icon: () => <SettingsInputComposite />,
+                //     tooltip: 'Certificación Técnica Licitación',
+                //     hidden: !(rowData.estado === 29),
+                //     onClick: (event, rowData) => {
+                //         props.history.push("/item/certificacion-tecnica-licitacion/" + rowData.id+"/"+rowData.actividad);
+                //     },
+                // }),
+                // rowData => ({
+                //     icon: () => <Assignment />,
+                //     tooltip: 'Concepto Obligatorio Licitación',
+                //     hidden: !(rowData.estado === 31),
+                //     onClick: (event, rowData) => {
+                //         props.history.push("/item/concepto-obligatorio-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                //     },
+                // }),
+                // rowData => ({
+                //     icon: () => <DoneOutline />,
+                //     tooltip: 'Aprobación Final Licitación',
+                //     hidden: !(rowData.estado === 33),
+                //     onClick: (event, rowData) => {
+                //         props.history.push("/item/aprobacion-final-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                //     },
+                // }),
             ];
         } else {
 
