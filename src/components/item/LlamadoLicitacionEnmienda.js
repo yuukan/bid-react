@@ -138,6 +138,24 @@ export default function LlamadoLicitacionEnmienda(props) {
 
     let description = activity.solicitud_enmienda;
 
+    if(activity)
+    switch(activity.cs_estado_proceso_id){
+        case(40):
+            description += "<br><br> <strong>Rechazo:</strong> " + activity.rechazo_certificacion_director_enmienda;
+            break;
+        case(42):
+            description += "<br><br> <strong>Rechazo:</strong> " + activity.rechazo_certificacion_tecnica_licitacion_enmienda;
+            break;
+        case(44):
+            description += "<br><br> <strong>Rechazo:</strong> " + activity.rechazo_concepto_obligatorio_licitacion_enmienda;
+            break;
+        case(46):
+            description += "<br><br> <strong>Rechazo:</strong> " + activity.rechazo_final_licitacion_enmienda;
+            break;
+        default:
+            break;
+    }
+
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -153,7 +171,7 @@ export default function LlamadoLicitacionEnmienda(props) {
                                 <FontAwesomeIcon icon="exclamation-triangle" />
                                 Solicitud de Enmienda
                                 <div className="text">
-                                    Razón: {description}
+                                    Razón: <span dangerouslySetInnerHTML={{__html: description}} />
                                 </div>
                             </h3>
                         </div>

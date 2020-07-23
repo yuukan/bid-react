@@ -3,14 +3,28 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
 import ListadoDocumentosLicitacion from './ListadoDocumentosLicitacion';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Switch from '@material-ui/core/Switch';
 
-export default function CertificacionDirector(props) {
-    const [disabled, setDisabled] = useState(false);
+export default function CertificacionDirectorEnmienda(props) {
+    const [activity, setActivity] = useState(false);
     const [state, setState] = useState({
         checkedA: false
     });
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [props]);
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -24,49 +38,11 @@ export default function CertificacionDirector(props) {
         // }
     }, [props]);
 
-    const solicitar_enmienda = (e) => {
-        let user = localStorage.getItem("bidID");
-        swal({
-            text: '¿Cuál es la razón para la enmienda?',
-            content: {
-                element: "input",
-            },
-            button: {
-                text: "Solicitar"
-            },
-            icon: "info",
-        }).then((razon => {
-            if (razon) {
-                setDisabled(true);
-                axios.post(props.url + "api/solicitar-enmienda",
-                    {
-                        id: props.match.params.id,
-                        user,
-                        razon
-                    }
-                )
-                    .then(function () {
-                        swal("Información", "Se ha enviado la solicitud de enmienda.", "info")
-                            .then(() => {
-                                setDisabled(false);
-                                props.getProcesses();
-                                window.history.back();
-                            });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            } else {
-                swal("Información", "Debe de ingresar una razón para la enmienda.", "error")
-            }
-        }));
-    }
-
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
         if (state.checkedA) {
-            axios.post(props.url + "api/certificacion-director",
+            axios.post(props.url + "api/certificacion-director-enmienda",
                 {
                     id: props.match.params.id,
                     user
@@ -101,7 +77,7 @@ export default function CertificacionDirector(props) {
             icon: "error",
         }).then((razon => {
             if (razon) {
-                axios.post(props.url + "api/rechazo-certificacion-director",
+                axios.post(props.url + "api/rechazo-certificacion-director-enmienda",
                     {
                         id: props.match.params.id,
                         user,
@@ -124,14 +100,29 @@ export default function CertificacionDirector(props) {
         }));
     }
 
+    let description = activity.descripcion_enmienda;
 
     //####################################Return####################################
     return (
         <div className="crear-container">
             <div className="sub-container space-bellow">
                 <h1>
-                    Certificación del Director
+                    Certificación del Director Enmienda
                 </h1>
+                {
+                    description!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Solicitud de Enmienda
+                                <div className="text">
+                                    Razón: <span dangerouslySetInnerHTML={{__html: description}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
                 <h2>
                     {props.match.params.description}
                 </h2>
@@ -160,15 +151,11 @@ export default function CertificacionDirector(props) {
                         </label>
                     </div>
                     <div className="full">
-                        <button type="button" className="save" onClick={approve} disabled={disabled} >
+                        <button type="button" className="save" onClick={approve}>
                             <FontAwesomeIcon icon="save" /> Aprobar
                         </button>
-                        <button type="button" className="cancel" onClick={reject} disabled={disabled} >
+                        <button type="button" className="cancel" onClick={reject}>
                             <FontAwesomeIcon icon="times" /> Rechazar
-                        </button>
-                        <button type="button" className="solicitud_enmienda" disabled={disabled} onClick={solicitar_enmienda}>
-                            <FontAwesomeIcon icon="tools" /> Solicitar Enmienda
-                            <LinearProgress />
                         </button>
                     </div>
                 </div>

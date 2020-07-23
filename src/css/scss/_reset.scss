@@ -111,6 +111,22 @@ h3{
 		.text{
 			color: darken($error,15);
 		}
+		strong{
+			font-weight: bold;
+		}
+	}
+	&.concepto_obligatorio{
+		color: darken($green,25);
+		margin-bottom: 0;
+		svg{
+			margin-right: 10px;
+		}
+		.text{
+			color: darken($green,25);
+		}
+		strong{
+			font-weight: bold;
+		}
 	}
 }
 

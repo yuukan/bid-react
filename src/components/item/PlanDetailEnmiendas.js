@@ -65,43 +65,27 @@ export default function PlanDetail(props) {
         if (props.edit) {
             actions = [
                 rowData => ({
-                    icon: () => rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43 || rowData.estado === 45 ? <ShoppingCart color="error" /> : <ShoppingCart />,
-                    tooltip: 'Llamado a licitación',
-                    hidden: !(rowData.estado === 37 || rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43 || rowData.estado === 45),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/llamado-licitacion-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
-                    },
-                }),
-                rowData => ({
-                    icon: () => <VerifiedUser />,
-                    tooltip: 'Certificación del Director',
-                    hidden: !(rowData.estado === 28),
-                    onClick: (event, rowData) => {
-                        props.history.push("/item/certificacion-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
-                    },
-                }),
-                rowData => ({
                     icon: () => <SettingsInputComposite />,
                     tooltip: 'Certificación Técnica Licitación',
-                    hidden: !(rowData.estado === 29),
+                    hidden: !(rowData.estado === 37),
                     onClick: (event, rowData) => {
-                        props.history.push("/item/certificacion-tecnica-licitacion/" + rowData.id+"/"+rowData.actividad);
+                        props.history.push("/item/certificacion-tecnica-licitacion-enmienda/" + rowData.id+"/"+rowData.actividad);
                     },
                 }),
                 rowData => ({
                     icon: () => <Assignment />,
                     tooltip: 'Concepto Obligatorio Licitación',
-                    hidden: !(rowData.estado === 31),
+                    hidden: !(rowData.estado === 38),
                     onClick: (event, rowData) => {
-                        props.history.push("/item/concepto-obligatorio-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                        props.history.push("/item/concepto-obligatorio-licitacion-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
                 rowData => ({
                     icon: () => <DoneOutline />,
                     tooltip: 'Aprobación Final Licitación',
-                    hidden: !(rowData.estado === 33),
+                    hidden: !(rowData.estado === 40),
                     onClick: (event, rowData) => {
-                        props.history.push("/item/aprobacion-final-licitacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                        props.history.push("/item/aprobacion-final-licitacion-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];

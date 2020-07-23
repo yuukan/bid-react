@@ -101,6 +101,17 @@ h3 {
       margin-right: 10px; }
     h3.error .text {
       color: #d2370b; }
+    h3.error strong {
+      font-weight: bold; }
+  h3.concepto_obligatorio {
+    color: #6c8f4f;
+    margin-bottom: 0; }
+    h3.concepto_obligatorio svg {
+      margin-right: 10px; }
+    h3.concepto_obligatorio .text {
+      color: #6c8f4f; }
+    h3.concepto_obligatorio strong {
+      font-weight: bold; }
 
 input[type=file] {
   width: 0 !important; }
@@ -365,6 +376,10 @@ header {
       background-color: #fcedee;
       border: 1px solid #f5c6cb;
       box-shadow: 0 4px 8px 0 rgba(219, 118, 126, 0.2); }
+    .crear-container .hero.concepto_obligatorio {
+      background-color: #e1eada;
+      border: 1px solid #79a058;
+      box-shadow: 0 4px 8px 0 rgba(219, 118, 126, 0.2); }
   .crear-container .row {
     float: left;
     width: 100%;
@@ -399,6 +414,10 @@ header {
       background: #79a058;
       margin-bottom: 20px;
       margin-right: 1%; }
+      .crear-container .row .quarter.enmienda {
+        background: #861657; }
+        .crear-container .row .quarter.enmienda a {
+          color: white; }
       .crear-container .row .quarter a {
         color: #e1eada;
         float: left;
@@ -536,6 +555,18 @@ header {
       .crear-container .row select.error {
         border-left: 10px solid #F46036;
         border-color: #F46036; }
+    .crear-container .row textarea {
+      float: left;
+      width: 100%;
+      height: 100px;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      border: 1px solid #B3B3B3;
+      margin-bottom: 5px; }
+      .crear-container .row textarea.error {
+        border-left: 10px solid #F46036;
+        border-color: #F46036; }
     .crear-container .row .error-msg,
     .crear-container .row .error-hide {
       float: left;
@@ -599,6 +630,24 @@ header {
         opacity: 0; }
       .crear-container .row .cancel:hover {
         background: #ea3e0d; }
+    .crear-container .row .solicitud_enmienda {
+      float: right;
+      border: none;
+      font-size: 0.7rem;
+      background: #861657;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-right: 10px; }
+      .crear-container .row .solicitud_enmienda:disabled, .crear-container .row .solicitud_enmienda[disabled] {
+        background: #dbdbdb;
+        color: #999999; }
+        .crear-container .row .solicitud_enmienda:disabled .MuiLinearProgress-root, .crear-container .row .solicitud_enmienda[disabled] .MuiLinearProgress-root {
+          opacity: 1; }
+      .crear-container .row .solicitud_enmienda .MuiLinearProgress-root {
+        opacity: 0; }
+      .crear-container .row .solicitud_enmienda:hover {
+        background: #5a0f3b; }
 
 .pull-left {
   float: left; }

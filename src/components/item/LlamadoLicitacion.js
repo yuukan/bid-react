@@ -44,7 +44,7 @@ export default function LlamadoLicitacion(props) {
         )
             .then(function (response) {
                 setActivity(response.data[0]);
-                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas, conclusion_evaluacion: response.data[0].conclusion_evaluacion });
+                setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "", conclusion_evaluacion: response.data[0].conclusion_evaluacion || "" });
             })
             .catch(function (error) {
                 console.log(error);
@@ -58,44 +58,6 @@ export default function LlamadoLicitacion(props) {
         setState2({ ...state2, [event.target.name]: event.target.value });
     };
 
-
-    const solicitar_enmienda = (e) => {
-        let user = localStorage.getItem("bidID");
-        swal({
-            text: '¿Cuál es la razón para la enmienda?',
-            content: {
-                element: "input",
-            },
-            button: {
-                text: "Solicitar"
-            },
-            icon: "info",
-        }).then((razon => {
-            if (razon) {
-                setDisabled(true);
-                axios.post(props.url + "api/solicitar-enmienda",
-                    {
-                        id: props.match.params.id,
-                        user,
-                        razon
-                    }
-                )
-                    .then(function () {
-                        swal("Información", "Se ha enviado la solicitud de enmienda.", "info")
-                            .then(() => {
-                                setDisabled(false);
-                                props.getProcesses();
-                                window.history.back();
-                            });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            } else {
-                swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
-            }
-        }));
-    }
 
     //####################################Save Profile####################################
     const onSubmit = (e) => {
@@ -128,7 +90,7 @@ export default function LlamadoLicitacion(props) {
     };
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if(state.nog==="" || state.conclusion_evaluacion==="" || state.conclusion_evaluacion===""){
+        if(state2.nog==="" || state2.conclusion_evaluacion=== null || state2.conclusion_evaluacion===null){
             swal("Alerta", "Debe de ingresar el NOG, fecha de conclusieon de evaluación y fecha de recepción de ofertas.", "error");
         }else if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF && state.checkedG && state.checkedH && state.checkedI && state.checkedJ && state.checkedK && state.checkedL && state.checkedM && state.checkedN && state.checkedO) {
             let s = state2;
@@ -494,10 +456,6 @@ export default function LlamadoLicitacion(props) {
                         
                         <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
                             <FontAwesomeIcon icon="save" /> Completar Información
-                            <LinearProgress />
-                        </button>
-                        <button type="button" className="cancel" disabled={disabled} onClick={solicitar_enmienda}>
-                            <FontAwesomeIcon icon="tools" /> Solicitar Enmienda
                             <LinearProgress />
                         </button>
                     </div>

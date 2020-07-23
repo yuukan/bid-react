@@ -34,6 +34,11 @@
             border: 1px solid #f5c6cb;
             box-shadow: 0 4px 8px 0 rgba(219,118,126, 0.2);
         }
+        &.concepto_obligatorio{
+            background-color: lighten($green,20);
+            border: 1px solid darken($green,20);
+            box-shadow: 0 4px 8px 0 rgba(219,118,126, 0.2);
+        }
     }
     .row{
         float: left;
@@ -76,6 +81,12 @@
             background: darken($green,20);
             margin-bottom: 20px;
             margin-right: 1%;
+            &.enmienda{
+                background: $purple;
+                a{
+                    color: white;
+                }
+            }
             a{
                 color: lighten($green,20);
                 float: left;
@@ -244,6 +255,20 @@
                 border-color: $error;
             }
         }
+        textarea{
+            float: left;
+            width: 100%;
+            height: 100px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            border: 1px solid #B3B3B3;
+            margin-bottom: 5px;
+            &.error{
+                border-left: 10px solid $error;
+                border-color: $error;
+            }
+        }
         .error-msg,
         .error-hide{
             float: left;
@@ -325,6 +350,30 @@
             }
             &:hover{
                 background: darken($error, 10);
+            }
+        }
+        .solicitud_enmienda{
+            float: right;
+            border: none;
+            font-size: 0.7rem;
+            background: $purple;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            &:disabled,
+            &[disabled]{
+                background: $lighterGray;
+                color: $lightGray;
+                .MuiLinearProgress-root{
+                    opacity: 1;
+                }
+            }
+            .MuiLinearProgress-root{
+                opacity: 0;
+            }
+            &:hover{
+                background: darken($purple, 10);
             }
         }
     }
