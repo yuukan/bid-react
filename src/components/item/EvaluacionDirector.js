@@ -147,29 +147,25 @@ export default function EvaluacionDirector(props) {
 
                 <div className="hero space-bellow">
                     <div className="row">
-                        <div className="row">
-                            <ListadoDocumentosOfertas
-                                    id={props.match.params.id}
-                                    tipo={props.match.params.tipo}
-                                    url={props.url}
-                                    urlDocs={props.urlDocs}
-                                    delete={false}
-                                />
-                        </div>
+                        <ListadoDocumentosOfertas
+                                id={props.match.params.id}
+                                tipo={props.match.params.tipo}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                                delete={false}
+                            />
                     </div>
                 </div>
 
                 <div className="hero space-bellow">
                     <div className="row">
-                        <div className="row">
-                            <ListadoDocumentosEvaluacion
-                                    id={props.match.params.id}
-                                    tipo={props.match.params.tipo}
-                                    url={props.url}
-                                    urlDocs={props.urlDocs}
-                                    delete={false}
-                                />
-                        </div>
+                        <ListadoDocumentosEvaluacion
+                                id={props.match.params.id}
+                                tipo={props.match.params.tipo}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                                delete={false}
+                            />
                     </div>
                 </div>
 

@@ -237,6 +237,14 @@ export default function PlanDetail(props) {
                         props.history.push("/item/verificacion-evaluacion-jefe-equipo/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <Assignment />,
+                    tooltip: 'Concepto obligatorio evaluacion',
+                    hidden: !(rowData.estado === 35),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/concepto-obligatorio-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',
