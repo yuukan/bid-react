@@ -229,6 +229,14 @@ export default function PlanDetail(props) {
                         props.history.push("/item/evaluacion-director-verificacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <OfflinePin />,
+                    tooltip: 'Verificación Evaluación Jefe de Equipo',
+                    hidden: !(rowData.estado === 33),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/verificacion-evaluacion-jefe-equipo/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',
