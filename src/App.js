@@ -40,6 +40,7 @@ import RecepcionOfertas from './components/item/RecepcionOfertas';
 import EvaluacionOfertas from './components/item/EvaluacionOfertas';
 import ViewOfertas from './components/item/ViewOfertas';
 import InicioEvaluacion from './components/item/InicioEvaluacion';
+import EvaluacionDirector from './components/item/EvaluacionDirector';
 
 import './css/App.css';
 // We import the css
@@ -570,6 +571,28 @@ class App extends Component {
                             url={url}
                             urlDocs={urlDocs}
                             getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/evaluacion-director-no-objecion/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirector
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={1}
+                          />} />
+
+                      <Route
+                        path="/item/evaluacion-director-verificacion/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirector
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={2}
                           />} />
                 </div>
               )}

@@ -213,6 +213,22 @@ export default function PlanDetail(props) {
                         props.history.push("/item/inicio-valuacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Evaluación Director',
+                    hidden: !(rowData.estado === 31),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-director-no-objecion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Evaluación Director verificación',
+                    hidden: !(rowData.estado === 32),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-director-verificacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',
