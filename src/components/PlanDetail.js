@@ -245,6 +245,14 @@ export default function PlanDetail(props) {
                         props.history.push("/item/concepto-obligatorio-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Otorgar no objeción evaluación',
+                    hidden: !(rowData.estado === 36),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/otorgar-no-objecion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',
@@ -305,21 +313,17 @@ export default function PlanDetail(props) {
                                             },
                                             rowStyle: rowData => {
 
-                                                if(rowData.estado >=42 && rowData.estado!==43) {
-                                                    return {backgroundColor: '#CAA8F5',color:'white'}; 
-                                                }
+                                                // if(rowData.estado >=37 && rowData.estado <40) {
+                                                //     return {backgroundColor: '#FF7F11',color:'black'}; 
+                                                // }
 
-                                                if(rowData.estado >=37 && rowData.estado!==43) {
-                                                    return {backgroundColor: '#FF7F11',color:'black'}; 
-                                                }
+                                                // if(rowData.estado >=26 && rowData.estado!==27) {
+                                                //     return {color: '#778967'}; 
+                                                // }
 
-                                                if(rowData.estado >=26 && rowData.estado!==27) {
-                                                    return {color: '#778967'}; 
-                                                }
-
-                                                if(rowData.estado >= 17 && rowData.estado!==18 && rowData.estado<28) {
-                                                  return {backgroundColor: '#ADC698',color:'white'};
-                                                }
+                                                // if(rowData.estado >= 17 && rowData.estado!==18 && rowData.estado<28) {
+                                                //   return {backgroundColor: '#ADC698',color:'white'};
+                                                // }
                                                 
                                                 return {};
                                             },
