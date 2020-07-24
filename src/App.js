@@ -39,6 +39,7 @@ import SolicitudEnmienda from './components/item/SolicitudEnmienda';
 import RecepcionOfertas from './components/item/RecepcionOfertas';
 import EvaluacionOfertas from './components/item/EvaluacionOfertas';
 import ViewOfertas from './components/item/ViewOfertas';
+import InicioEvaluacion from './components/item/InicioEvaluacion';
 
 import './css/App.css';
 // We import the css
@@ -555,6 +556,16 @@ class App extends Component {
                         path="/item/ver-ofertas/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <ViewOfertas
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/inicio-valuacion/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <InicioEvaluacion
                             {...props}
                             url={url}
                             urlDocs={urlDocs}
