@@ -7,7 +7,6 @@ import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 
 export default function EvaluacionDirector(props) {
-    const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [activity, setActivity] = useState(false);
 
@@ -39,6 +38,7 @@ export default function EvaluacionDirector(props) {
             .then((certifico) => {
                 if (certifico) {
                     let user = localStorage.getItem("bidID");
+                    setDisabled(true);
                     axios.post(props.url + "api/solicitar-no-objecion-evaluacion",
                         {
                             id: props.match.params.id,
@@ -48,6 +48,7 @@ export default function EvaluacionDirector(props) {
                         .then(function () {
                             props.getProcesses();
                             window.history.back();
+                            setDisabled(false);
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -69,6 +70,7 @@ export default function EvaluacionDirector(props) {
             icon: "error",
         }).then((razon => {
             if (razon) {
+                setDisabled(true);
                 axios.post(props.url + "api/solicitar-verificacion-evaluacion",
                     {
                         id: props.match.params.id,
@@ -81,6 +83,7 @@ export default function EvaluacionDirector(props) {
                             .then(() => {
                                 props.getProcesses();
                                 props.history.goBack();
+                                setDisabled(false);
                             });
                     })
                     .catch(function (error) {
@@ -90,17 +93,6 @@ export default function EvaluacionDirector(props) {
                 swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
             }
         }));
-    }
-    //####################################Change File Handler####################################
-    const onChangeHandler = event => {
-        if (event.target.name === "pod") {
-            let fls = [];
-            for(let i =0;i<event.target.files.length;i++){
-                fls.push(event.target.files[i]);
-            }
-            setPod(fls);
-        }
-
     }
 
     //####################################Return####################################

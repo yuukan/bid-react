@@ -168,7 +168,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43 ? <Healing color="error" /> : <Healing />,
                     tooltip: 'Solicitud Enmienda',
-                    hidden: !((rowData.estado!=27 && rowData.estado > 25) || rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43),
+                    hidden: !((rowData.estado!==27 && rowData.estado > 25) || rowData.estado === 39 || rowData.estado === 41 || rowData.estado === 43),
                     onClick: (event, rowData) => {
                         props.history.push("/item/solicitud-enmienda/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },

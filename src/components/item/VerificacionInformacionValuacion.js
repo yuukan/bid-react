@@ -10,7 +10,6 @@ import ListadoDocumentosVerificacion from './ListadoDocumentosVerificacion';
 export default function VerificacionInformacionValuacion(props) {
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
-    const [activity, setActivity] = useState(false);
 
     const [state2, setState2] = useState({
         comentario_verificacion: ""
@@ -24,7 +23,7 @@ export default function VerificacionInformacionValuacion(props) {
             }
         )
             .then(function (response) {
-                setActivity(response.data[0]);
+                // setActivity(response.data[0]);
                 setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "" });
             })
             .catch(function (error) {
@@ -109,25 +108,6 @@ export default function VerificacionInformacionValuacion(props) {
             setPod(fls);
         }
 
-    }
-
-    let description = "";
-    if(activity)
-    switch(activity.cs_estado_proceso_id){
-        case(30):
-            description = activity.rechazo_certificacion_director;
-            break;
-        case(32):
-            description = activity.rechazo_certificacion_tecnica_licitacion;
-            break;
-        case(34):
-            description = activity.rechazo_concepto_obligatorio_licitacion;
-            break;
-        case(36):
-            description = activity.rechazo_final_licitacion;
-            break;
-        default:
-            break;
     }
 
     //####################################Return####################################
