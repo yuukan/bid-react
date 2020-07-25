@@ -663,3 +663,14 @@ header {
 
 .noBottom {
   margin-bottom: 0 !important; }
+
+.comment {
+  float: left;
+  width: 100%;
+  background: #148dd3;
+  padding: 25px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  line-height: normal; }

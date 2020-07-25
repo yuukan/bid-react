@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -174,7 +174,7 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => rowData.estado === 30 || rowData.estado === 32 || rowData.estado === 34 || rowData.estado === 36 ? <ShoppingCart color="error" /> : rowData.estado === 42 ? <ShoppingCart color="primary" /> : <ShoppingCart />,
+                    icon: () => rowData.estado === 42 ? <ShoppingCart color="primary" /> : <ShoppingCart />,
                     tooltip: 'Llamado a licitación',
                     hidden: !(rowData.estado >= 26),
                     onClick: (event, rowData) => {
@@ -208,7 +208,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <PlayArrow />,
                     tooltip: 'Inicio Evaluación',
-                    hidden: !(rowData.estado === 30),
+                    hidden: !(rowData.estado === 30 || rowData.estado === 47),
                     onClick: (event, rowData) => {
                         props.history.push("/item/inicio-valuacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -267,6 +267,14 @@ export default function PlanDetail(props) {
                     hidden: !(rowData.estado === 45),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-informe/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <LibraryAddCheck />,
+                    tooltip: 'Verificación de información',
+                    hidden: !(rowData.estado === 34),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/verificacion-informacion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
                 // rowData => ({

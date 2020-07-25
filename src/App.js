@@ -46,6 +46,7 @@ import ConceptoObligatorioEvaluacion from './components/item/ConceptoObligatorio
 import OtorgarNoObjecionEvaluacion from './components/item/OtorgarNoObjecionEvaluacion';
 import RevisionNoObjecionEvaluacion from './components/item/RevisionNoObjecionEvaluacion';
 import AprobacionInforme from './components/item/AprobacionInforme';
+import VerificacionInformacionValuacion from './components/item/VerificacionInformacionValuacion';
 
 import './css/App.css';
 // We import the css
@@ -644,6 +645,16 @@ class App extends Component {
                         path="/item/aprobacion-informe/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionInforme
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/verificacion-informacion-evaluacion/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <VerificacionInformacionValuacion
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

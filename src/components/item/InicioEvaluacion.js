@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
+import ListadoDocumentosVerificacion from './ListadoDocumentosVerificacion';
 
 export default function InicioEvaluacion(props) {
     const [pod, setPod] = useState(null);
@@ -177,18 +178,33 @@ export default function InicioEvaluacion(props) {
                 </div>
 
                 <div className="hero space-bellow">
-                    <div className="row">
-                        <div className="row">
-                            <ListadoDocumentosOfertas
+                    <ListadoDocumentosOfertas
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={false}
+                        />
+                </div>
+
+                {
+                    activity && activity.cs_estado_proceso_id ===47 ?
+                        (
+                            <div className="hero space-bellow">
+                                <h3>Comentario de Verificación</h3>
+                                <div className="comment">
+                                    {activity.comentario_verificacion}
+                                </div>
+                                <ListadoDocumentosVerificacion
                                     id={props.match.params.id}
                                     tipo={props.match.params.tipo}
                                     url={props.url}
                                     urlDocs={props.urlDocs}
                                     delete={false}
                                 />
-                        </div>
-                    </div>
-                </div>
+                            </div>
+                        ) : ""
+                }
 
                 <h1>
                     Subir documentos de Evaluación
