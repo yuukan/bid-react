@@ -261,6 +261,14 @@ export default function PlanDetail(props) {
                         props.history.push("/item/revision-no-objecion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <PostAdd />,
+                    tooltip: 'Aprobación de informe',
+                    hidden: !(rowData.estado === 45),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-informe/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',
