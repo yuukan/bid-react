@@ -232,17 +232,13 @@ export default function InicioEvaluacion(props) {
                     </div>
 
                     <div className="hero space-bellow">
-                        <div className="row">
-                            <div className="row">
-                                <ListadoDocumentosEvaluacion
-                                        id={props.match.params.id}
-                                        tipo={props.match.params.tipo}
-                                        url={props.url}
-                                        urlDocs={props.urlDocs}
-                                        delete={true}
-                                    />
-                            </div>
-                        </div>
+                        <ListadoDocumentosEvaluacion
+                                id={props.match.params.id}
+                                tipo={props.match.params.tipo}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                                delete={true}
+                            />
                     </div>
 
                     <div className="row">                        

@@ -47,6 +47,7 @@ import OtorgarNoObjecionEvaluacion from './components/item/OtorgarNoObjecionEval
 import RevisionNoObjecionEvaluacion from './components/item/RevisionNoObjecionEvaluacion';
 import AprobacionInforme from './components/item/AprobacionInforme';
 import VerificacionInformacionValuacion from './components/item/VerificacionInformacionValuacion';
+import DarComentarioConformidad from './components/item/DarComentarioConformidad';
 
 import './css/App.css';
 // We import the css
@@ -602,6 +603,17 @@ class App extends Component {
                           />} />
 
                       <Route
+                        path="/item/solicitar-comentario-conformidad/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirector
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={3}
+                          />} />
+
+                      <Route
                         path="/item/verificacion-evaluacion-jefe-equipo/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <VerificacionEvaluacionJefeEquipo
@@ -655,6 +667,16 @@ class App extends Component {
                         path="/item/verificacion-informacion-evaluacion/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <VerificacionInformacionValuacion
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/dar-comentario-conformidad/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <DarComentarioConformidad
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

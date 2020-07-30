@@ -94,7 +94,37 @@ export default function EvaluacionDirector(props) {
             }
         }));
     }
+    //####################################Verify#########################################
+    const solicitar_comentario = () => {
+        let user = localStorage.getItem("bidID");   
+        setDisabled(true);
+        axios.post(props.url + "api/solicitar-comentario-conformidad",
+            {
+                id: props.match.params.id,
+                user
+            }
+        )
+            .then(function () {
+                swal("Información", "Se ha solicitado el comentrio de conformidad.", "info")
+                    .then(() => {
+                        props.getProcesses();
+                        props.history.goBack();
+                        setDisabled(false);
+                    });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
+    let razon1 = "";
+    let razon2 = "";
+    let razon3 = "";
+    if(activity){
+        razon1 = activity.razon_verificacion_evaluacion;
+        razon2 = activity.comentario_conformidad;
+        razon3 = activity.comentario_denegar_no_objecion;
+    }
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -102,6 +132,56 @@ export default function EvaluacionDirector(props) {
                 <h1>
                     Evaluación Director
                 </h1>
+
+                <h2>
+                    {props.match.params.description}
+                </h2>
+
+                {
+                    razon3!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario objecion concepto obligatorio
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon3}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+
+                {
+                    razon2!=="" ?
+                    (
+                        <div className="hero space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario de conformidad
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon2}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+
+                {
+                    razon1!=="" ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario junta de evaluación
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon1}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+                
                 <div className="hero space-bellow">
                     <div className="row file-input space-bellow">
                         <div className="half">
@@ -170,9 +250,16 @@ export default function EvaluacionDirector(props) {
                                 <LinearProgress />
                             </button>
                         ) :
+                        props.op ===2 ?
                         (
                             <button type="button" className="cancel" disabled={disabled} onClick={verify}>
                                 <FontAwesomeIcon icon="exclamation-triangle" /> Solicitar Verificación
+                                <LinearProgress />
+                            </button>
+                        ): 
+                        (
+                            <button type="button" className="cancel" disabled={disabled} onClick={solicitar_comentario}>
+                                <FontAwesomeIcon icon="exclamation-triangle" /> Solicitar Comentario de Conformidad
                                 <LinearProgress />
                             </button>
                         )

@@ -31,6 +31,43 @@ export default function RevisionNoObjecionEvaluacion(props) {
             });
     }, [props]);
 
+    // Objecion
+    const deny = () => {
+        let user = localStorage.getItem("bidID");
+            
+        swal({
+            text: 'Rechazo de no objeción',
+            content: {
+                element: "input",
+            },
+            button: {
+                text: "Enviar"
+            },
+            icon: "info",
+        }).then((razon => {
+            if(razon){
+                axios.post(props.url + "api/denegar-no-objecion",
+                    {
+                        id: props.match.params.id,
+                        user,
+                        razon
+                    }
+                )
+                    .then(function () {
+                        swal("Información", "Se ha enviado el rechazo de la no objeción", "info")
+                            .then(() => {
+                                props.getProcesses();
+                                props.history.goBack();
+                            });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                });
+            } else {
+                swal("Información", "Debe de ingresar el comentario para el rechazo.", "error")
+            }
+        }));
+    }
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
@@ -139,6 +176,9 @@ export default function RevisionNoObjecionEvaluacion(props) {
                     <div className="full">
                         <button type="button" className="save" onClick={approve}>
                             <FontAwesomeIcon icon="save" /> Aprobar
+                        </button>
+                        <button type="button" className="cancel" onClick={deny}>
+                            <FontAwesomeIcon icon="exclamation-triangle" /> Objeción
                         </button>
                     </div>
                 </div>

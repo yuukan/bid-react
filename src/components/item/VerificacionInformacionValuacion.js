@@ -9,7 +9,9 @@ import ListadoDocumentosVerificacion from './ListadoDocumentosVerificacion';
 
 export default function VerificacionInformacionValuacion(props) {
     const [pod, setPod] = useState(null);
+    const [pod2, setPod2] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [activity, setActivity] = useState(false);
 
     const [state2, setState2] = useState({
         comentario_verificacion: ""
@@ -23,7 +25,7 @@ export default function VerificacionInformacionValuacion(props) {
             }
         )
             .then(function (response) {
-                // setActivity(response.data[0]);
+                setActivity(response.data[0]);
                 setState2({ ...state2, nog: response.data[0].nog, recepcion_ofertas: response.data[0].recepcion_ofertas || "" });
             })
             .catch(function (error) {
@@ -55,6 +57,35 @@ export default function VerificacionInformacionValuacion(props) {
                     setDisabled(false);
                     swal("Éxito", "!Documentos Cargados!", "success");
                     setPod(null);
+                    e.target.reset();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        } else {
+            swal("Atención", "!Debe de seleccionar Archivos!", "error");
+        }
+        return false;
+    };
+    //####################################Save Profile####################################
+    const onSubmit2 = (e) => {
+        e.preventDefault();
+        if (pod2) {
+            const data = new FormData()
+            for(let i =0;i<pod2.length;i++){
+                data.append('pod[]', pod2[i]);
+            }
+
+            data.append('id', props.match.params.id);
+
+            setDisabled(true);
+            let user = localStorage.getItem("bidID");
+            data.append('user', user);
+            axios.post(props.url + "api/upload-item-evaluacion-documents", data)
+                .then(function () {
+                    setDisabled(false);
+                    swal("Éxito", "!Documentos Cargados!", "success");
+                    setPod2(null);
                     e.target.reset();
                 })
                 .catch(function (error) {
@@ -109,7 +140,25 @@ export default function VerificacionInformacionValuacion(props) {
         }
 
     }
+    //####################################Change File Handler####################################
+    const onChangeHandler2 = event => {
+        if (event.target.name === "pod2") {
+            let fls = [];
+            for(let i =0;i<event.target.files.length;i++){
+                fls.push(event.target.files[i]);
+            }
+            setPod2(fls);
+        }
 
+    }
+
+
+    let razon1 = "";
+    let razon2 = "";
+    if(activity){
+        razon1 = activity.razon_verificacion_evaluacion;
+        razon2 = activity.solicitud_verificacion_evaluacion;
+    }
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -120,6 +169,72 @@ export default function VerificacionInformacionValuacion(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
+
+                {
+                    razon1!=="" ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario junta de evaluación
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon1}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+
+                {
+                    razon2!=="" ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario Director
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon2}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+                
+                <form onSubmit={onSubmit2}>
+                    <div className="hero space-bellow">
+                        <div className="row file-input space-bellow">
+                            <h4>
+                                Subir documentos de Evaluación
+                            </h4>
+                            <div className="half">
+                                <div className="label">
+                                    Seleccione Documentos
+                                </div>
+                                <input multiple type="file" name="pod2" id="pod2" onChange={onChangeHandler2} />
+                                <label htmlFor="pod2" className={pod2 ? 'active' : ''}>
+                                    <FontAwesomeIcon icon="file-upload" />
+                                    {
+                                        pod2 ? pod2.length+" archivos seleccionados" : "Seleccione un Archivo"
+                                    }
+                                </label>
+                                <button type="submit" className="save pull-left" disabled={disabled}>
+                                    <FontAwesomeIcon icon="save" /> Subir Archivos
+                                    <LinearProgress />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div className="hero space-bellow">
+                    <ListadoDocumentosEvaluacion
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={true}
+                        />
+                </div>     
                 
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
@@ -141,7 +256,7 @@ export default function VerificacionInformacionValuacion(props) {
                     <div className="hero space-bellow">
                         <div className="row file-input space-bellow">
                             <h4>
-                                Subir documento de Verificación
+                                Subir documentos de Verificación
                             </h4>
                             <div className="half">
                                 <div className="label">
@@ -180,20 +295,6 @@ export default function VerificacionInformacionValuacion(props) {
                                 urlDocs={props.urlDocs}
                                 delete={false}
                             />
-                    </div>
-                    
-                    <div className="hero space-bellow">
-                        <div className="row">
-                            <div className="row">
-                                <ListadoDocumentosEvaluacion
-                                        id={props.match.params.id}
-                                        tipo={props.match.params.tipo}
-                                        url={props.url}
-                                        urlDocs={props.urlDocs}
-                                        delete={false}
-                                    />
-                            </div>
-                        </div>
                     </div>
 
                     <div className="row">                        

@@ -49,6 +49,11 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
             });   
     }
 
+    let razon2 = "";
+    if(activity){
+        razon2 = activity.comentario_conformidad;
+    }
+
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -56,6 +61,26 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
                 <h1>
                     Validación de evaluación jefe de equipo
                 </h1>
+
+                <h2>
+                    {props.match.params.description}
+                </h2>
+
+                {
+                    razon2!=="" ?
+                    (
+                        <div className="hero space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Comentario de conformidad
+                                <div className="text">
+                                    <span dangerouslySetInnerHTML={{__html: razon2}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+
                 <div className="hero space-bellow">
                     <div className="row file-input space-bellow">
                         <div className="half">

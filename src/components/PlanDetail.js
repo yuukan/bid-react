@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -214,17 +214,17 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => <VerifiedUser />,
-                    tooltip: 'Evaluación Director',
+                    icon: () => <Comment />,
+                    tooltip: 'Solicitar comentario de conformidad',
                     hidden: !(rowData.estado === 31),
                     onClick: (event, rowData) => {
-                        props.history.push("/item/evaluacion-director-no-objecion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                        props.history.push("/item/solicitar-comentario-conformidad/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
                 rowData => ({
-                    icon: () => <VerifiedUser />,
+                    icon: () => rowData.estado === 50 ? <VerifiedUser color="error" /> : <VerifiedUser />,
                     tooltip: 'Evaluación Director verificación',
-                    hidden: !(rowData.estado === 32),
+                    hidden: !(rowData.estado === 32 || rowData.estado === 50),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-director-verificacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -277,6 +277,24 @@ export default function PlanDetail(props) {
                         props.history.push("/item/verificacion-informacion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
+                rowData => ({
+                    icon: () => <CommentOutlined />,
+                    tooltip: 'Dar comentario de conformidad',
+                    hidden: !(rowData.estado === 48),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/dar-comentario-conformidad/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Evaluación comentario conformidad',
+                    hidden: !(rowData.estado === 49),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-director-no-objecion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+
+
                 // rowData => ({
                 //     icon: () => <VerifiedUser />,
                 //     tooltip: 'Certificación del Director',

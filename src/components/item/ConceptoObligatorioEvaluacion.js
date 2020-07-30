@@ -12,6 +12,7 @@ import Switch from '@material-ui/core/Switch';
 export default function ConceptoObligatorioEvaluacion(props) {
 
     const [plan, setPlan] = useState(null);
+    const [activity, setActivity] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [state, setState] = useState({
         checkedA: false,
@@ -32,6 +33,18 @@ export default function ConceptoObligatorioEvaluacion(props) {
             let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
             setPlan(plan);
         }
+
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }, [props]);
 
     // Approve this plan
@@ -77,6 +90,10 @@ export default function ConceptoObligatorioEvaluacion(props) {
             swal("Alerta", "Debe de marcar las 6 preguntas.", "error");
         }
     }
+    let razon2 = "";
+    if(activity){
+        razon2 = activity.comentario_conformidad;
+    }
 
     //####################################Return####################################
     return (
@@ -87,9 +104,25 @@ export default function ConceptoObligatorioEvaluacion(props) {
                     <h1>
                         Concepto Obligatorio
                     </h1>
+                    
                     <h2>
                         {props.match.params.description}
                     </h2>
+
+                    {
+                        razon2!=="" ?
+                        (
+                            <div className="hero space-bellow">
+                                <h3 className="concepto_obligatorio">
+                                    <FontAwesomeIcon icon="info-square" />
+                                    Comentario de conformidad
+                                    <div className="text">
+                                        <span dangerouslySetInnerHTML={{__html: razon2}} />
+                                    </div>
+                                </h3>
+                            </div>
+                        ) : ""
+                    }
 
                     <div className="hero space-bellow">
                         <div className="row">
