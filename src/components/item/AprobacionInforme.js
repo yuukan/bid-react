@@ -14,7 +14,8 @@ export default function AprobacionInforme(props) {
 
     const [state2, setState2] = useState({
         proveedor: "",
-        fecha_vencimiento:""
+        notificacion_proveedor:"",
+        firma_contrato_garantias:""
     });
 
     const handleChange2 = (event) => {
@@ -34,6 +35,13 @@ export default function AprobacionInforme(props) {
         )
             .then(function (response) {
                 setActivity(response.data[0]);
+                setState2(
+                    {
+                        proveedor:response.data[0].proveedor,
+                        notificacion_proveedor:response.data[0].notificacion_proveedor,
+                        firma_contrato_garantias:response.data[0].firma_contrato_garantias
+                    }
+                );
             })
             .catch(function (error) {
                 console.log(error);
@@ -50,7 +58,8 @@ export default function AprobacionInforme(props) {
                         id: props.match.params.id,
                         user,
                         proveedor: state2.proveedor,
-                        fecha_vencimiento: state2.fecha_vencimiento
+                        notificacion_proveedor: state2.notificacion_proveedor,
+                        firma_contrato_garantias: state2.firma_contrato_garantias
                     }
                 )
                     .then(function () {
@@ -70,6 +79,19 @@ export default function AprobacionInforme(props) {
             swal("Alerta", "Debe de marcar la aprobación", "error");
         }
     }
+
+
+    let date1 = new Date(state2.firma_contrato_garantias); 
+    let date3 = new Date(state2.notificacion_proveedor); 
+    let date2 = new Date();
+    let diff = date1.getTime() - date2.getTime();
+    let days1 = parseInt(diff / (1000 * 3600 * 24)); 
+
+    diff = date3.getTime() - date2.getTime();
+    let days2 = parseInt(diff / (1000 * 3600 * 24)); 
+
+
+
 
     let concepto_obligatorio = activity.concepto_obligatorio_evaluacion;
     let no_objecion_evaluacion = activity.no_objecion_evaluacion;
@@ -127,18 +149,45 @@ export default function AprobacionInforme(props) {
                                 id="proveedor"
                                 value={state2.proveedor}
                                 onChange={handleChange2}
+                                readOnly={activity.cs_estado_proceso_id===46}
                             />
                         </div>
                         <div className="half">
                             <label htmlFor="fecha_vencimiento">
-                                Fecha de Recepción de ofertas
+                                Fecha de Notificación al Proveedor 
+                                {
+                                    state2.notificacion_proveedor && activity.cs_estado_proceso_id===46 ?
+                                    (
+                                        <strong className="red"> ({ days2 } días) </strong>
+                                    ) : ""
+                                }
                             </label>
                             <input
                                 type="date"
-                                name="fecha_vencimiento"
-                                id="fecha_vencimiento"
-                                value={state2.fecha_vencimiento}
+                                name="notificacion_proveedor"
+                                id="notificacion_proveedor"
+                                value={state2.notificacion_proveedor}
                                 onChange={handleChange2}
+                                readOnly={activity.cs_estado_proceso_id===46}
+                            />
+                        </div>
+                        <div className="half">
+                            <label htmlFor="fecha_vencimiento">
+                                Fecha Límite de firma de contrato y garantías 
+                                {
+                                    state2.firma_contrato_garantias && activity.cs_estado_proceso_id===46 ?
+                                    (
+                                        <strong className="red"> ({ days1 } días) </strong>
+                                    ) : ""
+                                }
+                            </label>
+                            <input
+                                type="date"
+                                name="firma_contrato_garantias"
+                                id="firma_contrato_garantias"
+                                value={state2.firma_contrato_garantias}
+                                onChange={handleChange2}
+                                readOnly={activity.cs_estado_proceso_id===46}
                             />
                         </div>
                     </div>
@@ -165,27 +214,44 @@ export default function AprobacionInforme(props) {
                             urlDocs={props.urlDocs}
                         />
                 </div>
+                    {
+                        activity.cs_estado_proceso_id!==46 ?
+                        (
+                            <div className="row">
+                                <h2>
+                                    Aprobación
+                                </h2>
+                                <div className="full">
+                                    <label htmlFor="checkedA" className="switch">
+                                        <Switch
+                                            checked={state.checkedA}
+                                            onChange={handleChange}
+                                            color="primary"
+                                            name="checkedA"
+                                            id="checkedA"
+                                            inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
+                                        />
+                                        Certifico que cumple con todos los documentos base.
+                                    </label>
+                                </div>
+                            </div>
+                        ): ""
+                    }
                 <div className="row">
-                    <h2>
-                        Aprobación
-                    </h2>
                     <div className="full">
-                        <label htmlFor="checkedA" className="switch">
-                            <Switch
-                                checked={state.checkedA}
-                                onChange={handleChange}
-                                color="primary"
-                                name="checkedA"
-                                id="checkedA"
-                                inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
-                            />
-                            Certifico que cumple con todos los documentos base.
-                        </label>
-                    </div>
-                    <div className="full">
-                        <button type="button" className="save" onClick={approve}>
-                            <FontAwesomeIcon icon="save" /> Aprobar
-                        </button>
+                        {
+                            activity.cs_estado_proceso_id===46 ?
+                            (
+                                <button type="button" className="cancel" onClick={()=>window.history.back()}>
+                                    <FontAwesomeIcon icon="arrow-to-left" /> Regresar
+                                </button>
+                            ):
+                            (
+                                <button type="button" className="save" onClick={approve}>
+                                    <FontAwesomeIcon icon="save" /> Aprobar
+                                </button>
+                            )
+                        }
                     </div>
                 </div>
             </div>

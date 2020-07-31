@@ -242,6 +242,9 @@
             strong{
                 font-weight: bold;
                 margin-right: 10px;
+                &.red{
+                    color: $error;
+                }
             }
         }
         input:not([type=checkbox]),
