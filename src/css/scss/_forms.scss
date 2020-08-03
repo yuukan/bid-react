@@ -44,6 +44,15 @@
         float: left;
         width: 100%;
         margin-bottom: 5px;
+        &.rowlist{
+            padding: 15px 10px;
+            &:nth-child(odd){
+                background: #ffffff;
+            }
+            .quarter{
+                margin-bottom:0;
+            }
+        }
         .full{
             float: left;
             width: 100%;
@@ -87,6 +96,12 @@
                     color: white;
                 }
             }
+            &.no-bg{
+                background: transparent;
+                a{
+                    color: $black;
+                }
+            }
             a{
                 color: lighten($green,20);
                 float: left;
@@ -110,6 +125,16 @@
                 margin-right: 10px;
                 margin-top: 10px;
                 cursor: pointer;
+            }
+        }
+        .third{
+            float: left;
+            width: 32.33%;
+            margin-bottom: 20px;
+            margin-right: 1%;
+            &:nth-of-type(3){
+                width: 33.33%;
+                margin-right: 0;
             }
         }
         &.table{

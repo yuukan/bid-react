@@ -142,6 +142,10 @@ export default function InicioEvaluacion(props) {
                 <h1>
                     Inicio de Evaluación
                 </h1>
+                <h2>
+                    {props.match.params.description}
+                </h2>
+                
                 <div className="hero space-bellow">
                     <div className="row file-input space-bellow">
                         <div className="half">

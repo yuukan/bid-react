@@ -384,6 +384,12 @@ header {
     float: left;
     width: 100%;
     margin-bottom: 5px; }
+    .crear-container .row.rowlist {
+      padding: 15px 10px; }
+      .crear-container .row.rowlist:nth-child(odd) {
+        background: #ffffff; }
+      .crear-container .row.rowlist .quarter {
+        margin-bottom: 0; }
     .crear-container .row .full {
       float: left;
       width: 100%; }
@@ -418,6 +424,10 @@ header {
         background: #861657; }
         .crear-container .row .quarter.enmienda a {
           color: white; }
+      .crear-container .row .quarter.no-bg {
+        background: transparent; }
+        .crear-container .row .quarter.no-bg a {
+          color: #2B2D42; }
       .crear-container .row .quarter a {
         color: #e1eada;
         float: left;
@@ -438,6 +448,14 @@ header {
         margin-right: 10px;
         margin-top: 10px;
         cursor: pointer; }
+    .crear-container .row .third {
+      float: left;
+      width: 32.33%;
+      margin-bottom: 20px;
+      margin-right: 1%; }
+      .crear-container .row .third:nth-of-type(3) {
+        width: 33.33%;
+        margin-right: 0; }
     .crear-container .row.table th,
     .crear-container .row.table td {
       font-size: 0.7rem; }
