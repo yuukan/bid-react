@@ -64,36 +64,6 @@ export default function PlanDetail(props) {
         let actions = [];
         if (props.edit) {
             actions = [
-                // () => ({
-                //     icon: DeleteOutline,
-                //     tooltip: 'Borrar Fila',
-                //     onClick: (event, rowData) => {
-                //         // props.history.push("/subir-documentos/" + rowData.id);
-                //         swal({
-                //             title: "¿Desea eliminar la fila?",
-                //             text: "Esto no se puede ",
-                //             icon: "error",
-                //             buttons: ["No", "Sí"],
-                //             dangerMode: true,
-                //         })
-                //             .then((value) => {
-                //                 if (value) {
-                //                     axios.post(props.url + "api/delete-plan-detail",
-                //                         {
-                //                             id: rowData.id
-                //                         }
-                //                     )
-                //                         .then(function (response) {
-                //                             props.removeLine(response.data);
-                //                             swal("¡Línea eliminada con éxito!", "", "success");
-                //                         })
-                //                         .catch(function (error) {
-                //                             console.log(error);
-                //                         });
-                //                 }
-                //             });
-                //     },
-                // }),
                 rowData => ({
                     icon: () => rowData.estado === 16 || rowData.estado === 18 ? <CloudUpload color="error" /> : <CloudUpload />,
                     tooltip: 'Subir Documentos',
@@ -302,11 +272,19 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
-                    icon: () => <FormatListNumbered />,
+                    icon: () => rowData.estado === 53 ? <FormatListNumbered color="error" /> : <FormatListNumbered />,
                     tooltip: 'Registro del contrato',
-                    hidden: !(rowData.estado === 46),
+                    hidden: !(rowData.estado === 46 || rowData.estado === 53),
                     onClick: (event, rowData) => {
                         props.history.push("/item/registro-del-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUser />,
+                    tooltip: 'Aprobación de contrato del Director',
+                    hidden: !(rowData.estado === 51),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];

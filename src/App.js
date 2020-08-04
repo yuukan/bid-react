@@ -49,6 +49,7 @@ import AprobacionInforme from './components/item/AprobacionInforme';
 import VerificacionInformacionValuacion from './components/item/VerificacionInformacionValuacion';
 import DarComentarioConformidad from './components/item/DarComentarioConformidad';
 import RegistroContrato from './components/item/RegistroContrato';
+import AprobacionContrato from './components/item/AprobacionContrato';
 
 import './css/App.css';
 // We import the css
@@ -688,6 +689,16 @@ class App extends Component {
                         path="/item/registro-del-contrato/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <RegistroContrato
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/aprobacion-contrato/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <AprobacionContrato
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

@@ -45,12 +45,16 @@
         width: 100%;
         margin-bottom: 5px;
         &.rowlist{
-            padding: 15px 10px;
+            padding: 5px 10px;
             &:nth-child(odd){
                 background: #ffffff;
             }
             .quarter{
                 margin-bottom:0;
+                padding: 10px 0;
+                &.no-padding{
+                    padding: 0;
+                }
             }
         }
         .full{
@@ -109,7 +113,8 @@
                 font-size: 0.8rem;
                 text-decoration: none;
                 padding:10px;
-                line-height: normal;;
+                line-height: normal;
+                word-break: break-all;
                 &:hover{
                     text-decoration: underline;
                 }
@@ -433,4 +438,12 @@
     margin-bottom: 15px;
     font-size: 0.9rem;
     line-height: normal;
+}
+
+.display-info{
+    float: left;
+    width: 100%;
+    background: whitesmoke;
+    padding: 10px;
+    border-radius: 10px;
 }

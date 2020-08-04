@@ -385,11 +385,14 @@ header {
     width: 100%;
     margin-bottom: 5px; }
     .crear-container .row.rowlist {
-      padding: 15px 10px; }
+      padding: 5px 10px; }
       .crear-container .row.rowlist:nth-child(odd) {
         background: #ffffff; }
       .crear-container .row.rowlist .quarter {
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        padding: 10px 0; }
+        .crear-container .row.rowlist .quarter.no-padding {
+          padding: 0; }
     .crear-container .row .full {
       float: left;
       width: 100%; }
@@ -435,7 +438,8 @@ header {
         font-size: 0.8rem;
         text-decoration: none;
         padding: 10px;
-        line-height: normal; }
+        line-height: normal;
+        word-break: break-all; }
         .crear-container .row .quarter a:hover {
           text-decoration: underline; }
         .crear-container .row .quarter a svg {
@@ -694,3 +698,10 @@ header {
   margin-bottom: 15px;
   font-size: 0.9rem;
   line-height: normal; }
+
+.display-info {
+  float: left;
+  width: 100%;
+  background: whitesmoke;
+  padding: 10px;
+  border-radius: 10px; }

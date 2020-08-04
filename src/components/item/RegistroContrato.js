@@ -21,7 +21,8 @@ export default function RegistroContrato(props) {
         moneda:"Q",
         tipo_cambio:"",
         tipo_garantia:"",
-        vigencia_garantia:""
+        vigencia_garantia:"",
+        razon: ""
     });
 
     const handleChange2 = (event) => {
@@ -37,6 +38,37 @@ export default function RegistroContrato(props) {
     const handleChange3 = (event) => {
         setState3({ ...state3, [event.target.name]: event.target.value });
     };
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                let r = response.data[0];
+                setState2({
+                    nombre_contratista: r.nombre_contratista,
+                    fecha_firma_contrato:r.fecha_firma_contrato,
+                    objeto_contrato:r.objeto_contrato,
+                    plazo_contrato:r.plazo_contrato,
+                    numero_registro_cotrato:r.numero_registro_cotrato,
+                    montro_contrato:r.montro_contrato,
+                    moneda:r.moneda,
+                    tipo_cambio:r.tipo_cambio,
+                    tipo_garantia:r.tipo_garantia,
+                    vigencia_garantia:r.vigencia_garantia,
+                    razon: r.texto_rechazo_contrato
+                });
+                // console.log(r.cronograma);
+                setCronograma(r.cronograma);
+                // setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [props]);
 
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
@@ -146,7 +178,7 @@ export default function RegistroContrato(props) {
                                 }
                             )
                                 .then(function () {
-                                    // props.getProcesses();
+                                    props.getProcesses();
                                     window.history.back();
                                 })
                                 .catch(function (error) {
@@ -173,6 +205,21 @@ export default function RegistroContrato(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
+
+                {
+                    state2.razon && state2.razon!=="" ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="info-square" />
+                                Concepto Obligatorio
+                                <div className="text">
+                                    {state2.razon}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
 
                 <div className="row">
                     <div className="half">
@@ -407,7 +454,7 @@ export default function RegistroContrato(props) {
                                     <div className="quarter no-bg">
                                         {key[2]}
                                     </div>
-                                    <div className="quarter no-bg">
+                                    <div className="quarter no-bg no-padding">
                                         <button type="button" className="cancel" onClick={()=>remove_row(idx)}>
                                             <FontAwesomeIcon icon="times" />
                                         </button>
