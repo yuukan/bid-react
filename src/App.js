@@ -50,14 +50,15 @@ import VerificacionInformacionValuacion from './components/item/VerificacionInfo
 import DarComentarioConformidad from './components/item/DarComentarioConformidad';
 import RegistroContrato from './components/item/RegistroContrato';
 import AprobacionContrato from './components/item/AprobacionContrato';
+import CompletarProducto from './components/item/CompletarProducto';
 
 import './css/App.css';
 // We import the css
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft } from '@fortawesome/pro-solid-svg-icons';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft);
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause } from '@fortawesome/pro-solid-svg-icons';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause);
 
 let url = "http://192.241.219.113/bid/public/";
 let urlDocs = "http://192.241.219.113/bid/storage/app/";
@@ -699,6 +700,16 @@ class App extends Component {
                         path="/item/aprobacion-contrato/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionContrato
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/completar-producto/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <CompletarProducto
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

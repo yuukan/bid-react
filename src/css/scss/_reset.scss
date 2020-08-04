@@ -83,6 +83,13 @@ h1{
 	font-size: 1.7rem;
 	font-weight: bold;
 	margin-bottom: 20px;
+	&.divider{
+		border-top: 5px dotted $green;
+		padding-top: 25px;
+		float: left;
+		width: 100%;
+		margin-top: 25px;
+	}
 }
 h2{
 	color: $blue;

@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -285,6 +285,22 @@ export default function PlanDetail(props) {
                     hidden: !(rowData.estado === 51),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <Equalizer />,
+                    tooltip: 'Completar producto',
+                    hidden: !(rowData.estado === 52),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/completar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <CheckBox />,
+                    tooltip: 'Aprobar producto',
+                    hidden: !(rowData.estado === 52 && rowData.quantity_processes_waiting>0),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];
