@@ -11,8 +11,7 @@ export default function CompletarProducto(props) {
     const [supervisores, setSupervisores] = useState(false);
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
-    const [producto, setProducto] = useState(["",0]);
-    const [supervisor, setSupervisor] = useState(0);
+    const [producto, setProducto] = useState(["",0,"","",0]);
     
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -47,8 +46,14 @@ export default function CompletarProducto(props) {
             setPod(fls);
         }
 
+    }
+    //####################################Change File Handler####################################
+    const onChangeHandler2 = event => {
         if (event.target.name === "supervisor") {
-            setSupervisor(event.target.value);
+            let prod = [...producto];
+            prod[4] = event.target.value;
+            setProducto(prod);
+            // setSupervisor(event.target.value);
         }
     }
 
@@ -86,7 +91,7 @@ export default function CompletarProducto(props) {
 
     //####################################Completar Información########################################
     const complete_info = () => {
-        if(supervisor!==0){
+        if(producto[4]!==0){
             swal({
                 title: "¿Continuar?",
                 text: "Se enviará al siguiente paso.",
@@ -102,7 +107,7 @@ export default function CompletarProducto(props) {
                             {
                                 id: producto[1],
                                 user,
-                                supervisor:supervisor
+                                supervisor:producto[4]
                             }
                         )
                             .then(function () {
@@ -153,10 +158,19 @@ export default function CompletarProducto(props) {
                                         {key[2]}
                                     </div>
                                     {
+                                        key[5]===2 ?
+                                        (
+                                            <div className="quarter no-bg no-padding">
+                                                <button type="button" className="cancel no-margin" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]])}}>
+                                                    <FontAwesomeIcon icon="wrench" />&nbsp; 
+                                                    Corregir
+                                                </button>
+                                            </div>
+                                        ) :
                                         key[4]===0 ?
                                         (
                                             <div className="quarter no-bg no-padding">
-                                                <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3]])}}>
+                                                <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]])}}>
                                                     <FontAwesomeIcon icon="clipboard-list-check" />&nbsp;
                                                     Completar
                                                 </button>
@@ -186,13 +200,28 @@ export default function CompletarProducto(props) {
                                 Completar información del producto {producto[0]}
                             </h1>
 
+                            {
+                                producto[2]!=="" ?
+                                (
+                                    <div className="hero error space-bellow">
+                                        <h3 className="error">
+                                            <FontAwesomeIcon icon="exclamation-triangle" />
+                                            Razón de rechazo
+                                            <div className="text">
+                                                {producto[2]}
+                                            </div>
+                                        </h3>
+                                    </div>
+                                ) : ""
+                            }
+
                             <div className="hero space-bellow">
                                 <div className="row">
                                     <div className="half">
                                         <label htmlFor="fecha_firma_contrato">
                                             Supervisor del Contrato
                                         </label>
-                                        <select name="supervisor" id="supervisor" value={supervisor} onChange={onChangeHandler}>
+                                        <select name="supervisor" id="supervisor" value={producto[4]} onChange={onChangeHandler2}>
                                             <option value="0">
                                                 Seleccione un supervisor
                                             </option>

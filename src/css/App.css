@@ -399,6 +399,9 @@ header {
         padding: 10px 0; }
         .crear-container .row.rowlist .quarter.no-padding {
           padding: 0; }
+        .crear-container .row.rowlist .quarter.header {
+          font-weight: bold;
+          color: #0b4f76; }
     .crear-container .row .full {
       float: left;
       width: 100%; }
@@ -663,6 +666,8 @@ header {
         opacity: 0; }
       .crear-container .row .cancel:hover {
         background: #ea3e0d; }
+      .crear-container .row .cancel.no-margin {
+        margin-right: 0; }
     .crear-container .row .solicitud_enmienda {
       float: right;
       border: none;
