@@ -419,6 +419,9 @@
             &:hover{
                 background: darken($purple, 10);
             }
+            &.no-margin{
+                margin-right: 0;
+            }
         }
     }
 }

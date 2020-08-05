@@ -176,6 +176,15 @@ export default function CompletarProducto(props) {
                                                 </button>
                                             </div>
                                         ):
+                                        key[5]===5 ?
+                                        (
+                                            <div className="quarter no-bg no-padding">
+                                                <button type="button" className="solicitud_enmienda no-margin">
+                                                    <FontAwesomeIcon icon="money-check" />&nbsp; 
+                                                    Pagado
+                                                </button>
+                                            </div>
+                                        ) :
                                         (
                                             <div className="quarter no-bg no-padding">
                                                 <button type="button" className="completar-informacion">

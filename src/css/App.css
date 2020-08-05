@@ -686,6 +686,8 @@ header {
         opacity: 0; }
       .crear-container .row .solicitud_enmienda:hover {
         background: #5a0f3b; }
+      .crear-container .row .solicitud_enmienda.no-margin {
+        margin-right: 0; }
 
 .pull-left {
   float: left; }

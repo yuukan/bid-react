@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll,MonetizationOn } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -298,7 +298,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <CheckBox />,
                     tooltip: 'Aprobar producto',
-                    hidden: !(rowData.estado === 52 && rowData.quantity_processes_waiting>0),
+                    hidden: !(rowData.estado === 52 && rowData.q_supervisor>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -306,9 +306,17 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <DoneAll />,
                     tooltip: 'Aprobar producto director',
-                    hidden: !(rowData.estado === 52 && rowData.quantity_processes_waiting>0),
+                    hidden: !(rowData.estado === 52 && rowData.q_director>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobar-producto-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <MonetizationOn />,
+                    tooltip: 'Gestión de Pago',
+                    hidden: !(rowData.estado === 52 && rowData.q_financiero>0),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/pago-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];
