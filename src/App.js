@@ -52,6 +52,7 @@ import RegistroContrato from './components/item/RegistroContrato';
 import AprobacionContrato from './components/item/AprobacionContrato';
 import CompletarProducto from './components/item/CompletarProducto';
 import AprobarProducto from './components/item/AprobarProducto';
+import AprobarProductoDirector from './components/item/AprobarProductoDirector';
 
 import './css/App.css';
 // We import the css
@@ -727,6 +728,15 @@ class App extends Component {
                             getProcesses={this.getProcesses}
                           />} />
 
+                      <Route
+                        path="/item/aprobar-producto-director/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <AprobarProductoDirector
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
 
                 </div>
               )}

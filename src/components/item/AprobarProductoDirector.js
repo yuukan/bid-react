@@ -6,11 +6,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosCompletarProducto from './ListadoDocumentosCompletarProducto';
 
-export default function AprobarProducto(props) {
+export default function AprobarProductoDirector(props) {
     const [activity, setActivity] = useState(false);
     const [supervisores, setSupervisores] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [producto, setProducto] = useState(["",0,"","",0]);
+    const [producto, setProducto] = useState(["",0]);
     const [supervisor, setSupervisor] = useState(0);
     
     // Similar to componentDidMount and componentDidUpdate:
@@ -57,7 +57,7 @@ export default function AprobarProducto(props) {
             .then((certifico) => {
                 if (certifico) {
                     setDisabled(true);
-                    axios.post(props.url + "api/aprobacion-producto",
+                    axios.post(props.url + "api/aprobacion-producto-director",
                         {
                             id: producto[1],
                             user
@@ -92,7 +92,7 @@ export default function AprobarProducto(props) {
         }).then((razon => {
             if (razon) {
                 setDisabled(true);
-                axios.post(props.url + "api/rechazo-producto",
+                axios.post(props.url + "api/rechazo-producto-director",
                     {
                         id: producto[1],
                         user,
@@ -121,7 +121,7 @@ export default function AprobarProducto(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Aprobar el producto (supervisor)
+                    Aprobar el producto (director)
                 </h1>
                 
                 <h2>
@@ -149,7 +149,7 @@ export default function AprobarProducto(props) {
                         activity.cronograma.map((key, idx) => {
                             let d = LocalDate.parse(key[1]);
                             
-                            if(key[4]===0 || (key[5]!==0&& key[5]!==4)) return "";
+                            if(key[4]===0 || key[5]!==1) return "";
 
                             return (
                                 <div className="row rowlist" key={`cro${idx}`}>
@@ -163,7 +163,7 @@ export default function AprobarProducto(props) {
                                         {key[2]}
                                     </div>
                                     <div className="quarter no-bg no-padding">
-                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]]);setSupervisorName(key[4]);}}>
+                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3]]);setSupervisorName(key[4]);}}>
                                             <FontAwesomeIcon icon="eye" />&nbsp;
                                             Ver detalle
                                         </button>
@@ -182,21 +182,6 @@ export default function AprobarProducto(props) {
                             <h1 className="divider">
                                 Información del producto: {producto[0]}
                             </h1>
-
-                            {
-                                producto[3]!=="" ?
-                                (
-                                    <div className="hero error space-bellow">
-                                        <h3 className="error">
-                                            <FontAwesomeIcon icon="exclamation-triangle" />
-                                            Razón de rechazo
-                                            <div className="text">
-                                                {producto[3]}
-                                            </div>
-                                        </h3>
-                                    </div>
-                                ) : ""
-                            }
 
                             <div className="row space-bellow">
                                 <div className="full">
