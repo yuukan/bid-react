@@ -38,7 +38,7 @@ export default function PagoProducto(props) {
 
     const setSupervisorName = (id) => {
         for(let i=0;i<supervisores.length;i++){
-            if(id==supervisores[i].id){
+            if(id===supervisores[i].id){
                 setSupervisor(supervisores[i].name);
             }
         }
