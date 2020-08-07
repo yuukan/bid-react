@@ -51,7 +51,7 @@ export default function AprobacionEspecialistaSectorial(props) {
                 });
 
         } else {
-            swal("Alerta", "Debe de marcar las 14 preguntas.", "error");
+            swal("Atención", "Debe de marcar las 14 preguntas.", "error");
         }
     }
 
@@ -103,11 +103,13 @@ export default function AprobacionEspecialistaSectorial(props) {
                     {props.match.params.description}
                 </h2>
 
-                <ListadoDocumentos
-                    id={props.match.params.id}
-                    url={props.url}
-                    urlDocs={props.urlDocs}
-                />
+                <div className="hero space-bellow">
+                    <ListadoDocumentos
+                        id={props.match.params.id}
+                        url={props.url}
+                        urlDocs={props.urlDocs}
+                    />
+                </div>
 
                 <div className="row">
                     <h2>

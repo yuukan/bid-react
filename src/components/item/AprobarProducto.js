@@ -184,7 +184,7 @@ export default function AprobarProducto(props) {
                             </h1>
 
                             {
-                                producto[3]!=="" ?
+                                producto[3]!==null ?
                                 (
                                     <div className="hero error space-bellow">
                                         <h3 className="error">

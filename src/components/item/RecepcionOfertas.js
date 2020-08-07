@@ -132,7 +132,7 @@ export default function RecepcionOfertas(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Recepción de Ofertas
+                    Recepción de expresión de interés
                 </h1>
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
@@ -151,30 +151,9 @@ export default function RecepcionOfertas(props) {
                             </div>
                         </div>
                         <div className="row file-input space-bellow">
-                            <h4>
-                                Subir documento de Ofertas
-                            </h4>
                             <div className="half">
                                 <div className="label">
-                                    Seleccione Documentos
-                                </div>
-                                <input multiple type="file" name="pod" id="pod" onChange={onChangeHandler} />
-                                <label htmlFor="pod" className={pod ? 'active' : ''}>
-                                    <FontAwesomeIcon icon="file-upload" />
-                                    {
-                                        pod ? pod.length+" archivos seleccionados" : "Seleccione Archivos"
-                                    }
-                                </label>
-                                <button type="submit" className="save pull-left" disabled={disabled}>
-                                    <FontAwesomeIcon icon="save" /> Subir Archivos
-                                    <LinearProgress />
-                                </button>
-                            </div>
-                        </div>
-                        <div className="row file-input space-bellow">
-                            <div className="half">
-                                <div className="label">
-                                    Acta de Recepcion
+                                    Cargar acta de recepción de expresión de interés
                                 </div>
                                 <input type="file" name="acta_recepcion" id="acta_recepcion" onChange={onChangeHandler} />
                                 <label htmlFor="acta_recepcion" className={acta_recepcion ? 'active' : ''}>
@@ -197,7 +176,7 @@ export default function RecepcionOfertas(props) {
                         <div className="row file-input space-bellow">
                             <div className="half">
                                 <div className="label">
-                                    Acta de Apertura
+                                    Cargar acta de Apertura
                                 </div>
                                 <input type="file" name="acta_apertura" id="acta_apertura" onChange={onChangeHandler} />
                                 <label htmlFor="acta_apertura" className={acta_apertura ? 'active' : ''}>
@@ -215,6 +194,29 @@ export default function RecepcionOfertas(props) {
                                             </a>
                                         ) : ""
                                 }
+                            </div>
+                        </div>
+                    </div>
+                    <div className="hero space-bellow">
+                        <div className="row file-input space-bellow">
+                            <h4>
+                                Subir documento de expresión de interés
+                            </h4>
+                            <div className="half">
+                                <div className="label">
+                                    Seleccione Documentos
+                                </div>
+                                <input multiple type="file" name="pod" id="pod" onChange={onChangeHandler} />
+                                <label htmlFor="pod" className={pod ? 'active' : ''}>
+                                    <FontAwesomeIcon icon="file-upload" />
+                                    {
+                                        pod ? pod.length+" archivos seleccionados" : "Seleccione Archivos"
+                                    }
+                                </label>
+                                <button type="submit" className="save pull-left" disabled={disabled}>
+                                    <FontAwesomeIcon icon="save" /> Subir Archivos
+                                    <LinearProgress />
+                                </button>
                             </div>
                         </div>
                     </div>

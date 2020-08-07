@@ -79,7 +79,7 @@ export default function ListadoDocumentosOfertas(props) {
     return (
         <div className="row flex">
             <h3 className="full">
-                Listado de documentos de ofertas cargados
+                Listado de documentos de expresión de interés
             </h3>
             {files}
         </div>

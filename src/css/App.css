@@ -718,3 +718,6 @@ header {
   background: whitesmoke;
   padding: 10px;
   border-radius: 10px; }
+
+.MuiInputBase-inputAdornedStart {
+  border: none !important; }

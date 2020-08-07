@@ -14,12 +14,21 @@ export default function AprobacionFinal(props) {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
+    const [activity, setActivity] = useState(false);
+
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
-        // if (props && props.processes) {
-        //     let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
-        //     setPlan(plan);
-        // }
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }, [props]);
 
     // Approve this plan
@@ -95,11 +104,29 @@ export default function AprobacionFinal(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
-                <ListadoDocumentosBaseSubidos
-                        id={props.match.params.id}
-                        url={props.url}
-                        urlDocs={props.urlDocs}
-                    />
+
+                {
+                    activity.concepto_obligatorio!=="" ?
+                    (
+                        <div className="hero concepto_obligatorio space-bellow">
+                            <h3 className="concepto_obligatorio">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Concepto Obligatorio
+                                <div className="text">
+                                    {activity.concepto_obligatorio}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+
+                <div className="hero space-bellow">
+                    <ListadoDocumentosBaseSubidos
+                            id={props.match.params.id}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                        />
+                </div>
                 <div className="row">
                     <h2>
                         Certificación

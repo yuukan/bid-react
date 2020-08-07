@@ -14,14 +14,6 @@ export default function AprobacionDirector(props) {
         setState({ ...state, [event.target.name]: event.target.checked });
     };
 
-    // Similar to componentDidMount and componentDidUpdate:
-    useEffect(() => {
-        // if (props && props.processes) {
-        //     let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
-        //     setPlan(plan);
-        // }
-    }, [props]);
-
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
@@ -95,11 +87,13 @@ export default function AprobacionDirector(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
-                <ListadoDocumentosBaseSubidos
-                        id={props.match.params.id}
-                        url={props.url}
-                        urlDocs={props.urlDocs}
-                    />
+                <div className="hero space-bellow">
+                    <ListadoDocumentosBaseSubidos
+                            id={props.match.params.id}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                        />
+                </div>
                 <div className="row">
                     <h2>
                         Certificación

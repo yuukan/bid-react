@@ -153,7 +153,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <PostAdd />,
-                    tooltip: 'Recepción de Ofertas',
+                    tooltip: 'Recepción de expresión de interés',
                     hidden: !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/recepcion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -161,7 +161,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <AssignmentTurnedInOutlined />,
-                    tooltip: 'Evaluación de Ofertas',
+                    tooltip: 'Evaluación de expresión de interés',
                     hidden: !(rowData.estado === 29 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -169,7 +169,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
-                    tooltip: 'Ver Ofertas',
+                    tooltip: 'Ver expresión de interés',
                     hidden: !(rowData.estado >= 30 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -343,6 +343,7 @@ export default function PlanDetail(props) {
                                                 color: '#FFF',
                                                 textAlign: 'center'
                                             },
+                                            search: true,
                                             rowStyle: rowData => {
 
                                                 // if(rowData.estado >=37 && rowData.estado <40) {
@@ -358,8 +359,7 @@ export default function PlanDetail(props) {
                                                 // }
                                                 
                                                 return {};
-                                            },
-                                            search: false
+                                            }
                                         }}
                                         actions={actions}
                                         localization={{

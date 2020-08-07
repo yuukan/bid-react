@@ -128,11 +128,15 @@ export default function ConceptoObligatorio(props) {
                     <h2>
                         {props.match.params.description}
                     </h2>
-                    <ListadoDocumentosBaseSubidos
-                            id={props.match.params.id}
-                            url={props.url}
-                            urlDocs={props.urlDocs}
-                        />
+                    
+                    <div className="hero space-bellow">
+                        <ListadoDocumentosBaseSubidos
+                                id={props.match.params.id}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                            />
+                    </div>
+
                     <div className="full">
                         <label htmlFor="checkedA" className="switch">
                             <Switch

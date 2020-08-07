@@ -46,7 +46,7 @@ export default function CertificacionTecnica(props) {
                 });
 
         } else {
-            swal("Alerta", "Debe de marcar la certificación.", "error");
+            swal("Atención", "Debe de marcar la certificación.", "error");
         }
     }
 
@@ -97,11 +97,13 @@ export default function CertificacionTecnica(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
-                <ListadoDocumentos
-                        id={props.match.params.id}
-                        url={props.url}
-                        urlDocs={props.urlDocs}
-                    />
+                <div className="hero space-bellow">
+                    <ListadoDocumentos
+                            id={props.match.params.id}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                        />
+                </div>
                 <div className="row">
                     <h2>
                         Certificación

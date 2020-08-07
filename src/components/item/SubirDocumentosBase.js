@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -29,6 +29,23 @@ export default function SubirDocumentosBase(props) {
         checkedN: false,
         checkedO: false,
     });
+
+    const [activity, setActivity] = useState(false);
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [props]);
 
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -113,38 +130,101 @@ export default function SubirDocumentosBase(props) {
                 <h1>
                     Carga de Documentos Base
                 </h1>
+                <h2>
+                    {props.match.params.description}
+                </h2>
+                {
+                    activity.rechazo_director!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Razón de rechazo del director
+                                <div className="text">
+                                    {activity.rechazo_director}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+                {
+                    activity.rechazo_jefe_equipo!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Razón de rechazo del jefe del equipo
+                                <div className="text">
+                                    {activity.rechazo_jefe_equipo}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+                {
+                    activity.rechazo_concepto_obligatorio!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Razón de rechazo del concepto obligatorio
+                                <div className="text">
+                                    {activity.rechazo_concepto_obligatorio}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
+                {
+                    activity.rechazo_final!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Razón de rechazo final
+                                <div className="text">
+                                    {activity.rechazo_final}
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
                 <form onSubmit={onSubmit}>
                     <div className="row file-input">
                         <h3>
                             Listado de documentos a descargar
                         </h3>
-                        <ListadoDocumentosBase
-                            id={props.match.params.id}
-                            tipo={props.match.params.tipo}
-                            url={props.url}
-                            urlDocs={props.urlDocs}
-                            delete={true}
-                        />
-                    </div>
-                    <div className="row file-input space-bellow">
-                        <div className="half">
-                            <div className="label">
-                                Seleccione Documentos
-                            </div>
-                            <input multiple type="file" name="pod" id="pod" onChange={onChangeHandler} />
-                            <label htmlFor="pod" className={pod ? 'active' : ''}>
-                                <FontAwesomeIcon icon="file-upload" />
-                                {
-                                    pod ? pod.length+" archivos seleccionados" : "Seleccione un Archivo"
-                                }
-                            </label>
-                            <button type="submit" className="save pull-left" disabled={disabled}>
-                                <FontAwesomeIcon icon="save" /> Subir Archivos
-                                <LinearProgress />
-                            </button>
+                        <div className="hero space-bellow">
+                            <ListadoDocumentosBase
+                                id={props.match.params.id}
+                                tipo={props.match.params.tipo}
+                                url={props.url}
+                                urlDocs={props.urlDocs}
+                                delete={true}
+                            />
                         </div>
                     </div>
-                    <div className="row file-input">
+                    <div className="row file-input space-bellow">
+                        <div className="hero space-bellow">
+                            <div className="half">
+                                <div className="label">
+                                    Seleccione Documentos
+                                </div>
+                                <input multiple type="file" name="pod" id="pod" onChange={onChangeHandler} />
+                                <label htmlFor="pod" className={pod ? 'active' : ''}>
+                                    <FontAwesomeIcon icon="file-upload" />
+                                    {
+                                        pod ? pod.length+" archivos seleccionados" : "Seleccione un Archivo"
+                                    }
+                                </label>
+                                <button type="submit" className="save pull-left" disabled={disabled}>
+                                    <FontAwesomeIcon icon="save" /> Subir Archivos
+                                    <LinearProgress />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="hero space-bellow">
                         <ListadoDocumentosBaseSubidos
                                 id={props.match.params.id}
                                 tipo={props.match.params.tipo}

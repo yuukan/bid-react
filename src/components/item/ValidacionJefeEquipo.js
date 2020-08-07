@@ -95,11 +95,13 @@ export default function ValidacionJefeEquipo(props) {
                 <h2>
                     {props.match.params.description}
                 </h2>
-                <ListadoDocumentosBaseSubidos
-                        id={props.match.params.id}
-                        url={props.url}
-                        urlDocs={props.urlDocs}
-                    />
+                <div className="hero space-bellow">
+                    <ListadoDocumentosBaseSubidos
+                            id={props.match.params.id}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                        />
+                </div>
                 <div className="row">
                     <h2>
                         Validación
