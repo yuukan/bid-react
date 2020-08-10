@@ -101,7 +101,9 @@ export default function RevisionNoObjecionEvaluacion(props) {
         <div className="crear-container">
             <div className="sub-container space-bellow">
                 <h1>
-                    Revisión de no objecion evaluación
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Revisión de no objecion evaluación' : 'Revisión de no objecion evaluación para lista corta'
+                    }
                 </h1>
                 {
                     concepto_obligatorio!=="" ?
@@ -178,7 +180,7 @@ export default function RevisionNoObjecionEvaluacion(props) {
                             <FontAwesomeIcon icon="save" /> Aprobar
                         </button>
                         <button type="button" className="cancel" onClick={deny}>
-                            <FontAwesomeIcon icon="exclamation-triangle" /> Objeción
+                            <FontAwesomeIcon icon="exclamation-triangle" /> Rechazar
                         </button>
                     </div>
                 </div>

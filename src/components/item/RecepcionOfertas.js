@@ -132,7 +132,9 @@ export default function RecepcionOfertas(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Recepción de expresión de interés
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta'
+                    }
                 </h1>
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
@@ -200,7 +202,9 @@ export default function RecepcionOfertas(props) {
                     <div className="hero space-bellow">
                         <div className="row file-input space-bellow">
                             <h4>
-                                Subir documento de expresión de interés
+                                {
+                                    activity && activity.cs_tipo_plan!==4 ? 'Subir documentos de expresión de interés' : 'Subir documento de expresión de interés para lista corta'
+                                }
                             </h4>
                             <div className="half">
                                 <div className="label">

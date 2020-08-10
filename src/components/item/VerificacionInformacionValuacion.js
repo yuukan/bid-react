@@ -164,7 +164,9 @@ export default function VerificacionInformacionValuacion(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Verificación de Información
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Verificación de Información' : 'Verificación de Información para lista corta'
+                    }
                 </h1>
                 <h2>
                     {props.match.params.description}

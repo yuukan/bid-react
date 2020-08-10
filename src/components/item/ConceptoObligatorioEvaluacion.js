@@ -102,7 +102,9 @@ export default function ConceptoObligatorioEvaluacion(props) {
             <div className="sub-container space-bellow">
                 <div className="row">
                     <h1>
-                        Concepto Obligatorio
+                        {
+                            activity && activity.cs_tipo_plan!==4 ? 'Concepto Obligatorio' : 'Concepto Obligatorio para lista corta'
+                        }
                     </h1>
                     
                     <h2>

@@ -179,7 +179,12 @@ export default function LlamadoLicitacion(props) {
                             </div>
                             <div className="half">
                                 <label htmlFor="fecha_firma">
-                                    Fecha de Recepción de ofertas
+                                    Fecha de Recepción de expresión de interés
+                                    {
+                                        activity && activity.cs_tipo_plan===4 ? 
+                                            " para lista corta" 
+                                            : ""
+                                    }
                                 </label>
                                 <input
                                     type="date"

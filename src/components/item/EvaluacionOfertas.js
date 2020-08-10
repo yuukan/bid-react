@@ -118,14 +118,18 @@ export default function EvaluacionOfertas(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Evaluación de expresiones de interés
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Evaluación de expresiones de interés' : 'Evaluación de expresiones de interés para lista corta'
+                    }
                 </h1>
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
                         <div className="row file-input space-bellow">
                             <div className="half">
                                 <div className="label">
-                                    Acta de recepción de expresión de interés
+                                    {
+                                        activity && activity.cs_tipo_plan!==4 ? 'Acta de recepción de expresión de interés' : 'Acta de recepción de expresión de interés para lista corta'
+                                    }
                                 </div>
                                 <input type="file" name="acta_recepcion" id="acta_recepcion" onChange={onChangeHandler} />
                                 <label htmlFor="acta_recepcion" className={acta_recepcion ? 'active' : ''}>

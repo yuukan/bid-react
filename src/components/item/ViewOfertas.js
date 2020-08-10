@@ -26,7 +26,9 @@ export default function ViewOfertas(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Detalle de Ofertas
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Detalle de Ofertas' : 'Detalle de Ofertas para lista corta'
+                    }
                 </h1>
                 <div className="hero space-bellow">
                     <div className="row file-input space-bellow">

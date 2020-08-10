@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll,MonetizationOn } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll,MonetizationOn,ShoppingCartOutlined } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -153,7 +153,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <PostAdd />,
-                    tooltip: 'Recepción de expresión de interés',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta',
                     hidden: !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/recepcion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -161,7 +161,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <AssignmentTurnedInOutlined />,
-                    tooltip: 'Evaluación de expresión de interés',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Evaluación de expresión de interés' : 'Evaluación de expresión de interés para lista corta',
                     hidden: !(rowData.estado === 29 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -169,7 +169,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
-                    tooltip: 'Ver expresión de interés',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Ver expresión de interés' : 'Ver expresión de interés para lista corta',
                     hidden: !(rowData.estado >= 30 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -177,7 +177,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <PlayArrow />,
-                    tooltip: 'Inicio Evaluación',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Inicio Evaluación' : 'Inicio Evaluación para lista corta',
                     hidden: !(rowData.estado === 30 || rowData.estado === 47),
                     onClick: (event, rowData) => {
                         props.history.push("/item/inicio-valuacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -185,7 +185,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <Comment />,
-                    tooltip: 'Solicitar comentario de conformidad',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Solicitar comentario de conformidad' : 'Solicitar comentario de conformidad para lista corta',
                     hidden: !(rowData.estado === 31),
                     onClick: (event, rowData) => {
                         props.history.push("/item/solicitar-comentario-conformidad/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -193,7 +193,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => rowData.estado === 50 ? <VerifiedUser color="error" /> : <VerifiedUser />,
-                    tooltip: 'Evaluación Director verificación',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Evaluación Director verificación' : 'Evaluación Director verificación para lista corta',
                     hidden: !(rowData.estado === 32 || rowData.estado === 50),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-director-verificacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -201,7 +201,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <OfflinePin />,
-                    tooltip: 'Verificación Evaluación Jefe de Equipo',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Verificación Evaluación Jefe de Equipo' : 'Verificación Evaluación Jefe de Equipo para lista corta',
                     hidden: !(rowData.estado === 33),
                     onClick: (event, rowData) => {
                         props.history.push("/item/verificacion-evaluacion-jefe-equipo/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -209,7 +209,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <Assignment />,
-                    tooltip: 'Concepto obligatorio evaluacion',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Concepto obligatorio evaluacion' : 'Concepto obligatorio evaluacion para lista corta',
                     hidden: !(rowData.estado === 35),
                     onClick: (event, rowData) => {
                         props.history.push("/item/concepto-obligatorio-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -217,7 +217,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VerifiedUser />,
-                    tooltip: 'Otorgar no objeción evaluación',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Otorgar no objeción evaluación' : 'Otorgar no objeción evaluación para lista corta',
                     hidden: !(rowData.estado === 36),
                     onClick: (event, rowData) => {
                         props.history.push("/item/otorgar-no-objecion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -225,7 +225,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <RateReview />,
-                    tooltip: 'Revisión no objeción evaluación',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Revisión no objeción evaluación' : 'Revisión no objeción evaluación para lista corta',
                     hidden: !(rowData.estado === 44),
                     onClick: (event, rowData) => {
                         props.history.push("/item/revision-no-objecion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -234,7 +234,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <PostAdd />,
                     tooltip: 'Aprobación de informe',
-                    hidden: !(rowData.estado === 45),
+                    hidden: !((rowData.estado === 45 && rowData.cs_metodo_seleccion_id!==4)),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-informe/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -249,7 +249,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <LibraryAddCheck />,
-                    tooltip: 'Verificación de información',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Verificación de información' : 'Verificación de información para lista corta',
                     hidden: !(rowData.estado === 34),
                     onClick: (event, rowData) => {
                         props.history.push("/item/verificacion-informacion-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -257,7 +257,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <CommentOutlined />,
-                    tooltip: 'Dar comentario de conformidad',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Dar comentario de conformidad' : 'Dar comentario de conformidad para lista corta',
                     hidden: !(rowData.estado === 48),
                     onClick: (event, rowData) => {
                         props.history.push("/item/dar-comentario-conformidad/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -265,7 +265,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VerifiedUser />,
-                    tooltip: 'Evaluación comentario conformidad',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Evaluación comentario conformidad' : 'Evaluación comentario conformidad para lista corta',
                     hidden: !(rowData.estado === 49),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-director-no-objecion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -317,6 +317,15 @@ export default function PlanDetail(props) {
                     hidden: !(rowData.estado === 52 && rowData.q_financiero>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/pago-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+
+                rowData => ({
+                    icon: () => <ShoppingCartOutlined />,
+                    tooltip: 'Llamado licitación lista corta',
+                    hidden: !((rowData.estado === 45 && rowData.cs_metodo_seleccion_id===4)),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/llamado-licitacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];

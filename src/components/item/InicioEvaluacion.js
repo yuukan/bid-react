@@ -140,7 +140,9 @@ export default function InicioEvaluacion(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Inicio de Evaluación
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Inicio de Evaluación' : 'Inicio de Evaluación para lista corta'
+                    }
                 </h1>
                 <h2>
                     {props.match.params.description}

@@ -130,7 +130,9 @@ export default function EvaluacionDirector(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Evaluación Director
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Evaluación Director' : 'Evaluación Director para lista corta'
+                    }
                 </h1>
 
                 <h2>

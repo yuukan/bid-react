@@ -59,7 +59,9 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Validación de evaluación jefe de equipo
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Validación de evaluación jefe de equipo' : 'Validación de evaluación jefe de equipo para lista corta'
+                    }
                 </h1>
 
                 <h2>

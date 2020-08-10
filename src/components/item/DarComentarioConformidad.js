@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
@@ -6,22 +6,22 @@ import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 
 export default function DarComentarioConformidad(props) {
-    // const [activity, setActivity] = useState(false);
+    const [activity, setActivity] = useState(false);
 
-    // // Similar to componentDidMount and componentDidUpdate:
-    // useEffect(() => {
-    //     axios.post(props.url + "api/get-activity-info",
-    //         {
-    //             id: props.match.params.id
-    //         }
-    //     )
-    //         .then(function (response) {
-    //             setActivity(response.data[0]);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }, [props]);
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        axios.post(props.url + "api/get-activity-info",
+            {
+                id: props.match.params.id
+            }
+        )
+            .then(function (response) {
+                setActivity(response.data[0]);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [props]);
 
     // Approve this plan
     const approve = () => {
@@ -63,7 +63,9 @@ export default function DarComentarioConformidad(props) {
         <div className="crear-container">
             <div className="sub-container space-bellow">
                 <h1>
-                    Dar comentario de conformidad
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Dar comentario de conformidad' : 'Dar comentario de conformidad para lista corta'
+                    }
                 </h1>
                 <h2>
                     {props.match.params.description}

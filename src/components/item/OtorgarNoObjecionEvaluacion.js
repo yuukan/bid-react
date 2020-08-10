@@ -77,7 +77,9 @@ export default function OtorgarNoObjecionEvaluacion(props) {
         <div className="crear-container">
             <div className="sub-container space-bellow">
                 <h1>
-                    Otorgar no objecion evaluación
+                    {
+                        activity && activity.cs_tipo_plan!==4 ? 'Otorgar no objecion evaluación' : 'Otorgar no objecion evaluación para lista corta'
+                    }                    
                 </h1>
                 {
                     concepto_obligatorio!=="" ?
