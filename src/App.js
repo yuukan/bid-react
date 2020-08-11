@@ -54,6 +54,14 @@ import CompletarProducto from './components/item/CompletarProducto';
 import AprobarProducto from './components/item/AprobarProducto';
 import AprobarProductoDirector from './components/item/AprobarProductoDirector';
 import PagoProducto from './components/item/PagoProducto';
+import LlamadoLicitacionListaCorta from './components/item/LlamadoLicitacionListaCorta';
+import RecepcionOfertasListaCorta from './components/item/RecepcionOfertasListaCorta';
+import EvaluacionOfertasListaCorta from './components/item/EvaluacionOfertasListaCorta';
+import InicioEvaluacionListaCorta from './components/item/InicioEvaluacionListaCorta';
+import EvaluacionDirectorListaCorta from './components/item/EvaluacionDirectorListaCorta';
+import VerificacionInformacionValuacionListaCorta from './components/item/VerificacionInformacionValuacionListaCorta';
+import DarComentarioConformidadListaCorta from './components/item/DarComentarioConformidadListaCorta';
+import VerificacionEvaluacionJefeEquipoListaCorta from './components/item/VerificacionEvaluacionJefeEquipoListaCorta';
 
 import './css/App.css';
 // We import the css
@@ -61,6 +69,10 @@ import './css/App.css';
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck } from '@fortawesome/pro-solid-svg-icons';
+import ConceptoObligatorioEvaluacionListaCorta from './components/item/ConceptoObligatorioEvaluacionListaCorta';
+import OtorgarNoObjecionEvaluacionListaCorta from './components/item/OtorgarNoObjecionEvaluacionListaCorta';
+import RevisionNoObjecionEvaluacionListaCorta from './components/item/RevisionNoObjecionEvaluacionListaCorta';
+import AprobacionInformeListaCorta from './components/item/AprobacionInformeListaCorta';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
 let url = "http://192.241.219.113/bid/public/";
@@ -748,6 +760,149 @@ class App extends Component {
                             urlDocs={urlDocs}
                             getProcesses={this.getProcesses}
                           />} />
+
+                      <Route
+                        path="/item/llamado-licitacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <LlamadoLicitacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/recepcion-expresion-interes-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <RecepcionOfertasListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/evaluacion-ofertas-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionOfertasListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                      
+                      <Route
+                        path="/item/inicio-valuacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <InicioEvaluacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/evaluacion-director-verificacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirectorListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={2}
+                          />} />
+
+                      <Route
+                        path="/item/verificacion-informacion-evaluacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <VerificacionInformacionValuacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                      
+                      <Route
+                        path="/item/solicitar-comentario-conformidad-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirectorListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={3}
+                          />} />
+
+                      <Route
+                        path="/item/dar-comentario-conformidad-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <DarComentarioConformidadListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/evaluacion-director-no-objecion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <EvaluacionDirectorListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                            op={1}
+                          />} />
+
+                      <Route
+                        path="/item/verificacion-evaluacion-jefe-equipo-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <VerificacionEvaluacionJefeEquipoListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/concepto-obligatorio-evaluacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <ConceptoObligatorioEvaluacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/otorgar-no-objecion-evaluacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <OtorgarNoObjecionEvaluacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/revision-no-objecion-evaluacion-lista-corta/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <RevisionNoObjecionEvaluacionListaCorta
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                          path="/item/aprobacion-informe-lista-corta/:id/:description/:tipo/:parent"
+                          render={(props) =>
+                            <AprobacionInformeListaCorta
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
 
                 </div>
               )}

@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function ListadoDocumentosOfertas(props) {
+export default function ListadoDocumentosEvaluacionListaCorta(props) {
     const [row, setRow] = useState(null);
 
     //####################################Save Profile####################################
@@ -14,7 +14,7 @@ export default function ListadoDocumentosOfertas(props) {
     }, [props]);
     //####################################Get the list of files for this item####################
     const getFiles = () => {
-        axios.post(props.url + "api/get-plan-items-ofertas-files",
+        axios.post(props.url + "api/get-plan-items-evaluacion-files-lista-corta",
             {
                 id: props.id
             }
@@ -38,7 +38,7 @@ export default function ListadoDocumentosOfertas(props) {
             .then((certifico) => {
                 if (certifico) {
                     let user = localStorage.getItem("bidID");
-                    axios.post(props.url + "api/delete-item-ofertas-file",
+                    axios.post(props.url + "api/delete-item-evaluacion-file-lista-corta",
                         {
                             id: id,
                             user
@@ -79,7 +79,7 @@ export default function ListadoDocumentosOfertas(props) {
     return (
         <div className="row flex">
             <h3 className="full">
-                Listado de documentos de expresión de interés
+                Listado de documentos de evaluación cargados
             </h3>
             {files}
         </div>

@@ -75,7 +75,8 @@ body,
 h1 {
   font-size: 1.7rem;
   font-weight: bold;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  line-height: normal; }
   h1.divider {
     border-top: 5px dotted #ADC698;
     padding-top: 25px;
@@ -87,7 +88,8 @@ h2 {
   color: #0b4f76;
   font-size: 1.4rem;
   font-weight: bold;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  line-height: normal; }
 
 h3 {
   font-size: 1.2rem;

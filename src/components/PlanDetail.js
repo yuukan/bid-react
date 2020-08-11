@@ -18,7 +18,7 @@ import LastPage from '@material-ui/icons/LastPage';
 import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
-import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll,MonetizationOn,ShoppingCartOutlined } from '@material-ui/icons/';
+import { CloudUpload,NoteAdd, AssignmentTurnedIn,LocalAtm,SettingsInputComposite,VerifiedUser,OfflinePin,Assignment,DoneOutline, ShoppingCart,Healing,PostAdd,AssignmentTurnedInOutlined,VisibilityOutlined,PlayArrow,RateReview, LibraryAddCheck,Comment, CommentOutlined, EventNote, FormatListNumbered, Equalizer, CheckBox,DoneAll,MonetizationOn,ShoppingCartOutlined, PostAddSharp,AssignmentTurnedInTwoTone,PlayArrowOutlined,VerifiedUserOutlined,LibraryAddCheckOutlined,OfflinePinOutlined,AssignmentOutlined,RateReviewOutlined,PostAddOutlined,EventNoteOutlined } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -170,7 +170,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
                     tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Ver expresión de interés' : 'Ver expresión de interés para lista corta',
-                    hidden: !(rowData.estado >= 30 && rowData.licitacion_ended===1),
+                    hidden: !(rowData.estado >= 30 && rowData.estado < 54 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -209,7 +209,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <Assignment />,
-                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Concepto obligatorio evaluacion' : 'Concepto obligatorio evaluacion para lista corta',
+                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Concepto obligatorio evaluacion' : 'Concepto obligatorio evaluación para lista corta',
                     hidden: !(rowData.estado === 35),
                     onClick: (event, rowData) => {
                         props.history.push("/item/concepto-obligatorio-evaluacion/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -248,6 +248,14 @@ export default function PlanDetail(props) {
                     },
                 }),
                 rowData => ({
+                    icon: () => <EventNoteOutlined />,
+                    tooltip: 'Aprobación de informe lista corta',
+                    hidden: !((rowData.estado === 70 && rowData.cs_metodo_seleccion_id===4)),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-informe-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
                     icon: () => <LibraryAddCheck />,
                     tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Verificación de información' : 'Verificación de información para lista corta',
                     hidden: !(rowData.estado === 34),
@@ -274,7 +282,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => rowData.estado === 53 ? <FormatListNumbered color="error" /> : <FormatListNumbered />,
                     tooltip: 'Registro del contrato',
-                    hidden: !(rowData.estado === 46 || rowData.estado === 53),
+                    hidden: !(rowData.estado === 46 || rowData.estado === 53 || rowData.estado === 70),
                     onClick: (event, rowData) => {
                         props.history.push("/item/registro-del-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -326,6 +334,111 @@ export default function PlanDetail(props) {
                     hidden: !((rowData.estado === 45 && rowData.cs_metodo_seleccion_id===4)),
                     onClick: (event, rowData) => {
                         props.history.push("/item/llamado-licitacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+
+                rowData => ({
+                    icon: () => <PostAddSharp />,
+                    tooltip: 'Recepción de expresión de interés lista corta',
+                    hidden: !(rowData.estado === 54 && rowData.licitacion_ended_lista_corta===1), 
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/recepcion-expresion-interes-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <AssignmentTurnedInTwoTone />,
+                    tooltip: 'Evaluación de expresión de interés lista corta',
+                    hidden: !(rowData.estado === 55), 
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-ofertas-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <PlayArrowOutlined />,
+                    tooltip: 'Inicio Evaluación lista corta',
+                    hidden: !(rowData.estado === 56 || rowData.estado === 60),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/inicio-valuacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => rowData.estado === 68 ? <VerifiedUserOutlined color="error" /> : <VerifiedUserOutlined />,
+                    tooltip: 'Evaluación Director verificación lista corta',
+                    hidden: !(rowData.estado === 57 || rowData.estado === 68),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-director-verificacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <LibraryAddCheckOutlined />,
+                    tooltip: 'Verificación de información lista corta',
+                    hidden: !(rowData.estado === 59),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/verificacion-informacion-evaluacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <CommentOutlined />,
+                    tooltip: 'Solicitar comentario de conformidad lista corta',
+                    hidden: !(rowData.estado === 61),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/solicitar-comentario-conformidad-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <CommentOutlined />,
+                    tooltip: 'Dar comentario de conformidad lista corta',
+                    hidden: !(rowData.estado === 62),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/dar-comentario-conformidad-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUserOutlined />,
+                    tooltip: 'Evaluación comentario conformidad lista corta',
+                    hidden: !(rowData.estado === 63),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/evaluacion-director-no-objecion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <OfflinePinOutlined />,
+                    tooltip: 'Verificación Evaluación Jefe de Equipo lista corta',
+                    hidden: !(rowData.estado === 64),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/verificacion-evaluacion-jefe-equipo-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <AssignmentOutlined />,
+                    tooltip: 'Concepto obligatorio evaluacion lista corta',
+                    hidden: !(rowData.estado === 65),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/concepto-obligatorio-evaluacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <VerifiedUserOutlined />,
+                    tooltip: 'Otorgar no objeción evaluación lista corta',
+                    hidden: !(rowData.estado === 66),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/otorgar-no-objecion-evaluacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <RateReviewOutlined />,
+                    tooltip: 'Revisión no objeción evaluación lista corta',
+                    hidden: !(rowData.estado === 67),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/revision-no-objecion-evaluacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <PostAddOutlined />,
+                    tooltip: 'Aprobación de informe lista corta',
+                    hidden: !((rowData.estado === 69 && rowData.cs_metodo_seleccion_id===4)),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/aprobacion-informe-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
             ];

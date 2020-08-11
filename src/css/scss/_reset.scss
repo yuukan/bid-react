@@ -83,6 +83,7 @@ h1{
 	font-size: 1.7rem;
 	font-weight: bold;
 	margin-bottom: 20px;
+	line-height: normal;
 	&.divider{
 		border-top: 5px dotted $green;
 		padding-top: 25px;
@@ -96,6 +97,7 @@ h2{
 	font-size: 1.4rem;
 	font-weight: bold;
 	margin-bottom: 20px;
+	line-height: normal;
 }
 h3{
 	font-size: 1.2rem;
