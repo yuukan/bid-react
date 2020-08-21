@@ -31,6 +31,7 @@ class Landing extends Component {
             .then(function (response) {
                 if (response.data.error === 0) {
                     localStorage.setItem("bidID", response.data.id);
+                    localStorage.setItem("bidName", response.data.name);
                     localStorage.setItem("bidProfile", response.data.profile);
                     this_.props.changeLogged(true);
                 } else {

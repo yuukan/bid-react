@@ -57,6 +57,14 @@ header{
             color: $green;
         } 
     }
+    .nombre{
+        line-height: 65px;
+        font-size: 15px;
+        color: $white;
+        text-decoration: none;
+        float: right;
+        margin-right: 25px;
+    }
     .sign-out{
         line-height: 65px;
         font-size: 15px;

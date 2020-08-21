@@ -129,7 +129,7 @@ export default function AprobacionFinal(props) {
                             <div className="hero concepto-obligatorio space-bellow">
                                 <h3 className="concepto-obligatorio">
                                     <FontAwesomeIcon icon="exclamation-triangle" />
-                                    Rechazo
+                                    Concepto Obligatorio
                                     <div className="text">
                                         Razón: <span dangerouslySetInnerHTML={{__html: plan.concepto_obligatorio}} />
                                     </div>

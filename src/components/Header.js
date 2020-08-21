@@ -16,7 +16,9 @@ class Header extends Component {
         this.setState({ showMenu: !this.state.showMenu });
     }
 
+    
     render() {
+        let name = localStorage.getItem("bidName");
 
         // We check if the user is logged in
         if (!this.props.isLoggedIn) {
@@ -40,6 +42,9 @@ class Header extends Component {
                         <FontAwesomeIcon icon="sign-out" />
                         Salir
                     </Link>
+                    <span className="nombre">
+                        {name}
+                    </span>
                 </header>
                 <div className={`navbar-container ${active}`}>
                     <div className={`navbar`}>

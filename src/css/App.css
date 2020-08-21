@@ -283,6 +283,13 @@ header {
     margin-left: 80px; }
     header .bars.active {
       color: #ADC698; }
+  header .nombre {
+    line-height: 65px;
+    font-size: 15px;
+    color: #fff;
+    text-decoration: none;
+    float: right;
+    margin-right: 25px; }
   header .sign-out {
     line-height: 65px;
     font-size: 15px;
