@@ -68,7 +68,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => rowData.estado === 16 || rowData.estado === 18 ? <CloudUpload color="error" /> : <CloudUpload />,
                     tooltip: 'Subir Documentos',
-                    hidden: !["7"].includes(profile),
+                    hidden: !["8"].includes(profile),
                     onClick: (event, rowData) => {
                         props.history.push("/subir-documentos-item/" + rowData.id + "/" + rowData.cs_process_id);
                     },
@@ -156,7 +156,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <PostAdd />,
                     tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta',
-                    hidden: !["11"].includes(profile) || !(rowData.estado === 28 && rowData.licitacion_ended===1),
+                    hidden: !["7","11"].includes(profile) || !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/recepcion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
