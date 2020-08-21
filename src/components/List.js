@@ -60,6 +60,7 @@ class List extends Component {
 
         if (this.props.processes) processes = this.props.processes;
 
+        let profile = localStorage.getItem("bidProfile");
         return (
             <div className="crear-container">
                 <div className="sub-container">
@@ -81,6 +82,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: CloudUpload,
                                             tooltip: 'Subir Documentos',
+                                            hidden: !["3", "2", "1", "10"].includes(profile),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-documentos/" + rowData.id);
                                             },
@@ -88,7 +90,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
                                             tooltip: 'Subir Plan',
-                                            hidden: rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11,
+                                            hidden: !["3", "7", "1", "10"].includes(profile) || (rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/subir-plan/" + rowData.id);
                                             },
@@ -96,7 +98,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
                                             tooltip: 'Aprobación jefe unidad ejecutora',
-                                            hidden: rowData.estado !== 3 && rowData.estado !== 9,
+                                            hidden: !["4"].includes(profile) || (rowData.estado !== 3 && rowData.estado !== 9),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
                                             },
@@ -104,7 +106,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
                                             tooltip: 'Aprobación jefe equipo banco',
-                                            hidden: rowData.estado !== 4 && rowData.estado !== 10,
+                                            hidden: !["2"].includes(profile) || (rowData.estado !== 4 && rowData.estado !== 10),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
                                             },
@@ -112,7 +114,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
                                             tooltip: 'Concepto obligatorio',
-                                            hidden: rowData.estado !== 5 && rowData.estado !== 11,
+                                            hidden: !["3"].includes(profile) || (rowData.estado !== 5 && rowData.estado !== 11),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/concepto-obligatorio/" + rowData.id);
                                             },
@@ -120,7 +122,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: VerifiedUser,
                                             tooltip: 'Aprobación Final',
-                                            hidden: rowData.estado !== 6,
+                                            hidden: !["2"].includes(profile) || rowData.estado !== 6,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-final/" + rowData.id);
                                             },

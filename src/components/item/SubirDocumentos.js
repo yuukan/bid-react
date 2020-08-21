@@ -130,7 +130,7 @@ export default function SubirDocumentos(props) {
                 </h1>
 
                 {
-                    activity.rechazo_tecnico!=="" ?
+                    activity.rechazo_tecnico && activity.rechazo_tecnico!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -144,7 +144,7 @@ export default function SubirDocumentos(props) {
                     ) : ""
                 }
                 {
-                    activity.rechazo_especialista_sectorial!=="" ?
+                    activity.rechazo_especialista_sectorial && activity.rechazo_especialista_sectorial!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">

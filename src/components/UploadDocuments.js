@@ -45,7 +45,7 @@ export default function UploadDocuments(props) {
                     console.log(error);
                 });
         } else {
-            swal("Atención", "!Debe de agregar todos los Archivos!", "error");
+            swal("Atención", "!Debe de agregar almenos un Archivo!", "error");
         }
         return false;
     };

@@ -100,8 +100,8 @@ export default function CompletarProducto(props) {
                 dangerMode: true,
             })
                 .then((certifico) => {
-                    setDisabled(true);
                     if (certifico) {
+                        setDisabled(true);
                         let user = localStorage.getItem("bidID");
                         axios.post(props.url + "api/completar-producto",
                             {

@@ -123,12 +123,20 @@ export default function AprobacionFinal(props) {
                     <h2>
                         Aprobación Final Plan de Adquisiciones
                     </h2>
-                    <h3>
-                        Concepto Obligatorio
-                        <div className="text">
-                            {plan ? plan.concepto_obligatorio : ""}
-                        </div>
-                    </h3>
+                    {
+                        plan && plan.concepto_obligatorio && plan.concepto_obligatorio!=="" ?
+                        (
+                            <div className="hero concepto-obligatorio space-bellow">
+                                <h3 className="concepto-obligatorio">
+                                    <FontAwesomeIcon icon="exclamation-triangle" />
+                                    Rechazo
+                                    <div className="text">
+                                        Razón: <span dangerouslySetInnerHTML={{__html: plan.concepto_obligatorio}} />
+                                    </div>
+                                </h3>
+                            </div>
+                        ) : ""
+                    }
                     <div className="full">
                         <label htmlFor="checkedA" className="switch">
                             <Switch

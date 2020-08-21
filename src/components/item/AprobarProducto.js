@@ -148,8 +148,8 @@ export default function AprobarProducto(props) {
                         activity.cronograma ?
                         activity.cronograma.map((key, idx) => {
                             let d = LocalDate.parse(key[1]);
-                            
-                            if(key[4]===0 || (key[5]!==0&& key[5]!==4)) return "";
+
+                            if(key[4]===0 || parseInt(key[4])!==parseInt(localStorage.getItem("bidID")) || (key[5]!==0 && key[5]!==4)) return "";
 
                             return (
                                 <div className="row rowlist" key={`cro${idx}`}>

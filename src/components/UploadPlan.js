@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,8 +6,17 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 export default function UploadPlan(props) {
+    const [plan, setPlan] = useState(null);
     const [adquisiciones, setAdquisiciones] = useState(null);
     const [disabled, setDisabled] = useState(false);
+
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(() => {
+        if (props && props.processes) {
+            let plan = props.processes.find((key) => parseInt(key.id) === parseInt(props.match.params.id))
+            setPlan(plan);
+        }
+    }, [props]);
 
     //####################################Save Profile####################################
     const onSubmit = (e) => {
@@ -66,6 +75,20 @@ export default function UploadPlan(props) {
                 <h1>
                     Carga de Plan de Adquisiciones
                 </h1>
+                {
+                    plan && plan.texto_rechazo_jefe && plan.texto_rechazo_jefe!=="" ?
+                    (
+                        <div className="hero error space-bellow">
+                            <h3 className="error">
+                                <FontAwesomeIcon icon="exclamation-triangle" />
+                                Rechazo
+                                <div className="text">
+                                    Razón: <span dangerouslySetInnerHTML={{__html: plan.texto_rechazo_jefe}} />
+                                </div>
+                            </h3>
+                        </div>
+                    ) : ""
+                }
                 <form onSubmit={onSubmit}>
                     <div className="row file-input">
                         <div className="half">

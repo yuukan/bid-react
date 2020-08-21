@@ -195,10 +195,17 @@ export default function InicioEvaluacionListaCorta(props) {
                     activity && activity.cs_estado_proceso_id ===60 ?
                         (
                             <div className="hero space-bellow">
-                                <h3>Comentario de Verificación</h3>
-                                <div className="comment">
-                                    {activity.comentario_verificacion_lista_corta}
-                                </div>
+                                {
+                                    activity.comentario_verificacion_lista_corta && activity.comentario_verificacion_lista_corta!=="" ?
+                                    (
+                                        <React.Fragment>
+                                            <h3>Comentario de Verificación</h3>
+                                            <div className="comment">
+                                                {activity.comentario_verificacion_lista_corta}
+                                            </div>
+                                        </React.Fragment>
+                                    ): ""
+                                }
                                 <ListadoDocumentosVerificacionListaCorta
                                     id={props.match.params.id}
                                     tipo={props.match.params.tipo}

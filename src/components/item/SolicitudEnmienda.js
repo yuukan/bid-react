@@ -142,7 +142,7 @@ export default function SolicitudEnmienda(props) {
                     {props.match.params.description}
                 </h2>
                 {
-                    description2!=="" ?
+                    description2 && description2!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -156,7 +156,7 @@ export default function SolicitudEnmienda(props) {
                     ) : ""
                 }
                 {
-                    description!=="" ?
+                    description && description!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">

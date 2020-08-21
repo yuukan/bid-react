@@ -75,8 +75,8 @@ import RevisionNoObjecionEvaluacionListaCorta from './components/item/RevisionNo
 import AprobacionInformeListaCorta from './components/item/AprobacionInformeListaCorta';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
-let url = "http://192.241.219.113/bid/public/";
-let urlDocs = "http://192.241.219.113/bid/storage/app/";
+let url = "https://pedroizaguirre.com/bid/public/";
+let urlDocs = "https://pedroizaguirre.com/bid/storage/app/";
 
 class App extends Component {
   constructor(props) {
@@ -198,6 +198,7 @@ class App extends Component {
 
   logOff() {
     localStorage.removeItem("bidID");
+    localStorage.removeItem("bidProfile");
     this.changeLogged(false);
   }
 
@@ -305,6 +306,7 @@ class App extends Component {
                         {...props}
                         url={url}
                         getProcesses={this.getProcesses}
+                        processes={this.state.processes}
                       />} />
 
                   <Route

@@ -140,7 +140,7 @@ export default function EvaluacionDirector(props) {
                 </h2>
 
                 {
-                    razon3!=="" ?
+                    razon3 && razon3!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -155,7 +155,7 @@ export default function EvaluacionDirector(props) {
                 }
 
                 {
-                    razon2!=="" ?
+                    razon2 && razon2!=="" ?
                     (
                         <div className="hero space-bellow">
                             <h3 className="concepto_obligatorio">
@@ -170,7 +170,7 @@ export default function EvaluacionDirector(props) {
                 }
 
                 {
-                    razon1!=="" ?
+                    razon1 && razon1!=="" ?
                     (
                         <div className="hero concepto_obligatorio space-bellow">
                             <h3 className="concepto_obligatorio">

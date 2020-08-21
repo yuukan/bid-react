@@ -25,6 +25,8 @@ class Header extends Component {
             );
         }
 
+        let profile = localStorage.getItem("bidProfile");
+
         let active = !this.state.showMenu ? "" : "active";
         //If it's logged in we display the menu
         return (
@@ -45,12 +47,17 @@ class Header extends Component {
                             ROP
                         </div>
                         <ul>
-                            <li>
-                                <Link className={this.props.current === "crear" ? "active" : ""} to="/crear-operacion" onClick={() => { this.props.changeCurrent("crear"); this.changeMenuStatus(); }}>
-                                    <FontAwesomeIcon icon="plus" />
-                                    Crear Operación
-                                </Link>
-                            </li>
+                            {
+                                ["3", "2", "1", "10"].includes(profile) ?
+                                (
+                                    <li>
+                                        <Link className={this.props.current === "crear" ? "active" : ""} to="/crear-operacion" onClick={() => { this.props.changeCurrent("crear"); this.changeMenuStatus(); }}>
+                                            <FontAwesomeIcon icon="plus" />
+                                            Crear Operación
+                                        </Link>
+                                    </li>
+                                ) : ""
+                            }
                             <li>
                                 <Link className={this.props.current === "list" ? "active" : ""} to="/lista" onClick={() => { this.props.changeCurrent("list"); this.changeMenuStatus(); }}>
                                     <FontAwesomeIcon icon="list" />

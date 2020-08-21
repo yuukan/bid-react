@@ -134,7 +134,7 @@ export default function SubirDocumentosBase(props) {
                     {props.match.params.description}
                 </h2>
                 {
-                    activity.rechazo_director!=="" ?
+                    activity.rechazo_director && activity.rechazo_director!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -148,7 +148,7 @@ export default function SubirDocumentosBase(props) {
                     ) : ""
                 }
                 {
-                    activity.rechazo_jefe_equipo!=="" ?
+                    activity.rechazo_jefe_equipo && activity.rechazo_jefe_equipo!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -162,7 +162,7 @@ export default function SubirDocumentosBase(props) {
                     ) : ""
                 }
                 {
-                    activity.rechazo_concepto_obligatorio!=="" ?
+                    activity.rechazo_concepto_obligatorio && activity.rechazo_concepto_obligatorio!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -176,7 +176,7 @@ export default function SubirDocumentosBase(props) {
                     ) : ""
                 }
                 {
-                    activity.rechazo_final!=="" ?
+                    activity.rechazo_final && activity.rechazo_final!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">

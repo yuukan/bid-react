@@ -197,10 +197,17 @@ export default function InicioEvaluacion(props) {
                     activity && activity.cs_estado_proceso_id ===47 ?
                         (
                             <div className="hero space-bellow">
-                                <h3>Comentario de Verificación</h3>
-                                <div className="comment">
-                                    {activity.comentario_verificacion}
-                                </div>
+                                {
+                                    activity.comentario_verificacion && activity.comentario_verificacion!=="" ? 
+                                    (
+                                        <React.Fragment>
+                                            <h3>Comentario de Verificación</h3>
+                                            <div className="comment">
+                                                {activity.comentario_verificacion}
+                                            </div>
+                                        </React.Fragment>
+                                    ): ""
+                                }
                                 <ListadoDocumentosVerificacion
                                     id={props.match.params.id}
                                     tipo={props.match.params.tipo}
