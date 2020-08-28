@@ -104,6 +104,12 @@
                     color: white;
                 }
             }
+            &.blue{
+                background: lighten($blue,20);
+                a{
+                    color: white;
+                }
+            }
             &.no-bg{
                 background: transparent;
                 a{

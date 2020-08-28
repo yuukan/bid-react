@@ -445,6 +445,10 @@ header {
         background: #861657; }
         .crear-container .row .quarter.enmienda a {
           color: white; }
+      .crear-container .row .quarter.blue {
+        background: #148dd3; }
+        .crear-container .row .quarter.blue a {
+          color: white; }
       .crear-container .row .quarter.no-bg {
         background: transparent; }
         .crear-container .row .quarter.no-bg a {

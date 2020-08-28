@@ -192,7 +192,7 @@ export default function SubirDocumentosBase(props) {
                 <form onSubmit={onSubmit}>
                     <div className="row file-input">
                         <h3>
-                            Listado de documentos a descargar
+                            Listado de documentos base a descargar
                         </h3>
                         <div className="hero space-bellow">
                             <ListadoDocumentosBase

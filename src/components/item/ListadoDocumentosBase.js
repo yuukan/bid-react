@@ -31,10 +31,10 @@ export default function ListadoDocumentosBase(props) {
     if(row){
         files = row.map((key, idx) => {
             return (
-                <div className="quarter" key={`it${key.id}`}>
-                    <a href={props.urlDocs + key.path} download={key.name}>
+                <div className="quarter blue" key={`it${key.id}`}>
+                    <a href={key.file} download={key.nombre}>
                         <FontAwesomeIcon icon="download" />
-                        {key.name}
+                        {key.nombre}
                     </a>
                 </div>
             );
