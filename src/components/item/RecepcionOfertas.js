@@ -133,7 +133,7 @@ export default function RecepcionOfertas(props) {
             <div className="sub-container">
                 <h1>
                     {
-                        activity && activity.cs_tipo_plan!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta'
+                        activity && [1,2,3].includes(activity.cs_tipo_plan) ? 'Recepción de ofertas' : activity.cs_tipo_plan!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta'
                     }
                 </h1>
                 <form onSubmit={onSubmit}>

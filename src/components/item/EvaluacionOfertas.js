@@ -119,7 +119,7 @@ export default function EvaluacionOfertas(props) {
             <div className="sub-container">
                 <h1>
                     {
-                        activity && activity.cs_tipo_plan!==4 ? 'Evaluación de expresiones de interés' : 'Evaluación de expresiones de interés para lista corta'
+                        activity && [1,2,3].includes(activity.cs_tipo_plan) ? 'Evaluación de ofertas' : activity.cs_tipo_plan!==4 ? 'Evaluación de expresiones de interés' : 'Evaluación de expresiones de interés para lista corta'
                     }
                 </h1>
                 <form onSubmit={onSubmit}>

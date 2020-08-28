@@ -155,7 +155,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <PostAdd />,
-                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta',
+                    tooltip: [1,2,3].includes(rowData.cs_tipo_plan) ? 'Recepción de ofertas' : rowData.cs_metodo_seleccion_id!==4 ? 'Recepción de expresión de interés' : 'Recepción de expresión de interés para lista corta',
                     hidden: !["7","11","10"].includes(profile) || !(rowData.estado === 28 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/recepcion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -163,7 +163,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <AssignmentTurnedInOutlined />,
-                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Evaluación de expresión de interés' : 'Evaluación de expresión de interés para lista corta',
+                    tooltip: [1,2,3].includes(rowData.cs_tipo_plan) ? 'Evaluación de ofertas' : rowData.cs_metodo_seleccion_id!==4 ? 'Evaluación de expresión de interés' : 'Evaluación de expresión de interés para lista corta',
                     hidden: !["4","10"].includes(profile) || !(rowData.estado === 29 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/evaluacion-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -171,7 +171,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
-                    tooltip: rowData.cs_metodo_seleccion_id!==4 ? 'Ver expresión de interés' : 'Ver expresión de interés para lista corta',
+                    tooltip: [1,2,3].includes(rowData.cs_tipo_plan) ? 'Ver ofertas' : rowData.cs_metodo_seleccion_id!==4 ? 'Ver expresión de interés' : 'Ver expresión de interés para lista corta',
                     hidden: !(rowData.estado >= 30 && rowData.estado < 54 && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
