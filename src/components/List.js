@@ -98,7 +98,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
                                             tooltip: 'Aprobación jefe unidad ejecutora',
-                                            hidden: !["4"].includes(profile) || (rowData.estado !== 3 && rowData.estado !== 9),
+                                            hidden: !["4","10"].includes(profile) || (rowData.estado !== 3 && rowData.estado !== 9),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
                                             },
@@ -106,7 +106,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
                                             tooltip: 'Aprobación jefe equipo banco',
-                                            hidden: !["2"].includes(profile) || (rowData.estado !== 4 && rowData.estado !== 10),
+                                            hidden: !["2","10"].includes(profile) || (rowData.estado !== 4 && rowData.estado !== 10),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
                                             },
@@ -114,7 +114,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
                                             tooltip: 'Concepto obligatorio',
-                                            hidden: !["3"].includes(profile) || (rowData.estado !== 5 && rowData.estado !== 11),
+                                            hidden: !["3","10"].includes(profile) || (rowData.estado !== 5 && rowData.estado !== 11),
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/concepto-obligatorio/" + rowData.id);
                                             },
@@ -122,7 +122,7 @@ class List extends Component {
                                         rowData => ({
                                             icon: VerifiedUser,
                                             tooltip: 'Aprobación Final',
-                                            hidden: !["2"].includes(profile) || rowData.estado !== 6,
+                                            hidden: !["2","10"].includes(profile) || rowData.estado !== 6,
                                             onClick: (event, rowData) => {
                                                 this.props.history.push("/aprobacion-final/" + rowData.id);
                                             },
