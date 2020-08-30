@@ -107,6 +107,42 @@ export default function RecepcionOfertas(props) {
                 });
         }
     }
+    //####################################Completar Información#########################################
+    const save_info = () => {
+        let s = state2;
+        let user = localStorage.getItem("bidID");
+
+        const data = new FormData();
+        data.append('id', props.match.params.id);
+        data.append('user', user);
+        data.append('conclusion_evaluacion', s.conclusion_evaluacion);
+
+        if (acta_recepcion)
+            data.append('acta_recepcion', acta_recepcion);
+        if (acta_apertura)
+            data.append('acta_apertura', acta_apertura);
+
+        swal({
+            title: "¿Desea guardar?",
+            icon: "warning",
+            buttons: ["Cancelar", "Enviar"],
+            dangerMode: true,
+        })
+            .then((certifico) => {
+                if (certifico) {
+                    
+                    axios.post(props.url + "api/save-archivos-ofertas-item",
+                        data
+                    )
+                        .then(function () {
+                            window.history.back();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            });
+    }
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
         if (event.target.name === "pod") {
@@ -127,6 +163,7 @@ export default function RecepcionOfertas(props) {
 
     }
 
+    let profile = localStorage.getItem("bidProfile");
     //####################################Return####################################
     return (
         <div className="crear-container">
@@ -239,11 +276,22 @@ export default function RecepcionOfertas(props) {
                         </div>
                     </div>
 
-                    <div className="row">                        
-                        <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
-                            <FontAwesomeIcon icon="save" /> Guardar
-                            <LinearProgress />
-                        </button>
+                    <div className="row"> 
+                        {
+                            profile==="7" ?
+                            (
+                                <button type="button" className="save" disabled={disabled} onClick={save_info}>
+                                    <FontAwesomeIcon icon="save" /> Guardar
+                                    <LinearProgress />
+                                </button>
+                            ): 
+                            (
+                                <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
+                                    <FontAwesomeIcon icon="save" /> Enviar
+                                    <LinearProgress />
+                                </button>
+                            )
+                        }                       
                     </div>
                 </form>
             </div>
