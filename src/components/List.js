@@ -58,7 +58,14 @@ class List extends Component {
 
         let processes = null;
 
-        if (this.props.processes) processes = this.props.processes;
+        let ejecutor = parseInt(localStorage.getItem("bidEjecutor"));
+
+        if (this.props.processes){
+            // processes = this.props.processes;
+            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id);
+        }
+            
+
 
         let profile = localStorage.getItem("bidProfile");
         return (

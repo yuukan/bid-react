@@ -33,6 +33,7 @@ class Landing extends Component {
                     localStorage.setItem("bidID", response.data.id);
                     localStorage.setItem("bidName", response.data.name);
                     localStorage.setItem("bidProfile", response.data.profile);
+                    localStorage.setItem("bidEjecutor", response.data.ejecutor);
                     this_.props.changeLogged(true);
                 } else {
                     swal("Error", response.data.message, "error");
