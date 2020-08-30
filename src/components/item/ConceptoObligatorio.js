@@ -147,6 +147,7 @@ export default function ConceptoObligatorio(props) {
                             urlDocs={props.urlDocs}
                             delete={true}
                             cs_estado_proceso_id={22}
+                            type={1}
                         />
                     </div>
 

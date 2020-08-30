@@ -155,7 +155,11 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
             }
             <div className="hero space-bellow">
                 <h3 className="full">
-                    Listado de documentos cargados
+                    {
+                        props.type === 1 ?
+                        "Listado de documentos concepto obligatorio cargados" : "Listado de documentos cargados"
+                    }
+                    
                 </h3>
                 {files}
             </div>

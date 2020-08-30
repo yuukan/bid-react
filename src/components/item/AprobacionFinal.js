@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
 import ListadoDocumentosBaseSubidos from './ListadoDocumentosBaseSubidos';
 import Switch from '@material-ui/core/Switch';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function AprobacionFinal(props) {
     const [state, setState] = useState({
@@ -108,15 +109,28 @@ export default function AprobacionFinal(props) {
                 {
                     activity.concepto_obligatorio!=="" ?
                     (
-                        <div className="hero concepto_obligatorio space-bellow">
-                            <h3 className="concepto_obligatorio">
-                                <FontAwesomeIcon icon="exclamation-triangle" />
-                                Concepto Obligatorio
-                                <div className="text">
-                                    {activity.concepto_obligatorio}
-                                </div>
-                            </h3>
-                        </div>
+                        <React.Fragment>
+                            <div className="hero concepto_obligatorio space-bellow">
+                                <h3 className="concepto_obligatorio">
+                                    <FontAwesomeIcon icon="exclamation-triangle" />
+                                    Concepto Obligatorio
+                                    <div className="text">
+                                        {activity.concepto_obligatorio}
+                                    </div>
+                                </h3>
+                            </div>
+                            <div className="full">
+                                <ListadoDocumentosConceptoObligatorio
+                                    id={props.match.params.id}
+                                    tipo={props.match.params.tipo}
+                                    url={props.url}
+                                    urlDocs={props.urlDocs}
+                                    delete={true}
+                                    cs_estado_proceso_id={22}
+                                    type={1}
+                                />
+                            </div>
+                        </React.Fragment>
                     ) : ""
                 }
 
