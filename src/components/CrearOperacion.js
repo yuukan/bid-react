@@ -18,6 +18,7 @@ function CrearOperacion(props) {
                 props.getProcesses();
                 e.target.reset();
                 setDisabled(false);
+                window.history.back();
             })
             .catch(function (error) {
                 console.log(error);
