@@ -7,6 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 //Components
 import ListadoDocumentosBaseSubidos from './ListadoDocumentosBaseSubidos';
 import Switch from '@material-ui/core/Switch';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function ConceptoObligatorio(props) {
 
@@ -129,12 +130,24 @@ export default function ConceptoObligatorio(props) {
                         {props.match.params.description}
                     </h2>
                     
+                    
                     <div className="hero space-bellow">
                         <ListadoDocumentosBaseSubidos
                                 id={props.match.params.id}
                                 url={props.url}
                                 urlDocs={props.urlDocs}
                             />
+                    </div>
+
+                    <div className="full">
+                        <ListadoDocumentosConceptoObligatorio
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={true}
+                            cs_estado_proceso_id={22}
+                        />
                     </div>
 
                     <div className="full">

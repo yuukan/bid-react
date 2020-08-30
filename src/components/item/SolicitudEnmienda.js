@@ -37,7 +37,7 @@ export default function SolicitudEnmienda(props) {
     };
 
 
-    //####################################Save Profile####################################
+    //####################################Save File####################################
     const onSubmit = (e) => {
         e.preventDefault();
         if (pod) {
