@@ -64,6 +64,7 @@ export default function PlanDetail(props) {
         let actions = [];
         if (props.edit) {
             let profile = localStorage.getItem("bidProfile");
+            let user = localStorage.getItem("bidID");
             actions = [
                 rowData => ({
                     icon: () => rowData.estado === 16 || rowData.estado === 18 ? <CloudUpload color="error" /> : <CloudUpload />,
@@ -283,7 +284,7 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => rowData.estado === 53 ? <FormatListNumbered color="error" /> : <FormatListNumbered />,
-                    tooltip: 'Registro del contrato',
+                    tooltip: 'Suscripción del contrato',
                     hidden: !["7","10"].includes(profile) || !(rowData.estado === 46 || rowData.estado === 53 || rowData.estado === 70),
                     onClick: (event, rowData) => {
                         props.history.push("/item/registro-del-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
@@ -291,16 +292,40 @@ export default function PlanDetail(props) {
                 }),
                 rowData => ({
                     icon: () => <VerifiedUser />,
-                    tooltip: 'Aprobación de contrato del Director',
+                    tooltip: 'Aprobación de contrato del jefe de equipo',
                     hidden: !["4","10"].includes(profile) || !(rowData.estado === 51),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
                 }),
                 rowData => ({
+                    icon: () => <Comment />,
+                    tooltip: 'Comentarios Analista operaciones',
+                    hidden: !["1","10"].includes(profile) || !(rowData.estado === 52),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/comentarios-analista/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <AssignmentTurnedIn />,
+                    tooltip: 'Registro del contrato',
+                    hidden: !["2","10"].includes(profile) || !(rowData.estado === 71),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/registro-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
+                    icon: () => <EventNote />,
+                    tooltip: 'Completar información del contrato',
+                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 72) || !(rowData.cs_app_user_id===user),
+                    onClick: (event, rowData) => {
+                        props.history.push("/item/completar-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
+                    },
+                }),
+                rowData => ({
                     icon: () => <Equalizer />,
                     tooltip: 'Completar producto',
-                    hidden: !["7","10"].includes(profile) || !(rowData.estado === 52),
+                    hidden: !["7","10"].includes(profile) || !(rowData.estado === 73),
                     onClick: (event, rowData) => {
                         props.history.push("/item/completar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -308,7 +333,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <CheckBox />,
                     tooltip: 'Aprobar producto',
-                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 52 && rowData.q_supervisor>0),
+                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 73 && rowData.q_supervisor>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -316,7 +341,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <DoneAll />,
                     tooltip: 'Aprobar producto director',
-                    hidden: !["4","10"].includes(profile) || !(rowData.estado === 52 && rowData.q_director>0),
+                    hidden: !["4","10"].includes(profile) || !(rowData.estado === 73 && rowData.q_director>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobar-producto-director/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
@@ -324,7 +349,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <MonetizationOn />,
                     tooltip: 'Gestión de Pago',
-                    hidden: !["6","10"].includes(profile) || !(rowData.estado === 52 && rowData.q_financiero>0),
+                    hidden: !["6","10"].includes(profile) || !(rowData.estado === 73 && rowData.q_financiero>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/pago-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },

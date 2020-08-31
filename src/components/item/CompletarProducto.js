@@ -27,13 +27,13 @@ export default function CompletarProducto(props) {
                 console.log(error);
             });
         
-       axios.post(props.url + "api/get-supervisor")
-            .then(function (response) {
-                setSupervisores(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    //    axios.post(props.url + "api/get-supervisor")
+    //         .then(function (response) {
+    //             setSupervisores(response.data);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
     }, [props]);
 
     //####################################Change File Handler####################################
@@ -148,37 +148,40 @@ export default function CompletarProducto(props) {
                             let d = LocalDate.parse(key[1]);
                             return (
                                 <div className="row rowlist" key={`cro${idx}`}>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {key[0]}
                                     </div>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {d.format(DateTimeFormatter.ofPattern('d/M/yyyy'))}
                                     </div>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {key[2]}
                                     </div>
+                                    <div className="fifth no-bg">
+                                        {key[3]}
+                                    </div>
                                     {
-                                        key[5]===2 ?
+                                        key[6]===2 ?
                                         (
-                                            <div className="quarter no-bg no-padding">
-                                                <button type="button" className="cancel no-margin" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]])}}>
+                                            <div className="fifth no-bg no-padding">
+                                                <button type="button" className="cancel no-margin" onClick={()=>{setProducto([key[0],key[4],key[7],key[8],key[5]])}}>
                                                     <FontAwesomeIcon icon="wrench" />&nbsp; 
                                                     Corregir
                                                 </button>
                                             </div>
                                         ) :
-                                        key[4]===0 ?
+                                        key[6]===0 ?
                                         (
-                                            <div className="quarter no-bg no-padding">
-                                                <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]])}}>
+                                            <div className="fifth no-bg no-padding">
+                                                <button type="button" className="save" onClick={()=>{setProducto([key[0],key[4],key[7],key[8],key[5]])}}>
                                                     <FontAwesomeIcon icon="clipboard-list-check" />&nbsp;
                                                     Completar
                                                 </button>
                                             </div>
                                         ):
-                                        key[5]===5 ?
+                                        key[6]===5 ?
                                         (
-                                            <div className="quarter no-bg no-padding">
+                                            <div className="fifth no-bg no-padding">
                                                 <button type="button" className="solicitud_enmienda no-margin">
                                                     <FontAwesomeIcon icon="money-check" />&nbsp; 
                                                     Pagado
@@ -186,7 +189,7 @@ export default function CompletarProducto(props) {
                                             </div>
                                         ) :
                                         (
-                                            <div className="quarter no-bg no-padding">
+                                            <div className="fifth no-bg no-padding">
                                                 <button type="button" className="completar-informacion">
                                                     <FontAwesomeIcon icon="pause" />&nbsp;
                                                     En aprobación
@@ -210,7 +213,7 @@ export default function CompletarProducto(props) {
                             </h1>
 
                             {
-                                producto[2]!==null ?
+                                producto[2]!==null && producto[2]!==0 ?
                                 (
                                     <div className="hero error space-bellow">
                                         <h3 className="error">
@@ -223,32 +226,6 @@ export default function CompletarProducto(props) {
                                     </div>
                                 ) : ""
                             }
-
-                            <div className="hero space-bellow">
-                                <div className="row">
-                                    <div className="half">
-                                        <label htmlFor="fecha_firma_contrato">
-                                            Supervisor del Contrato
-                                        </label>
-                                        <select name="supervisor" id="supervisor" value={producto[4]} onChange={onChangeHandler2}>
-                                            <option value="0">
-                                                Seleccione un supervisor
-                                            </option>
-                                            {
-                                                supervisores ?
-                                                supervisores.map((key) => {
-                                                    return (
-                                                        <option value={key.id} key={`user${key.id}`}>
-                                                            {key.name}
-                                                        </option>
-                                                    )
-                                                }) : ""
-                                            }
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
                             <h1>
                                 Subir documentos

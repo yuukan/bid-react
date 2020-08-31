@@ -149,7 +149,7 @@ export default function AprobarProducto(props) {
                         activity.cronograma.map((key, idx) => {
                             let d = LocalDate.parse(key[1]);
 
-                            if(key[4]===0 || parseInt(key[4])!==parseInt(localStorage.getItem("bidID")) || (key[5]!==0 && key[5]!==4)) return "";
+                            if((key[6]!==0 && key[6]!==4)) return "";
 
                             return (
                                 <div className="row rowlist" key={`cro${idx}`}>
@@ -163,7 +163,7 @@ export default function AprobarProducto(props) {
                                         {key[2]}
                                     </div>
                                     <div className="quarter no-bg no-padding">
-                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3],key[6],key[7],key[4]]);setSupervisorName(key[4]);}}>
+                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[4],key[7],key[8],key[5]]);}}>
                                             <FontAwesomeIcon icon="eye" />&nbsp;
                                             Ver detalle
                                         </button>
@@ -197,17 +197,6 @@ export default function AprobarProducto(props) {
                                     </div>
                                 ) : ""
                             }
-
-                            <div className="row space-bellow">
-                                <div className="full">
-                                    <label htmlFor="fecha_firma_contrato">
-                                        Supervisor del Contrato
-                                    </label>
-                                    <div className="display-info">
-                                        {supervisor}
-                                    </div>
-                                </div>
-                            </div>
 
                             <h2>
                                 Documentos cargados

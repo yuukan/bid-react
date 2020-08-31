@@ -474,6 +474,45 @@ header {
         margin-right: 10px;
         margin-top: 10px;
         cursor: pointer; }
+    .crear-container .row .fifth {
+      float: left;
+      width: 19%;
+      background: #79a058;
+      margin-bottom: 20px;
+      margin-right: 1%; }
+      .crear-container .row .fifth.enmienda {
+        background: #861657; }
+        .crear-container .row .fifth.enmienda a {
+          color: white; }
+      .crear-container .row .fifth.blue {
+        background: #148dd3; }
+        .crear-container .row .fifth.blue a {
+          color: white; }
+      .crear-container .row .fifth.no-bg {
+        background: transparent; }
+        .crear-container .row .fifth.no-bg a {
+          color: #2B2D42; }
+      .crear-container .row .fifth a {
+        color: #e1eada;
+        float: left;
+        width: calc(100% - 25px);
+        font-size: 0.8rem;
+        text-decoration: none;
+        padding: 10px;
+        line-height: normal;
+        word-break: break-all; }
+        .crear-container .row .fifth a:hover {
+          text-decoration: underline; }
+        .crear-container .row .fifth a svg {
+          margin-right: 5px;
+          height: 100%; }
+      .crear-container .row .fifth svg.fa-trash {
+        float: right;
+        color: white;
+        font-size: 0.6rem;
+        margin-right: 10px;
+        margin-top: 10px;
+        cursor: pointer; }
     .crear-container .row .third {
       float: left;
       width: 32.33%;

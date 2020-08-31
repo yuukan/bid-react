@@ -96,14 +96,17 @@ export default function PagoProducto(props) {
 
                 <div className="hero space-bellow">
                     <div className="row rowlist">
-                        <div className="quarter no-bg header">
+                        <div className="fifth no-bg header">
                             Nombre
                         </div>
-                        <div className="quarter no-bg header">
+                        <div className="fifth no-bg header">
                             Fecha Entrega propuesta
                         </div>
-                        <div className="quarter no-bg header">
+                        <div className="fifth no-bg header">
                             Descripción
+                        </div>
+                        <div className="fifth no-bg header">
+                            Fecha Aprobación
                         </div>
                     </div>
                     {
@@ -111,21 +114,24 @@ export default function PagoProducto(props) {
                         activity.cronograma.map((key, idx) => {
                             let d = LocalDate.parse(key[1]);
                             
-                            if(key[4]===0 || key[5]!==3) return "";
+                            if(key[5]===0 || key[6]!==3) return "";
 
                             return (
                                 <div className="row rowlist" key={`cro${idx}`}>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {key[0]}
                                     </div>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {d.format(DateTimeFormatter.ofPattern('d/M/yyyy'))}
                                     </div>
-                                    <div className="quarter no-bg">
+                                    <div className="fifth no-bg">
                                         {key[2]}
                                     </div>
-                                    <div className="quarter no-bg no-padding">
-                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3]]);setSupervisorName(key[4]);}}>
+                                    <div className="fifth no-bg">
+                                        {key[3]}
+                                    </div>
+                                    <div className="fifth no-bg no-padding">
+                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[4]]);}}>
                                             <FontAwesomeIcon icon="eye" />&nbsp;
                                             Ver detalle
                                         </button>
@@ -144,18 +150,6 @@ export default function PagoProducto(props) {
                             <h1 className="divider">
                                 Información del producto: {producto[0]}
                             </h1>
-
-                            <div className="row space-bellow">
-                                <div className="full">
-                                    <label htmlFor="fecha_firma_contrato">
-                                        Supervisor del Contrato
-                                    </label>
-                                    <div className="display-info">
-                                        {supervisor}
-                                    </div>
-                                </div>
-                            </div>
-
                             <h2>
                                 Documentos cargados
                             </h2>

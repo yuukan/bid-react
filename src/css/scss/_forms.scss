@@ -142,6 +142,56 @@
                 cursor: pointer;
             }
         }
+        .fifth{
+            float: left;
+            width: 19%;
+            background: darken($green,20);
+            margin-bottom: 20px;
+            margin-right: 1%;
+            &.enmienda{
+                background: $purple;
+                a{
+                    color: white;
+                }
+            }
+            &.blue{
+                background: lighten($blue,20);
+                a{
+                    color: white;
+                }
+            }
+            &.no-bg{
+                background: transparent;
+                a{
+                    color: $black;
+                }
+            }
+            a{
+                color: lighten($green,20);
+                float: left;
+                width: calc(100% - 25px);
+                font-size: 0.8rem;
+                text-decoration: none;
+                padding:10px;
+                line-height: normal;
+                word-break: break-all;
+                &:hover{
+                    text-decoration: underline;
+                }
+                svg{
+                    margin-right: 5px;
+                    height:100%;
+                }
+            }
+            svg.fa-trash{
+                float:right;
+                color: white;
+                font-size: 0.6rem;
+                margin-right: 10px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+        }
         .third{
             float: left;
             width: 32.33%;

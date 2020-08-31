@@ -10,6 +10,8 @@ export default function RegistroContrato(props) {
     const [cronograma,setCronograma] = useState([]);
     const [disabled, setDisabled] = useState(false);
     const [pod, setPod] = useState(null);
+    const [supervisores, setSupervisores] = useState(false);
+    const [supervisor, setSupervisor] = useState("0");
 
     const [state2, setState2] = useState({
         nombre_contratista: "",
@@ -34,6 +36,13 @@ export default function RegistroContrato(props) {
         fecha_entrega:"",
         descripcion:""
     });
+
+    //####################################Change File Handler####################################
+    const onChangeHandler2 = event => {
+        if (event.target.name === "supervisor") {
+            setSupervisor(event.target.value);
+        }
+    }
 
     const handleChange3 = (event) => {
         setState3({ ...state3, [event.target.name]: event.target.value });
@@ -68,6 +77,13 @@ export default function RegistroContrato(props) {
             .catch(function (error) {
                 console.log(error);
             });
+        axios.post(props.url + "api/get-supervisor")
+            .then(function (response) {
+                setSupervisores(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }, [props]);
 
     //####################################Change File Handler####################################
@@ -82,29 +98,6 @@ export default function RegistroContrato(props) {
 
     }
 
-    //####################################Eliminamos linea#########################################
-    const remove_row = (idx) => {
-        let arr = [...cronograma];
-        arr.splice(idx,1);
-        setCronograma(arr);
-    }
-    //####################################Agregamos linea#########################################
-    const add_line = () => {
-        if(state3.nombre_producto!=="" && state3.fecha_entrega!=="" && state3.descripcion!==""){
-            let arr = [
-                state3.nombre_producto,
-                state3.fecha_entrega,
-                state3.descripcion
-            ];
-            let cron = [...cronograma];
-            cron.push(arr);
-            setCronograma(cron);
-            setState3({nombre_producto:"",fecha_entrega:"",descripcion:""})
-        }else{
-            swal("Atención", "!Debe de agregar nombre del producto, fecha de entrega y descripción!", "error");
-        }
-    }
-
     //####################################Subir Archivos####################################
     const onSubmit = (e) => {
         e.preventDefault();
@@ -115,6 +108,7 @@ export default function RegistroContrato(props) {
             }
 
             data.append('id', props.match.params.id);
+            data.append('supervisor', supervisor);
 
             setDisabled(true);
             let user = localStorage.getItem("bidID");
@@ -138,59 +132,57 @@ export default function RegistroContrato(props) {
 
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if(cronograma.length>0){
-            if(
-                state2.nombre_contratista!=="" 
-                && state2.fecha_firma_contrato!=="" 
-                && state2.objeto_contrato!=="" 
-                && state2.plazo_contrato!=="" 
-                && state2.numero_registro_cotrato!=="" 
-                && state2.montro_contrato!=="" 
-                && state2.tipo_cambio!=="" 
-                && state2.tipo_garantia!=="" 
-                && state2.vigencia_garantia!==""
-            ){
-                swal({
-                    title: "¿Continuar?",
-                    text: "Se enviará al siguiente paso.",
-                    icon: "warning",
-                    buttons: ["Cancelar", "Enviar"],
-                    dangerMode: true,
-                })
-                    .then((certifico) => {
-                        if (certifico) {
-                            let user = localStorage.getItem("bidID");
-                            axios.post(props.url + "api/registrar-contrato",
-                                {
-                                    id: props.match.params.id,
-                                    user,
-                                    nombre_contratista:state2.nombre_contratista,
-                                    fecha_firma_contrato:state2.fecha_firma_contrato,
-                                    objeto_contrato:state2.objeto_contrato,
-                                    plazo_contrato:state2.plazo_contrato,
-                                    numero_registro_cotrato:state2.numero_registro_cotrato,
-                                    montro_contrato:state2.montro_contrato,
-                                    moneda:state2.moneda,
-                                    tipo_cambio:state2.tipo_cambio,
-                                    tipo_garantia:state2.tipo_garantia,
-                                    vigencia_garantia:state2.vigencia_garantia,
-                                    cronograma: JSON.stringify(cronograma)
-                                }
-                            )
-                                .then(function () {
-                                    props.getProcesses();
-                                    window.history.back();
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
-                        }
-                    });
-            }else{
-                swal("Atención", "!Debe de llenar todos los campos!", "error");    
-            }
+        if(
+            state2.nombre_contratista!=="" 
+            && state2.fecha_firma_contrato!=="" 
+            && state2.objeto_contrato!=="" 
+            && state2.plazo_contrato!=="" 
+            && state2.numero_registro_cotrato!=="" 
+            && state2.montro_contrato!=="" 
+            && state2.tipo_cambio!=="" 
+            && state2.tipo_garantia!=="" 
+            && state2.vigencia_garantia!==""
+            && supervisor!=="0"
+        ){
+            swal({
+                title: "¿Continuar?",
+                text: "Se enviará al siguiente paso.",
+                icon: "warning",
+                buttons: ["Cancelar", "Enviar"],
+                dangerMode: true,
+            })
+                .then((certifico) => {
+                    if (certifico) {
+                        let user = localStorage.getItem("bidID");
+                        axios.post(props.url + "api/registrar-contrato",
+                            {
+                                id: props.match.params.id,
+                                user,
+                                nombre_contratista:state2.nombre_contratista,
+                                fecha_firma_contrato:state2.fecha_firma_contrato,
+                                objeto_contrato:state2.objeto_contrato,
+                                plazo_contrato:state2.plazo_contrato,
+                                numero_registro_cotrato:state2.numero_registro_cotrato,
+                                montro_contrato:state2.montro_contrato,
+                                moneda:state2.moneda,
+                                tipo_cambio:state2.tipo_cambio,
+                                tipo_garantia:state2.tipo_garantia,
+                                vigencia_garantia:state2.vigencia_garantia,
+                                cronograma: JSON.stringify(cronograma),
+                                gerente: supervisor
+                            }
+                        )
+                            .then(function () {
+                                props.getProcesses();
+                                window.history.back();
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                });
         }else{
-            swal("Atención", "!Debe de agregar información del cronograma!", "error");
+            swal("Atención", "!Debe de llenar todos los campos!", "error");    
         }
     }
 
@@ -199,7 +191,7 @@ export default function RegistroContrato(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Registro de contrato
+                    Suscripción de contrato
                 </h1>
                 
                 <h2>
@@ -286,7 +278,29 @@ export default function RegistroContrato(props) {
                             onChange={handleChange2}
                         />
                     </div>
+                    <div className="half">
+                        <label htmlFor="fecha_firma_contrato">
+                            Gerente de contrato
+                        </label>
+                        <select name="supervisor" id="supervisor" value={supervisor} onChange={onChangeHandler2}>
+                            <option value="0">
+                                Seleccione un gerente
+                            </option>
+                            {
+                                supervisores ?
+                                supervisores.map((key) => {
+                                    return (
+                                        <option value={key.id} key={`user${key.id}`}>
+                                            {key.name}
+                                        </option>
+                                    )
+                                }) : ""
+                            }
+
+                        </select>
+                    </div>
                 </div>
+                
 
                 <div className="row">
                     <div className="half">
@@ -387,82 +401,6 @@ export default function RegistroContrato(props) {
                             onChange={handleChange2}
                         />
                     </div>
-                </div>
-
-                <h2>
-                    Cronograma de entrega de productos
-                </h2>
-
-                <div className="row">
-                    <div className="quarter no-bg">
-                        <label htmlFor="nombre_producto">
-                            Nombre del producto
-                        </label>
-                        <input
-                            type="text"
-                            name="nombre_producto"
-                            id="nombre_producto"
-                            value={state3.nombre_producto}
-                            onChange={handleChange3}
-                        />
-                    </div>
-                    <div className="quarter no-bg">
-                        <label htmlFor="fecha_entrega">
-                            Fecha de Entrega
-                        </label>
-                        <input
-                            type="date"
-                            name="fecha_entrega"
-                            id="fecha_entrega"
-                            value={state3.fecha_entrega}
-                            onChange={handleChange3}
-                        />
-                    </div>
-                    <div className="quarter no-bg">
-                        <label htmlFor="descripcion">
-                            Descripción
-                        </label>
-                        <input
-                            type="text"
-                            name="descripcion"
-                            id="descripcion"
-                            value={state3.descripcion}
-                            onChange={handleChange3}
-                        />
-                    </div>
-                    <div className="quarter no-bg">
-                        <label>&nbsp;</label>
-                        <button type="button" className="completar-informacion" onClick={add_line}>
-                            <FontAwesomeIcon icon="plus" /> Agregar Producto
-                            <LinearProgress />
-                        </button>
-                    </div>
-                </div>                
-
-                <div className="hero space-bellow">
-                    {
-                        cronograma.map((key, idx) => {
-                            let d = LocalDate.parse(key[1]);
-                            return (
-                                <div className="row rowlist" key={`cro${idx}`}>
-                                    <div className="quarter no-bg">
-                                        {key[0]}
-                                    </div>
-                                    <div className="quarter no-bg">
-                                        {d.format(DateTimeFormatter.ofPattern('d/M/yyyy'))}
-                                    </div>
-                                    <div className="quarter no-bg">
-                                        {key[2]}
-                                    </div>
-                                    <div className="quarter no-bg no-padding">
-                                        <button type="button" className="cancel" onClick={()=>remove_row(idx)}>
-                                            <FontAwesomeIcon icon="times" />
-                                        </button>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
                 </div>
 
                 <div className="row">                        

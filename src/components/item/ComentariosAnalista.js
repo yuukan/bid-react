@@ -6,7 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosGarantia from './ListadoDocumentosGarantia';
 
-export default function AprobacionContrato(props) {
+export default function ComentariosAnalista(props) {
     const [activity, setActivity] = useState(false);
     const [disabled, setDisabled] = useState(false);
     
@@ -30,33 +30,38 @@ export default function AprobacionContrato(props) {
     const approve = () => {
         let user = localStorage.getItem("bidID");
         swal({
-            title: "Aprobación!",
-            text: "Yo apruebo este contrato.",
-            icon: "warning",
-            buttons: ["Cancelar", "Aprobar"],
-            dangerMode: true,
-        })
-            .then((certifico) => {
-                if (certifico) {
-                    setDisabled(true);
-                    axios.post(props.url + "api/aprobacion-contrato",
-                        {
-                            id: props.match.params.id,
-                            user
-                        }
-                    )
-                        .then(function () {
-                            swal("Información", "Se ha enviado la aprobación", "info")
-                                .then(() => {
-                                    setDisabled(false);
-                                    window.history.back();
-                                });
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-            });
+            text: '¿Ingrese su comentario?',
+            content: {
+                element: "input",
+            },
+            button: {
+                text: "Enviar"
+            },
+            icon: "info",
+        }).then((razon => {
+            if (razon) {
+                setDisabled(true);
+                axios.post(props.url + "api/comentarios-analista",
+                    {
+                        id: props.match.params.id,
+                        user,
+                        razon
+                    }
+                )
+                    .then(function () {
+                        swal("Información", "Se ha enviado al siguiente paso.", "info")
+                            .then(() => {
+                                setDisabled(false);
+                                window.history.back();
+                            });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }else{
+                swal("Información", "Debe de ingresar una un comentario.", "error")
+            }
+        }));
     }
 
     // Reject this plan
@@ -102,7 +107,7 @@ export default function AprobacionContrato(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Aprobación de contrato
+                    Comentarios de Analista
                 </h1>
                 
                 <h2>

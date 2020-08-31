@@ -163,7 +163,7 @@ export default function AprobarProductoDirector(props) {
                                         {key[2]}
                                     </div>
                                     <div className="quarter no-bg no-padding">
-                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[3]]);setSupervisorName(key[4]);}}>
+                                        <button type="button" className="save" onClick={()=>{setProducto([key[0],key[4]]);}}>
                                             <FontAwesomeIcon icon="eye" />&nbsp;
                                             Ver detalle
                                         </button>
@@ -182,17 +182,6 @@ export default function AprobarProductoDirector(props) {
                             <h1 className="divider">
                                 Información del producto: {producto[0]}
                             </h1>
-
-                            <div className="row space-bellow">
-                                <div className="full">
-                                    <label htmlFor="fecha_firma_contrato">
-                                        Supervisor del Contrato
-                                    </label>
-                                    <div className="display-info">
-                                        {supervisor}
-                                    </div>
-                                </div>
-                            </div>
 
                             <h2>
                                 Documentos cargados

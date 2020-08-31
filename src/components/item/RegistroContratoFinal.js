@@ -6,7 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosGarantia from './ListadoDocumentosGarantia';
 
-export default function AprobacionContrato(props) {
+export default function RegistroContratoFinal(props) {
     const [activity, setActivity] = useState(false);
     const [disabled, setDisabled] = useState(false);
     
@@ -30,16 +30,16 @@ export default function AprobacionContrato(props) {
     const approve = () => {
         let user = localStorage.getItem("bidID");
         swal({
-            title: "Aprobación!",
-            text: "Yo apruebo este contrato.",
+            title: "Registrar!",
+            text: "¿Desea registrar el contrato?.",
             icon: "warning",
-            buttons: ["Cancelar", "Aprobar"],
+            buttons: ["Cancelar", "Registrar"],
             dangerMode: true,
         })
             .then((certifico) => {
                 if (certifico) {
                     setDisabled(true);
-                    axios.post(props.url + "api/aprobacion-contrato",
+                    axios.post(props.url + "api/registrar-contrato-final",
                         {
                             id: props.match.params.id,
                             user
@@ -102,7 +102,7 @@ export default function AprobacionContrato(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Aprobación de contrato
+                    Registro de Contrato
                 </h1>
                 
                 <h2>
@@ -222,7 +222,7 @@ export default function AprobacionContrato(props) {
                 
                 <div className="row">
                     <button type="button" className="save" onClick={approve} disabled={disabled}>
-                        <FontAwesomeIcon icon="save" /> Aprobar
+                        <FontAwesomeIcon icon="save" /> Registrar
                         <LinearProgress />
                     </button>
                     <button type="button" className="cancel" onClick={reject} disabled={disabled}>

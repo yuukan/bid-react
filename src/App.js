@@ -73,6 +73,9 @@ import ConceptoObligatorioEvaluacionListaCorta from './components/item/ConceptoO
 import OtorgarNoObjecionEvaluacionListaCorta from './components/item/OtorgarNoObjecionEvaluacionListaCorta';
 import RevisionNoObjecionEvaluacionListaCorta from './components/item/RevisionNoObjecionEvaluacionListaCorta';
 import AprobacionInformeListaCorta from './components/item/AprobacionInformeListaCorta';
+import ComentariosAnalista from './components/item/ComentariosAnalista';
+import RegistroContratoFinal from './components/item/RegistroContratoFinal';
+import CompletarContrato from './components/item/CompletarContrato';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
 let url = "https://pedroizaguirre.com/bid/public/";
@@ -717,6 +720,36 @@ class App extends Component {
                         path="/item/aprobacion-contrato/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionContrato
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                          
+                      <Route
+                        path="/item/comentarios-analista/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <ComentariosAnalista
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                          
+                      <Route
+                        path="/item/registro-contrato/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <RegistroContratoFinal
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                          
+                      <Route
+                        path="/item/completar-contrato/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <CompletarContrato
                             {...props}
                             url={url}
                             urlDocs={urlDocs}
