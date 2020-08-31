@@ -8,7 +8,6 @@ import ListadoDocumentosCompletarProducto from './ListadoDocumentosCompletarProd
 
 export default function CompletarProducto(props) {
     const [activity, setActivity] = useState(false);
-    const [supervisores, setSupervisores] = useState(false);
     const [pod, setPod] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [producto, setProducto] = useState(["",0,"","",0]);
