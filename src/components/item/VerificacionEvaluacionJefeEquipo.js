@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function VerificacionEvalluacionJefeEquipo(props) {
     const [disabled, setDisabled] = useState(false);
@@ -144,6 +145,18 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
                                 />
                         </div>
                     </div>
+                </div>
+
+                <div className="full">
+                    <ListadoDocumentosConceptoObligatorio
+                        id={props.match.params.id}
+                        tipo={props.match.params.tipo}
+                        url={props.url}
+                        urlDocs={props.urlDocs}
+                        delete={false}
+                        cs_estado_proceso_id={48}
+                        type={1}
+                    />
                 </div>
 
                 <div className="row">                        

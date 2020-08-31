@@ -131,6 +131,12 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
                             <div className="row file-input space-bellow">
                                 <h4>
                                     Subir documentos
+                                    {
+                                        props.type === 1 ?
+                                        " concepto obligatorio" : 
+                                        props.type === 2 ? " no objeción"
+                                        : " conformidad"
+                                    }
                                 </h4>
                                 <div className="full">
                                     <div className="label">
@@ -157,9 +163,10 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
                 <h3 className="full">
                     {
                         props.type === 1 ?
-                        "Listado de documentos concepto obligatorio cargados" : "Listado de documentos cargados"
+                        "Listado de documentos concepto obligatorio cargados" : 
+                        props.type === 2 ? "Listado de documentos no objeción cargados" :
+                        "Listado de documentos conformidad cargados"
                     }
-                    
                 </h3>
                 {files}
             </div>

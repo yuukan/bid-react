@@ -333,7 +333,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <ShoppingCartOutlined />,
                     tooltip: 'Llamado licitación lista corta',
-                    hidden: !["7","10"].includes(profile) || !((rowData.estado >= 45 && rowData.cs_metodo_seleccion_id===4)),
+                    hidden: !["7","10"].includes(profile) || !((rowData.estado === 45 && rowData.cs_metodo_seleccion_id===4)),
                     onClick: (event, rowData) => {
                         props.history.push("/item/llamado-licitacion-lista-corta/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },

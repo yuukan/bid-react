@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import swal from 'sweetalert';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function DarComentarioConformidad(props) {
     const [activity, setActivity] = useState(false);
@@ -92,6 +93,19 @@ export default function DarComentarioConformidad(props) {
                             urlDocs={props.urlDocs}
                         />
                 </div>
+
+                <div className="full">
+                    <ListadoDocumentosConceptoObligatorio
+                        id={props.match.params.id}
+                        tipo={props.match.params.tipo}
+                        url={props.url}
+                        urlDocs={props.urlDocs}
+                        delete={true}
+                        cs_estado_proceso_id={48}
+                        type={3}
+                    />
+                </div>
+
                 <div className="row">
                     <div className="full">
                         <button type="button" className="save" onClick={approve}>

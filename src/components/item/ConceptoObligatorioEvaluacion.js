@@ -8,6 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import Switch from '@material-ui/core/Switch';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function ConceptoObligatorioEvaluacion(props) {
 
@@ -148,6 +149,18 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                     delete={false}
                                 />
                         </div>
+                    </div>
+
+                    <div className="full">
+                        <ListadoDocumentosConceptoObligatorio
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={true}
+                            cs_estado_proceso_id={35}
+                            type={1}
+                        />
                     </div>
 
                     <div className="full">

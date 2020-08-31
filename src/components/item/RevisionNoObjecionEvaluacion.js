@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 import Switch from '@material-ui/core/Switch';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function RevisionNoObjecionEvaluacion(props) {
     const [activity, setActivity] = useState(false);
@@ -158,6 +159,27 @@ export default function RevisionNoObjecionEvaluacion(props) {
                             urlDocs={props.urlDocs}
                         />
                 </div>
+
+                <ListadoDocumentosConceptoObligatorio
+                    id={props.match.params.id}
+                    tipo={props.match.params.tipo}
+                    url={props.url}
+                    urlDocs={props.urlDocs}
+                    delete={false}
+                    cs_estado_proceso_id={35}
+                    type={1}
+                />
+                
+                <ListadoDocumentosConceptoObligatorio
+                    id={props.match.params.id}
+                    tipo={props.match.params.tipo}
+                    url={props.url}
+                    urlDocs={props.urlDocs}
+                    delete={false}
+                    cs_estado_proceso_id={36}
+                    type={2}
+                />
+
                 <div className="row">
                     <h2>
                         Certificación

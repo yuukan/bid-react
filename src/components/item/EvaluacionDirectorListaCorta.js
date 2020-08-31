@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosOfertasListaCorta from './ListadoDocumentosOfertasListaCorta';
 import ListadoDocumentosEvaluacionListaCorta from './ListadoDocumentosEvaluacionListaCorta';
+import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
 
 export default function EvaluacionDirectorListaCorta(props) {
     const [disabled, setDisabled] = useState(false);
@@ -138,7 +139,7 @@ export default function EvaluacionDirectorListaCorta(props) {
                 </h2>
 
                 {
-                    razon3!=="" ?
+                    razon3 && razon3!=="" ?
                     (
                         <div className="hero error space-bellow">
                             <h3 className="error">
@@ -239,6 +240,18 @@ export default function EvaluacionDirectorListaCorta(props) {
                                 delete={false}
                             />
                     </div>
+                </div>
+
+                <div className="full">
+                    <ListadoDocumentosConceptoObligatorio
+                        id={props.match.params.id}
+                        tipo={props.match.params.tipo}
+                        url={props.url}
+                        urlDocs={props.urlDocs}
+                        delete={false}
+                        cs_estado_proceso_id={62}
+                        type={3}
+                    />
                 </div>
 
                 <div className="row">                        
