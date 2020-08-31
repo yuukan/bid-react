@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
+import ListadoDocumentosConceptoObligatorio from './item/ListadoDocumentosConceptoObligatorio';
 
 export default function UploadDocuments(props) {
     const [plan, setPlan] = useState(null);
@@ -127,7 +128,7 @@ export default function UploadDocuments(props) {
                             }
                         </div>
                     </div>
-                    <div className="row file-input">
+                    <div className="row file-input space-bellow">
                         <div className="half">
                             <div className="label">
                                 Plan de Ejecución de proyecto (PEP)
@@ -170,6 +171,18 @@ export default function UploadDocuments(props) {
                                     ) : ""
                             }
                         </div>
+                    </div>
+
+                    <div className="full">
+                        <ListadoDocumentosConceptoObligatorio
+                            id={props.match.params.id}
+                            tipo={props.match.params.tipo}
+                            url={props.url}
+                            urlDocs={props.urlDocs}
+                            delete={true}
+                            cs_estado_proceso_id={1}
+                            type={4}
+                        />
                     </div>
 
                     <div className="row">

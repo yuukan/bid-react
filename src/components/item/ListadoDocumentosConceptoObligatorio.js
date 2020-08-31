@@ -6,7 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 export default function ListadoDocumentosConceptoObligatorio(props) {
     const [row, setRow] = useState(null);
-    const [pod, setPod] = useState(null);
+    const [pod2, setPod2] = useState(null);
     const [disabled, setDisabled] = useState(false);
     //####################################Save Profile####################################
 
@@ -58,22 +58,23 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
     }
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
-        if (event.target.name === "pod") {
+        if (event.target.name === "pod2") {
             let fls = [];
             for(let i =0;i<event.target.files.length;i++){
                 fls.push(event.target.files[i]);
             }
-            setPod(fls);
+            setPod2(fls);
         }
 
     }
     //####################################Upload File####################################
-    const onSubmit = (e) => {
+    const onSubmit2 = (e) => {
         e.preventDefault();
-        if (pod) {
+        e.stopPropagation();
+        if (pod2) {
             const data = new FormData()
-            for(let i =0;i<pod.length;i++){
-                data.append('pod[]', pod[i]);
+            for(let i =0;i<pod2.length;i++){
+                data.append('pod[]', pod2[i]);
             }
             
             data.append('id', props.id);
@@ -86,7 +87,7 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
                 .then(function () {
                     setDisabled(false);
                     swal("Éxito", "!Documentos Cargados!", "success");
-                    setPod(null);
+                    setPod2(null);
                     getFiles();
                     e.target.reset();
                 })
@@ -127,26 +128,27 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
                 props.delete ?
                 (
                     <div className="hero space-bellow">
-                        <form onSubmit={onSubmit}>
+                        <form onSubmit={onSubmit2}>
                             <div className="row file-input space-bellow">
                                 <h4>
                                     Subir documentos
                                     {
                                         props.type === 1 ?
                                         " concepto obligatorio" : 
-                                        props.type === 2 ? " no objeción"
-                                        : " conformidad"
+                                        props.type === 2 ? " no objeción" :
+                                        props.type === 3 ? " conformidad"
+                                        : " "
                                     }
                                 </h4>
                                 <div className="full">
                                     <div className="label">
                                         Seleccione Documentos
                                     </div>
-                                    <input multiple type="file" name="pod" id="pod" onChange={onChangeHandler} />
-                                    <label htmlFor="pod" className={pod ? 'active' : ''}>
+                                    <input multiple type="file" name="pod2" id="pod2" onChange={onChangeHandler} />
+                                    <label htmlFor="pod2" className={pod2 ? 'active' : ''}>
                                         <FontAwesomeIcon icon="file-upload" />
                                         {
-                                            pod ? pod.length+" archivos seleccionados" : "Seleccione un Archivo"
+                                            pod2 ? pod2.length+" archivos seleccionados" : "Seleccione un Archivo"
                                         }
                                     </label>
                                     <button type="submit" className="save pull-left" disabled={disabled}>
@@ -165,7 +167,8 @@ export default function ListadoDocumentosConceptoObligatorio(props) {
                         props.type === 1 ?
                         "Listado de documentos concepto obligatorio cargados" : 
                         props.type === 2 ? "Listado de documentos no objeción cargados" :
-                        "Listado de documentos conformidad cargados"
+                        props.type === 3 ? "Listado de documentos conformidad cargados" :
+                        "Listado de documentos cargados"
                     }
                 </h3>
                 {files}
