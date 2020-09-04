@@ -6,7 +6,7 @@ import ListadoDocumentosLicitacion from './ListadoDocumentosLicitacion';
 import ListadoDocumentosEnmienda from './ListadoDocumentosEnmienda';
 import Switch from '@material-ui/core/Switch';
 
-export default function AprobacionFinalLiciatacionEnmienda(props) {
+export default function AprobacionFinalLicitacionEnmienda(props) {
     const [activity, setActivity] = useState(false);
     const [state, setState] = useState({
         checkedA: false

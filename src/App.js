@@ -76,6 +76,9 @@ import AprobacionInformeListaCorta from './components/item/AprobacionInformeList
 import ComentariosAnalista from './components/item/ComentariosAnalista';
 import RegistroContratoFinal from './components/item/RegistroContratoFinal';
 import CompletarContrato from './components/item/CompletarContrato';
+import CertificacionTecnicaLicitacionEnmienda from './components/item/CertificacionTecnicaLicitacionEnmienda';
+import ConceptoObligatorioLicitacionEnmienda from './components/item/ConceptoObligatorioLicitacionEnmienda';
+import AprobacionFinalLicitacionEnmienda from './components/item/AprobacionFinalLicitacionEnmienda';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
 let url = "https://pedroizaguirre.com/bid/public/";
@@ -933,6 +936,36 @@ class App extends Component {
                           path="/item/aprobacion-informe-lista-corta/:id/:description/:tipo/:parent"
                           render={(props) =>
                             <AprobacionInformeListaCorta
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
+
+                      <Route
+                          path="/item/certificacion-tecnica-licitacion-enmienda/:id/:description"
+                          render={(props) =>
+                            <CertificacionTecnicaLicitacionEnmienda
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
+
+                      <Route
+                          path="/item/concepto-obligatorio-licitacion-enmienda/:id/:description"
+                          render={(props) =>
+                            <ConceptoObligatorioLicitacionEnmienda
+                              {...props}
+                              url={url}
+                              urlDocs={urlDocs}
+                              getProcesses={this.getProcesses}
+                            />} />
+
+                      <Route
+                          path="/item/aprobacion-final-licitacion-enmienda/:id/:description"
+                          render={(props) =>
+                            <AprobacionFinalLicitacionEnmienda
                               {...props}
                               url={url}
                               urlDocs={urlDocs}

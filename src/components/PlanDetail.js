@@ -46,6 +46,7 @@ const columns = [
     { title: 'Actividad', field: 'actividad' },
     { title: 'Descripción Adicional', field: 'descripcion_adicional' },
     { title: 'Método Selección', field: 'metodo' },
+    { title: 'Estado', field: 'estado_text' },
     { title: 'Lotes', field: 'cantidad_lotes' },
     { title: 'Num. Proceso', field: 'numero_proceso' },
     { title: 'USD', field: 'usd', type: 'currency' },
