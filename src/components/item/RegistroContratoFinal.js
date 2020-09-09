@@ -3,7 +3,6 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosGarantia from './ListadoDocumentosGarantia';
 
 export default function RegistroContratoFinal(props) {

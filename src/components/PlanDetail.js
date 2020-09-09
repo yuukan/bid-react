@@ -46,7 +46,6 @@ const columns = [
     { title: 'Actividad', field: 'actividad' },
     { title: 'Descripción Adicional', field: 'descripcion_adicional' },
     { title: 'Método Selección', field: 'metodo' },
-    { title: 'Estado', field: 'estado_text' },
     { title: 'Lotes', field: 'cantidad_lotes' },
     { title: 'Num. Proceso', field: 'numero_proceso' },
     { title: 'USD', field: 'usd', type: 'currency' },
@@ -57,6 +56,7 @@ const columns = [
     { title: 'Aviso Especial Adquisición', field: 'aviso_especial_adquisicion' },
     { title: 'Firma Contrato', field: 'firma_contrato' },
     { title: 'Comentarios Método Seleccion', field: 'comentarios_metodo_seleccion' },
+    { title: 'Estado', field: 'estado_text', cellStyle:{ backgroundColor: '#ccc', fontWeight:'bold',textAlign:'center'} },
 ];
 export default function PlanDetail(props) {
 
