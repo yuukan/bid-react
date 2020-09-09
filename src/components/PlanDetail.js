@@ -78,7 +78,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <LocalAtm />,
                     tooltip: 'Aprobación presupuestaria',
-                    hidden: !["6","10"].includes(profile) || !(rowData.estado >= 12),
+                    hidden: !["6","10"].includes(profile) || !(rowData.estado >= 12 && rowData.certificacion_presupuestaria===0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobacion-presupuestaria/" + rowData.id+"/"+rowData.actividad);
                     },

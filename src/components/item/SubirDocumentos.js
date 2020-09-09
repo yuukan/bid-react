@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import swal from 'sweetalert';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -38,11 +38,7 @@ export default function SubirDocumentos(props) {
         checkedH: false,
         checkedI: false,
         checkedJ: false,
-        checkedK: false,
-        checkedL: false,
-        checkedM: false,
-        checkedN: false,
-        checkedO: false,
+        checkedK: false
     });
 
     const handleChange = (event) => {
@@ -54,7 +50,7 @@ export default function SubirDocumentos(props) {
         e.preventDefault();
         if (pod) {
             const data = new FormData()
-            for(let i =0;i<pod.length;i++){
+            for (let i = 0; i < pod.length; i++) {
                 data.append('pod[]', pod[i]);
             }
 
@@ -80,7 +76,15 @@ export default function SubirDocumentos(props) {
     };
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF && state.checkedG && state.checkedH && state.checkedI && state.checkedJ && state.checkedK && state.checkedL && state.checkedM && state.checkedN && state.checkedO) {
+
+        let q = state.checkedA + state.checkedB + state.checkedC + state.checkedD + state.checkedE + state.checkedF + state.checkedG + state.checkedH + state.checkedI + state.checkedJ + state.checkedK;
+
+        if  (
+                (q===11 && activity.cs_tipo_plan === 1) ||
+                (q===10 && (activity.cs_tipo_plan === 2 || activity.cs_tipo_plan === 3 || activity.cs_tipo_plan === 6)) ||
+                (q===6 && activity.cs_tipo_plan === 4) ||
+                (q===3 && activity.cs_tipo_plan === 5) 
+            ) {
             swal({
                 title: "¿Completar Información?",
                 text: "Mandaremos los documentos a Aprobación.",
@@ -106,14 +110,14 @@ export default function SubirDocumentos(props) {
                     }
                 });
         } else {
-            swal("Alerta", "Debe de marcar las 15 preguntas.", "error");
+            swal("Alerta", "Debe de marcar todas las preguntas.", "error");
         }
     }
     //####################################Change File Handler####################################
     const onChangeHandler = event => {
         if (event.target.name === "pod") {
             let fls = [];
-            for(let i =0;i<event.target.files.length;i++){
+            for (let i = 0; i < event.target.files.length; i++) {
                 fls.push(event.target.files[i]);
             }
             setPod(fls);
@@ -130,32 +134,32 @@ export default function SubirDocumentos(props) {
                 </h1>
 
                 {
-                    activity.rechazo_tecnico && activity.rechazo_tecnico!=="" ?
-                    (
-                        <div className="hero error space-bellow">
-                            <h3 className="error">
-                                <FontAwesomeIcon icon="exclamation-triangle" />
+                    activity.rechazo_tecnico && activity.rechazo_tecnico !== "" ?
+                        (
+                            <div className="hero error space-bellow">
+                                <h3 className="error">
+                                    <FontAwesomeIcon icon="exclamation-triangle" />
                                 Razón de rechazo técnico
                                 <div className="text">
-                                    {activity.rechazo_tecnico}
-                                </div>
-                            </h3>
-                        </div>
-                    ) : ""
+                                        {activity.rechazo_tecnico}
+                                    </div>
+                                </h3>
+                            </div>
+                        ) : ""
                 }
                 {
-                    activity.rechazo_especialista_sectorial && activity.rechazo_especialista_sectorial!=="" ?
-                    (
-                        <div className="hero error space-bellow">
-                            <h3 className="error">
-                                <FontAwesomeIcon icon="exclamation-triangle" />
+                    activity.rechazo_especialista_sectorial && activity.rechazo_especialista_sectorial !== "" ?
+                        (
+                            <div className="hero error space-bellow">
+                                <h3 className="error">
+                                    <FontAwesomeIcon icon="exclamation-triangle" />
                                 Razón de rechazo especialista sectorial
                                 <div className="text">
-                                    {activity.rechazo_especialista_sectorial}
-                                </div>
-                            </h3>
-                        </div>
-                    ) : ""
+                                        {activity.rechazo_especialista_sectorial}
+                                    </div>
+                                </h3>
+                            </div>
+                        ) : ""
                 }
                 <form onSubmit={onSubmit}>
                     <div className="hero space-bellow">
@@ -168,7 +172,7 @@ export default function SubirDocumentos(props) {
                                 <label htmlFor="pod" className={pod ? 'active' : ''}>
                                     <FontAwesomeIcon icon="file-upload" />
                                     {
-                                        pod ? pod.length+" archivos seleccionados" : "Seleccione un Archivo"
+                                        pod ? pod.length + " archivos seleccionados" : "Seleccione un Archivo"
                                     }
                                 </label>
                                 <button type="submit" className="save pull-left" disabled={disabled}>
@@ -192,202 +196,420 @@ export default function SubirDocumentos(props) {
                         <h2>
                             Completar Información
                         </h2>
-                        <div className="full">
-                            <label htmlFor="checkedA" className="switch">
-                                <Switch
-                                    checked={state.checkedA}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedA"
-                                    id="checkedA"
-                                    inputProps={{ 'aria-label': 'Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.' }}
-                                />
-                                Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedB" className="switch">
-                                <Switch
-                                    checked={state.checkedB}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedB"
-                                    id="checkedB"
-                                    inputProps={{ 'aria-label': ' Los beneficios del proyecto están claramente identificados y se pueden medir.' }}
-                                />
-                                Los beneficios del proyecto están claramente identificados y se pueden medir.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedC" className="switch">
-                                <Switch
-                                    checked={state.checkedC}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedC"
-                                    id="checkedC"
-                                    inputProps={{ 'aria-label': ' La descripción o identificación cada una de las áreas o componentes del proyecto están completas.' }}
-                                />
-                                La descripción o identificación cada una de las áreas o componentes del proyecto están completas.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedD" className="switch">
-                                <Switch
-                                    checked={state.checkedD}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedD"
-                                    id="checkedD"
-                                    inputProps={{ 'aria-label': ' El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.' }}
-                                />
-                                El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedE" className="switch">
-                                <Switch
-                                    checked={state.checkedE}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedE"
-                                    id="checkedE"
-                                    inputProps={{ 'aria-label': 'Planos completos de todas las áreas de trabajo que demanda el proyecto.' }}
-                                />
-                                Planos completos de todas las áreas de trabajo que demanda el proyecto.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedF" className="switch">
-                                <Switch
-                                    checked={state.checkedF}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedF"
-                                    id="checkedF"
-                                    inputProps={{ 'aria-label': 'Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.' }}
-                                />
-                                Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedG" className="switch">
-                                <Switch
-                                    checked={state.checkedG}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedG"
-                                    id="checkedG"
-                                    inputProps={{ 'aria-label': 'Los costos están completos y actualizados.' }}
-                                />
-                                Los costos están completos y actualizados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedH" className="switch">
-                                <Switch
-                                    checked={state.checkedH}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedH"
-                                    id="checkedH"
-                                    inputProps={{ 'aria-label': 'Las especificaciones técnicas están completas y actualizadas' }}
-                                />
-                                Las especificaciones técnicas están completas y actualizadas
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedI" className="switch">
-                                <Switch
-                                    checked={state.checkedI}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedI"
-                                    id="checkedI"
-                                    inputProps={{ 'aria-label': 'El cronograma tentativo de implementación está identificado y definido.' }}
-                                />
-                                El cronograma tentativo de implementación está identificado y definido.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedJ" className="switch">
-                                <Switch
-                                    checked={state.checkedJ}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedJ"
-                                    id="checkedJ"
-                                    inputProps={{ 'aria-label': 'El mercado ha sido evaluado y existen potenciales oferentes' }}
-                                />
-                                El mercado ha sido evaluado y existen potenciales oferentes
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedK" className="switch">
-                                <Switch
-                                    checked={state.checkedK}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedK"
-                                    id="checkedK"
-                                    inputProps={{ 'aria-label': 'Licencias y permisos ambiental están completos y debidamente autorizados' }}
-                                />
-                                Licencias y permisos ambiental están completos y debidamente autorizados
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedL" className="switch">
-                                <Switch
-                                    checked={state.checkedL}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedL"
-                                    id="checkedL"
-                                    inputProps={{ 'aria-label': 'Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada' }}
-                                />
-                                Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedM" className="switch">
-                                <Switch
-                                    checked={state.checkedM}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedM"
-                                    id="checkedM"
-                                    inputProps={{ 'aria-label': 'Derechos de paso están otorgados y saneados.' }}
-                                />
-                                Derechos de paso están otorgados y saneados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedN" className="switch">
-                                <Switch
-                                    checked={state.checkedN}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedN"
-                                    id="checkedN"
-                                    inputProps={{ 'aria-label': 'Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.' }}
-                                />
-                                Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedO" className="switch"> 
-                                <Switch
-                                    checked={state.checkedO}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedO"
-                                    id="checkedO"
-                                    inputProps={{ 'aria-label': 'La supervisión está contratada o estará contratada antes del inicio del proyecto' }}
-                                />
-                                La supervisión está contratada o estará contratada antes del inicio del proyecto
-                            </label>
-                        </div>
-                        
+                        {
+                            activity && activity.cs_tipo_plan === 1 ?
+                            (
+                                <React.Fragment>
+                                    <div className="full">
+                                        <label htmlFor="checkedA" className="switch">
+                                            <Switch
+                                                checked={state.checkedA}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedA"
+                                                id="checkedA"
+                                                inputProps={{ 'aria-label': '1.	¿El proyecto está incluido en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?' }}
+                                            />
+                                            1.	¿El proyecto está incluido en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedB" className="switch">
+                                            <Switch
+                                                checked={state.checkedB}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedB"
+                                                id="checkedB"
+                                                inputProps={{ 'aria-label': '2.	¿El alcance, plazo y costo referencial del proyecto han sido establecidos considerando todos los aspectos necesarios para su óptimo funcionamiento?' }}
+                                            />
+                                            2.	¿El alcance, plazo y costo referencial del proyecto han sido establecidos considerando todos los aspectos necesarios para su óptimo funcionamiento? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedC" className="switch">
+                                            <Switch
+                                                checked={state.checkedC}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedC"
+                                                id="checkedC"
+                                                inputProps={{ 'aria-label': '3.	¿Los elementos que componen el diseño del proyecto cuentan con los cálculos respectivos (estructuras, instalaciones, etcétera?' }}
+                                            />
+                                            3.	¿Los elementos que componen el diseño del proyecto cuentan con los cálculos respectivos (estructuras, instalaciones, etcétera? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedD" className="switch">
+                                            <Switch
+                                                checked={state.checkedD}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedD"
+                                                id="checkedD"
+                                                inputProps={{ 'aria-label': '4.	¿Los planos constructivos y las cantidades de los renglones de trabajo unitarios y globales incluyen la totalidad de las áreas del proyecto y su información es correspondiente entre sí?' }}
+                                            />
+                                            4.	¿Los planos constructivos y las cantidades de los renglones de trabajo unitarios y globales incluyen la totalidad de las áreas del proyecto y su información es correspondiente entre sí?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedE" className="switch">
+                                            <Switch
+                                                checked={state.checkedE}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedE"
+                                                id="checkedE"
+                                                inputProps={{ 'aria-label': '5.	¿Los costos están completos y actualizados, no existen omisiones, se basan en precios de mercado? ¿Se ha realizado un análisis del mercado y se ha determinado que existen empresas calificadas para realizar este proyecto?' }}
+                                            />
+                                            5.	¿Los costos están completos y actualizados, no existen omisiones, se basan en precios de mercado? ¿Se ha realizado un análisis del mercado y se ha determinado que existen empresas calificadas para realizar este proyecto?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedF" className="switch">
+                                            <Switch
+                                                checked={state.checkedF}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedF"
+                                                id="checkedF"
+                                                inputProps={{ 'aria-label': '6.	¿El cronograma de construcción de la obra es detallado y se basa en hitos?  ¿el plazo total de la construcción está dentro de la vigencia del Programa?' }}
+                                            />
+                                            6.	¿El cronograma de construcción de la obra es detallado y se basa en hitos?  ¿el plazo total de la construcción está dentro de la vigencia del Programa?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedG" className="switch">
+                                            <Switch
+                                                checked={state.checkedG}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedG"
+                                                id="checkedG"
+                                                inputProps={{ 'aria-label': '7.	¿Se cuenta con derechos de paso, documentación legal de propiedad de los terrenos; permisos (licencias) de construcción y ambientales que habiliten el inicio de la construcción?' }}
+                                            />
+                                            7.	¿Se cuenta con derechos de paso, documentación legal de propiedad de los terrenos; permisos (licencias) de construcción y ambientales que habiliten el inicio de la construcción?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedH" className="switch">
+                                            <Switch
+                                                checked={state.checkedH}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedH"
+                                                id="checkedH"
+                                                inputProps={{ 'aria-label': '8.	¿Las autoridades locales / organizaciones comunitarias están enteradas de la realización del proyecto y son parte de la coordinación de la implementación?' }}
+                                            />
+                                            8.	¿Las autoridades locales / organizaciones comunitarias están enteradas de la realización del proyecto y son parte de la coordinación de la implementación?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedI" className="switch">
+                                            <Switch
+                                                checked={state.checkedI}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedI"
+                                                id="checkedI"
+                                                inputProps={{ 'aria-label': '9.	¿El diseño del proyecto contempla aspectos de mantenimiento y sostenibilidad?' }}
+                                            />
+                                            9.	¿El diseño del proyecto contempla aspectos de mantenimiento y sostenibilidad?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedJ" className="switch">
+                                            <Switch
+                                                checked={state.checkedJ}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedJ"
+                                                id="checkedJ"
+                                                inputProps={{ 'aria-label': '10 ¿La supervisión de la construcción está prevista claramente desde el diseño y es idónea para el tipo de proyecto?' }}
+                                            />
+                                            10.	¿La supervisión de la construcción está prevista claramente desde el diseño y es idónea para el tipo de proyecto? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedK" className="switch">
+                                            <Switch
+                                                checked={state.checkedK}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedK"
+                                                id="checkedK"
+                                                inputProps={{ 'aria-label': '11. ¿Los criterios de evaluación técnica de los oferentes están claros, son objetivos, verificables y cumplibles? ¿El perfil de la empresa que tendrá a su cargo la construcción, es idóneo para el tipo de obra?' }}
+                                            />
+                                            11.	¿Los criterios de evaluación técnica de los oferentes están claros, son objetivos, verificables y cumplibles? ¿El perfil de la empresa que tendrá a su cargo la construcción, es idóneo para el tipo de obra?
+                                        </label>
+                                    </div>
+                                </React.Fragment>
+                            ) : 
+                            
+                            activity.cs_tipo_plan === 2 || activity.cs_tipo_plan === 3 || activity.cs_tipo_plan === 6 ?
+                            (
+                                <React.Fragment>
+                                    <div className="full">
+                                        <label htmlFor="checkedA" className="switch">
+                                            <Switch
+                                                checked={state.checkedA}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedA"
+                                                id="checkedA"
+                                                inputProps={{ 'aria-label': '1.	¿Los bienes o servicios están incluidos en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?' }}
+                                            />
+                                            1.	¿Los bienes o servicios están incluidos en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedB" className="switch">
+                                            <Switch
+                                                checked={state.checkedB}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedB"
+                                                id="checkedB"
+                                                inputProps={{ 'aria-label': '2.	¿Las especificaciones técnicas de los bienes están definidas de manera completa no presentan omisiones?' }}
+                                            />
+                                            2.	¿Las especificaciones técnicas de los bienes están definidas de manera completa no presentan omisiones? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedC" className="switch">
+                                            <Switch
+                                                checked={state.checkedC}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedC"
+                                                id="checkedC"
+                                                inputProps={{ 'aria-label': '3.	¿La tecnología es adecuada y actual y no hace referencia a marcas ni a estándares específicos del mercado?' }}
+                                            />
+                                            3.	¿La tecnología es adecuada y actual y no hace referencia a marcas ni a estándares específicos del mercado?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedD" className="switch">
+                                            <Switch
+                                                checked={state.checkedD}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedD"
+                                                id="checkedD"
+                                                inputProps={{ 'aria-label': '4.	¿Los costos referenciales están completos y actualizados, no existen omisiones?' }}
+                                            />
+                                            4.	¿Los costos referenciales están completos y actualizados, no existen omisiones?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedE" className="switch">
+                                            <Switch
+                                                checked={state.checkedE}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedE"
+                                                id="checkedE"
+                                                inputProps={{ 'aria-label': '5.	¿El mantenimiento, si corresponde, está previsto?' }}
+                                            />
+                                            5.	¿El mantenimiento, si corresponde, está previsto?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedF" className="switch">
+                                            <Switch
+                                                checked={state.checkedF}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedF"
+                                                id="checkedF"
+                                                inputProps={{ 'aria-label': '6.	¿El entrenamiento a los usuarios/operarios de los bienes o servicios, si corresponde, está previsto?' }}
+                                            />
+                                            6.	¿El entrenamiento a los usuarios/operarios de los bienes o servicios, si corresponde, está previsto?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedG" className="switch">
+                                            <Switch
+                                                checked={state.checkedG}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedG"
+                                                id="checkedG"
+                                                inputProps={{ 'aria-label': '7.	¿El mercado ha sido evaluado y existen potenciales oferentes para la provisión del bien o servicio?' }}
+                                            />
+                                            7.	¿El mercado ha sido evaluado y existen potenciales oferentes para la provisión del bien o servicio?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedH" className="switch">
+                                            <Switch
+                                                checked={state.checkedH}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedH"
+                                                id="checkedH"
+                                                inputProps={{ 'aria-label': '8.	¿Los criterios de instalación, prueba, almacenaje, derechos de propiedad y lugar de instalación están definidos?' }}
+                                            />
+                                            8.	¿Los criterios de instalación, prueba, almacenaje, derechos de propiedad y lugar de instalación están definidos? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedI" className="switch">
+                                            <Switch
+                                                checked={state.checkedI}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedI"
+                                                id="checkedI"
+                                                inputProps={{ 'aria-label': '9.	¿La supervisión de la instalación está prevista claramente desde el diseño?' }}
+                                            />
+                                            9.	¿La supervisión de la instalación está prevista claramente desde el diseño? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedJ" className="switch">
+                                            <Switch
+                                                checked={state.checkedJ}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedJ"
+                                                id="checkedJ"
+                                                inputProps={{ 'aria-label': '10 ¿La supervisión de la construcción está prevista claramente desde el diseño y es idónea para el tipo de proyecto?' }}
+                                            />
+                                            10.	¿Los procedimientos / criterios de recepción de bienes o servicios están definidos?
+                                        </label>
+                                    </div>
+                                </React.Fragment>
+                            ):
+                            activity.cs_tipo_plan === 4 ?
+                            (
+                                <React.Fragment>
+                                    <div className="full">
+                                        <label htmlFor="checkedA" className="switch">
+                                            <Switch
+                                                checked={state.checkedA}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedA"
+                                                id="checkedA"
+                                                inputProps={{ 'aria-label': '1.	¿La consultoría a realizar está incluida en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?' }}
+                                            />
+                                            1.	¿La consultoría a realizar está incluida en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedB" className="switch">
+                                            <Switch
+                                                checked={state.checkedB}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedB"
+                                                id="checkedB"
+                                                inputProps={{ 'aria-label': '2.	¿Los TdR’s están definidos de manera clara y completa (perfil de la firma consultora, productos, actividades, supervisor/aprobador, criterios de evaluación, etcétera)?' }}
+                                            />
+                                            2.	¿Los TdR’s están definidos de manera clara y completa (perfil de la firma consultora, productos, actividades, supervisor/aprobador, criterios de evaluación, etcétera)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedC" className="switch">
+                                            <Switch
+                                                checked={state.checkedC}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedC"
+                                                id="checkedC"
+                                                inputProps={{ 'aria-label': '3.	¿Los productos a entregar están claramente identificados? ' }}
+                                            />
+                                            3.	¿Los productos a entregar están claramente identificados? 
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedD" className="switch">
+                                            <Switch
+                                                checked={state.checkedD}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedD"
+                                                id="checkedD"
+                                                inputProps={{ 'aria-label': '4.	¿Los honorarios incluyen todos los gastos necesarios para realizar la consultoría, corresponden a montos de mercado?' }}
+                                            />
+                                            4.	¿Los honorarios incluyen todos los gastos necesarios para realizar la consultoría, corresponden a montos de mercado?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedE" className="switch">
+                                            <Switch
+                                                checked={state.checkedE}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedE"
+                                                id="checkedE"
+                                                inputProps={{ 'aria-label': '5.	¿El mercado ha sido evaluado y existen potenciales proponentes?' }}
+                                            />
+                                            5.	¿El mercado ha sido evaluado y existen potenciales proponentes?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedF" className="switch">
+                                            <Switch
+                                                checked={state.checkedF}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedF"
+                                                id="checkedF"
+                                                inputProps={{ 'aria-label': '6.	¿Los criterios de evaluación están definidos de manera objetiva? ' }}
+                                            />
+                                            6.	¿Los criterios de evaluación están definidos de manera objetiva? 
+                                        </label>
+                                    </div>
+                                </React.Fragment>
+                            ):
+                            activity.cs_tipo_plan === 5 ?
+                            (
+                                <React.Fragment>
+                                    <div className="full">
+                                        <label htmlFor="checkedA" className="switch">
+                                            <Switch
+                                                checked={state.checkedA}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedA"
+                                                id="checkedA"
+                                                inputProps={{ 'aria-label': '1.	¿La consultoría a realizar está incluida en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?' }}
+                                            />
+                                            1.	¿La consultoría a realizar está incluida en el Plan de Ejecución del Proyecto vigente y vinculado a un indicador de producto del programa, según Matriz de Resultados (MR)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedB" className="switch">
+                                            <Switch
+                                                checked={state.checkedB}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedB"
+                                                id="checkedB"
+                                                inputProps={{ 'aria-label': '2.	¿Los TdR’s están definidos de manera clara y completa (perfil de consultor, productos, actividades, supervisor/aprobador, criterios de evaluación, etcétera)?' }}
+                                            />
+                                            2.	¿Los TdR’s están definidos de manera clara y completa (perfil de consultor, productos, actividades, supervisor/aprobador, criterios de evaluación, etcétera)?
+                                        </label>
+                                    </div>
+                                    <div className="full">
+                                        <label htmlFor="checkedC" className="switch">
+                                            <Switch
+                                                checked={state.checkedC}
+                                                onChange={handleChange}
+                                                color="primary"
+                                                name="checkedC"
+                                                id="checkedC"
+                                                inputProps={{ 'aria-label': '3.	¿Los honorarios incluyen todos los gastos necesarios para realizar la consultoría, corresponden a montos de mercado?' }}
+                                            />
+                                            3.	¿Los honorarios incluyen todos los gastos necesarios para realizar la consultoría, corresponden a montos de mercado?
+                                        </label>
+                                    </div>
+                                </React.Fragment>
+                            ): ""
+                        }
+
                         <button type="button" className="completar-informacion" disabled={disabled} onClick={complete_info}>
                             <FontAwesomeIcon icon="save" /> Completar Información
                             <LinearProgress />
