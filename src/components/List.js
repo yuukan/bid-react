@@ -59,15 +59,13 @@ class List extends Component {
         let processes = null;
 
         let ejecutor = parseInt(localStorage.getItem("bidEjecutor"));
+        let profile = localStorage.getItem("bidProfile");
 
         if (this.props.processes){
             // processes = this.props.processes;
-            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id);
+            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id && !["1","2","3","9"].includes(profile));
         }
             
-
-
-        let profile = localStorage.getItem("bidProfile");
         return (
             <div className="crear-container">
                 <div className="sub-container">

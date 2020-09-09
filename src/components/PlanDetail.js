@@ -318,7 +318,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <EventNote />,
                     tooltip: 'Completar información del contrato',
-                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 72) || !(rowData.cs_app_user_id===user),
+                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 72) || !(rowData.cs_app_user_id===user || profile==="10"),
                     onClick: (event, rowData) => {
                         props.history.push("/item/completar-contrato/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },

@@ -6,6 +6,8 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosCompletarProducto from './ListadoDocumentosCompletarProducto';
 
+import Switch from '@material-ui/core/Switch';
+
 export default function AprobarProductoDirector(props) {
     const [activity, setActivity] = useState(false);
     const [supervisores, setSupervisores] = useState(false);
@@ -13,6 +15,19 @@ export default function AprobarProductoDirector(props) {
     const [producto, setProducto] = useState(["",0]);
     const [supervisor, setSupervisor] = useState(0);
     
+    const [state, setState] = useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
+        checkedE: false,
+        checkedF: false
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
+
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
         axios.post(props.url + "api/get-activity-info",
@@ -47,35 +62,42 @@ export default function AprobarProductoDirector(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        swal({
-            title: "!Aprobación!",
-            text: "¿Enviar aprobación?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aprobar"],
-            dangerMode: true,
-        })
-            .then((certifico) => {
-                if (certifico) {
-                    setDisabled(true);
-                    axios.post(props.url + "api/aprobacion-producto-director",
-                        {
-                            id: producto[1],
-                            user
-                        }
-                    )
-                        .then(function () {
-                            swal("Información", "Se ha enviado la aprobación", "info")
-                                .then(() => {
-                                    setDisabled(false);
-                                    props.getProcesses();
-                                    window.history.back()
-                                });
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-            });
+
+        let q = state.checkedA + state.checkedB + state.checkedC + state.checkedD + state.checkedE + state.checkedF;
+
+        if(q ===6){
+            swal({
+                title: "!Aprobación!",
+                text: "¿Enviar aprobación?",
+                icon: "warning",
+                buttons: ["Cancelar", "Aprobar"],
+                dangerMode: true,
+            })
+                .then((certifico) => {
+                    if (certifico) {
+                        setDisabled(true);
+                        axios.post(props.url + "api/aprobacion-producto-director",
+                            {
+                                id: producto[1],
+                                user
+                            }
+                        )
+                            .then(function () {
+                                swal("Información", "Se ha enviado la aprobación", "info")
+                                    .then(() => {
+                                        setDisabled(false);
+                                        props.getProcesses();
+                                        window.history.back()
+                                    });
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                });
+        }else{
+            swal("Alerta", "Debe de marcar todas las preguntas.", "error");
+        }
     }
 
     const reject = () => {
@@ -194,6 +216,85 @@ export default function AprobarProductoDirector(props) {
                                         urlDocs={props.urlDocs}
                                         delete={false}
                                     />
+                            </div>
+
+                            <div className="full">
+                                <label htmlFor="checkedA" className="switch">
+                                    <Switch
+                                        checked={state.checkedA}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedA"
+                                        id="checkedA"
+                                        inputProps={{ 'aria-label': '1.	Corresponden a lo establecido a los Términos de Referencia' }}
+                                    />
+                                    1.	Corresponden a lo establecido a los Términos de Referencia
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedB" className="switch">
+                                    <Switch
+                                        checked={state.checkedB}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedB"
+                                        id="checkedB"
+                                        inputProps={{ 'aria-label': '2.	Cuentan con la calidad técnica requerida en el contrato' }}
+                                    />
+                                    2.	Cuentan con la calidad técnica requerida en el contrato
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedC" className="switch">
+                                    <Switch
+                                        checked={state.checkedC}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedC"
+                                        id="checkedC"
+                                        inputProps={{ 'aria-label': '3.	Ha sido entregado en el plazo establecido' }}
+                                    />
+                                    3.	Ha sido entregado en el plazo establecido
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedD" className="switch">
+                                    <Switch
+                                        checked={state.checkedD}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedD"
+                                        id="checkedD"
+                                        inputProps={{ 'aria-label': '4.	Cuenta con toda la evidencia documental de soporte del pago' }}
+                                    />
+                                    4.	Cuenta con toda la evidencia documental de soporte del pago
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedE" className="switch">
+                                    <Switch
+                                        checked={state.checkedE}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedE"
+                                        id="checkedE"
+                                        inputProps={{ 'aria-label': '5.	Cumple con el proceso determinado para recepción y aprobación de productos' }}
+                                    />
+                                    5.	Cumple con el proceso determinado para recepción y aprobación de productos
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedF" className="switch">
+                                    <Switch
+                                        checked={state.checkedF}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedF"
+                                        id="checkedF"
+                                        inputProps={{ 'aria-label': '6.	El aprobador del producto es el establecido en los Términos de Referencia' }}
+                                    />
+                                    6.	El aprobador del producto es el establecido en los Términos de Referencia
+                                </label>
                             </div>
 
                             <div className="row">

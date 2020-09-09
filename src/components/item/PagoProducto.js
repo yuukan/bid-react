@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
 import ListadoDocumentosCompletarProducto from './ListadoDocumentosCompletarProducto';
+import Switch from '@material-ui/core/Switch';
 
 export default function PagoProducto(props) {
     const [activity, setActivity] = useState(false);
@@ -13,6 +14,16 @@ export default function PagoProducto(props) {
     const [producto, setProducto] = useState(["",0]);
     const [supervisor, setSupervisor] = useState(0);
     
+    const [state, setState] = useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
+
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
         axios.post(props.url + "api/get-activity-info",
@@ -47,35 +58,41 @@ export default function PagoProducto(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        swal({
-            title: "!Marcar como pagado!",
-            text: "¿Desea continuar?",
-            icon: "warning",
-            buttons: ["Cancelar", "Pagar"],
-            dangerMode: true,
-        })
-            .then((certifico) => {
-                if (certifico) {
-                    setDisabled(true);
-                    axios.post(props.url + "api/pagar-producto",
-                        {
-                            id: producto[1],
-                            user
-                        }
-                    )
-                        .then(function () {
-                            swal("Información", "¡Se ha marcado como pagado!", "info")
-                                .then(() => {
-                                    setDisabled(false);
-                                    props.getProcesses();
-                                    window.history.back()
-                                });
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-            });
+        let q = state.checkedA + state.checkedB + state.checkedC;
+
+        if(q ===3){
+            swal({
+                title: "!Marcar como pagado!",
+                text: "¿Desea continuar?",
+                icon: "warning",
+                buttons: ["Cancelar", "Pagar"],
+                dangerMode: true,
+            })
+                .then((certifico) => {
+                    if (certifico) {
+                        setDisabled(true);
+                        axios.post(props.url + "api/pagar-producto",
+                            {
+                                id: producto[1],
+                                user
+                            }
+                        )
+                            .then(function () {
+                                swal("Información", "¡Se ha marcado como pagado!", "info")
+                                    .then(() => {
+                                        setDisabled(false);
+                                        props.getProcesses();
+                                        window.history.back()
+                                    });
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                });
+        }else{
+            swal("Alerta", "Debe de marcar todas las preguntas.", "error");
+        }
     }
 
     //####################################Return####################################
@@ -161,6 +178,46 @@ export default function PagoProducto(props) {
                                         urlDocs={props.urlDocs}
                                         delete={false}
                                     />
+                            </div>
+
+                            <div className="full">
+                                <label htmlFor="checkedA" className="switch">
+                                    <Switch
+                                        checked={state.checkedA}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedA"
+                                        id="checkedA"
+                                        inputProps={{ 'aria-label': '1.	El contratista / consultor ha presentado su producto conforme el procedimiento de pago y la lista de documentación soporte previamente establecidos' }}
+                                    />
+                                    1.	El contratista / consultor ha presentado su producto conforme el procedimiento de pago y la lista de documentación soporte previamente establecidos
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedB" className="switch">
+                                    <Switch
+                                        checked={state.checkedB}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedB"
+                                        id="checkedB"
+                                        inputProps={{ 'aria-label': '2.	Se dispone de presupuesto para el pago del producto / avance de obra' }}
+                                    />
+                                    2.	Se dispone de presupuesto para el pago del producto / avance de obra
+                                </label>
+                            </div>
+                            <div className="full">
+                                <label htmlFor="checkedC" className="switch">
+                                    <Switch
+                                        checked={state.checkedC}
+                                        onChange={handleChange}
+                                        color="primary"
+                                        name="checkedC"
+                                        id="checkedC"
+                                        inputProps={{ 'aria-label': '3.	Se ha presentado factura de curso legal y válida/vigente' }}
+                                    />
+                                    3.	Se ha presentado factura de curso legal y válida/vigente
+                                </label>
                             </div>
 
                             <div className="row">
