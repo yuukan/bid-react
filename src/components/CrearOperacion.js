@@ -159,7 +159,7 @@ function CrearOperacion(props) {
                         </div>
                         <div className="half">
                             <label htmlFor="fecha_elegibilidad">
-                                Fecha de elegibilidad de la operción
+                                Fecha de elegibilidad de la operación
                             </label>
                             <input
                                 type="date"

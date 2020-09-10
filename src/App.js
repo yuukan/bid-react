@@ -81,8 +81,8 @@ import ConceptoObligatorioLicitacionEnmienda from './components/item/ConceptoObl
 import AprobacionFinalLicitacionEnmienda from './components/item/AprobacionFinalLicitacionEnmienda';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
-let url = "https://pedroizaguirre.com/bid/public/";
-let urlDocs = "https://pedroizaguirre.com/bid/storage/app/";
+let url = "https://eriw.bidropdigital.com/";
+let urlDocs = "https://eriw.bidropdigital.com/storage/app/";
 
 class App extends Component {
   constructor(props) {

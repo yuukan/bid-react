@@ -63,7 +63,7 @@ class List extends Component {
 
         if (this.props.processes){
             // processes = this.props.processes;
-            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id && !["1","2","3","9"].includes(profile));
+            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id || ["1","2","3","9","10"].includes(profile));
         }
             
         return (
