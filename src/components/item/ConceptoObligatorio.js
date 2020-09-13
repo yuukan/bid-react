@@ -20,6 +20,9 @@ export default function ConceptoObligatorio(props) {
         checkedD: false,
         checkedE: false,
         checkedF: false,
+        checkedG: false,
+        checkedH: false,
+        checkedI: false,
     });
 
     const handleChange = (event) => {
@@ -37,7 +40,17 @@ export default function ConceptoObligatorio(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF) {
+        if (
+            state.checkedA 
+            && state.checkedB 
+            && state.checkedC 
+            && state.checkedD 
+            && state.checkedE 
+            && state.checkedF
+            && state.checkedG
+            && state.checkedH
+            && state.checkedI
+        ) {
             swal({
                 text: 'Ingrese el Concepto Obligatorio',
                 content: {
@@ -74,7 +87,7 @@ export default function ConceptoObligatorio(props) {
             }));
 
         } else {
-            swal("Alerta", "Debe de marcar las 6 preguntas.", "error");
+            swal("Alerta", "Debe de marcar las preguntas.", "error");
         }
     }
 
@@ -159,9 +172,9 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedA"
                                 id="checkedA"
-                                inputProps={{ 'aria-label': 'Los diseños son completos, el alcance del proyecto es completo' }}
+                                inputProps={{ 'aria-label': '1. ¿El proceso está en plan de Adquisiciones aprobado?' }}
                             />
-                            Los diseños son completos, el alcance del proyecto es completo
+                            1. ¿El proceso está en plan de Adquisiciones aprobado?
                         </label>
                     </div>
                     <div className="full">
@@ -172,9 +185,9 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedB"
                                 id="checkedB"
-                                inputProps={{ 'aria-label': 'Los planos son completos y con las debidas autorizaciones' }}
+                                inputProps={{ 'aria-label': '2. ¿El documento corresponde al estándar o ha sido acordado con el Banco?' }}
                             />
-                            Los planos son completos y con las debidas autorizaciones
+                            2. ¿El documento corresponde al estándar o ha sido acordado con el Banco?
                         </label>
                     </div>
                     <div className="full">
@@ -185,9 +198,9 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedC"
                                 id="checkedC"
-                                inputProps={{ 'aria-label': 'Los costos estan actualizados a la fecha' }}
+                                inputProps={{ 'aria-label': '3. ¿Los documentos estándar o acordados con el Banco no han sido modificados?' }}
                             />
-                            Los costos estan actualizados a la fecha
+                            3. ¿Los documentos estándar o acordados con el Banco no han sido modificados?
                         </label>
                     </div>
                     <div className="full">
@@ -198,9 +211,9 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedD"
                                 id="checkedD"
-                                inputProps={{ 'aria-label': 'En el mercado existen oferentes ' }}
+                                inputProps={{ 'aria-label': '4. ¿Los requisitos solicitados a los potenciales oferentes no contravienen las políticas del Banco?' }}
                             />
-                            En el mercado existen oferentes
+                            4. ¿Los requisitos solicitados a los potenciales oferentes no contravienen las políticas del Banco?
                         </label>
                     </div>
                     <div className="full">
@@ -211,9 +224,9 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedE"
                                 id="checkedE"
-                                inputProps={{ 'aria-label': 'Los permisos, licencias y derechos estan autorizados' }}
+                                inputProps={{ 'aria-label': '5. ¿Se cuenta con el costo estimado y el mismo es consistente con el que figura en el Plan de Adquisiciones?  ' }}
                             />
-                            Los permisos, licencias y derechos estan autorizados
+                            5. ¿Se cuenta con el costo estimado y el mismo es consistente con el que figura en el Plan de Adquisiciones?  
                         </label>
                     </div>
                     <div className="full">
@@ -224,11 +237,51 @@ export default function ConceptoObligatorio(props) {
                                 color="primary"
                                 name="checkedF"
                                 id="checkedF"
-                                inputProps={{ 'aria-label': 'La tecnologia propuesta es de vanguardia' }}
+                                inputProps={{ 'aria-label': '6. ¿Los plazos establecidos en los documentos de licitación corresponden a los acordados con el Banco?' }}
                             />
-                            La tecnologia propuesta es de vanguardia
+                            6. ¿Los plazos establecidos en los documentos de licitación corresponden a los acordados con el Banco?
                         </label>
                     </div>
+                    <div className="full">
+                        <label htmlFor="checkedG" className="switch">
+                            <Switch
+                                checked={state.checkedG}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedG"
+                                id="checkedG"
+                                inputProps={{ 'aria-label': '7. ¿El documento de licitación contiene las especificaciones técnicas y éstas no contravienen las políticas del Banco?' }}
+                            />
+                            7. ¿El documento de licitación contiene las especificaciones técnicas y éstas no contravienen las políticas del Banco?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedH" className="switch">
+                            <Switch
+                                checked={state.checkedH}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedH"
+                                id="checkedH"
+                                inputProps={{ 'aria-label': '8. ¿Los criterios de evaluación son claros, objetivos y objetivos?' }}
+                            />
+                            8. ¿Los criterios de evaluación son claros, objetivos y objetivos?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedI" className="switch">
+                            <Switch
+                                checked={state.checkedI}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedI"
+                                id="checkedI"
+                                inputProps={{ 'aria-label': '9. ¿El llamado a licitación es consistente con el formato estándar del Banco? ' }}
+                            />
+                            9. ¿El llamado a licitación es consistente con el formato estándar del Banco? 
+                        </label>
+                    </div>
+
                     <div className="full">
                         <button type="button" className="save" onClick={approve} disabled={disabled}>
                             <FontAwesomeIcon icon="save" /> Aprobar
