@@ -82,7 +82,7 @@ export default function SubirDocumentosBase(props) {
     };
     //####################################Completar Información#########################################
     const complete_info = () => {
-        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF && state.checkedG && state.checkedH && state.checkedI && state.checkedJ && state.checkedK && state.checkedL && state.checkedM && state.checkedN && state.checkedO) {
+        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF && state.checkedG && state.checkedH && state.checkedI) {
             swal({
                 title: "¿Completar Información?",
                 text: "Mandaremos los documentos a Aprobación.",
@@ -246,9 +246,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedA"
                                     id="checkedA"
-                                    inputProps={{ 'aria-label': 'Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.' }}
+                                    inputProps={{ 'aria-label': '1. ¿El proceso está en el Plan de Adquisiciones aprobado?' }}
                                 />
-                                Objetivo del proyecto y su alcance está bien definido: alcance, tiempo y costo.
+                                1. ¿El proceso está en el Plan de Adquisiciones aprobado?
                             </label>
                         </div>
                         <div className="full">
@@ -259,9 +259,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedB"
                                     id="checkedB"
-                                    inputProps={{ 'aria-label': ' Los beneficios del proyecto están claramente identificados y se pueden medir.' }}
+                                    inputProps={{ 'aria-label': '2. ¿El documento corresponde al estándar o ha sido acordado con el Banco?' }}
                                 />
-                                Los beneficios del proyecto están claramente identificados y se pueden medir.
+                               2. ¿El documento corresponde al estándar o ha sido acordado con el Banco?
                             </label>
                         </div>
                         <div className="full">
@@ -272,9 +272,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedC"
                                     id="checkedC"
-                                    inputProps={{ 'aria-label': ' La descripción o identificación cada una de las áreas o componentes del proyecto están completas.' }}
+                                    inputProps={{ 'aria-label': '3. ¿Los documentos estándar o acordados con el Banco no han sido modificados? ' }}
                                 />
-                                La descripción o identificación cada una de las áreas o componentes del proyecto están completas.
+                               3. ¿Los documentos estándar o acordados con el Banco no han sido modificados? 
                             </label>
                         </div>
                         <div className="full">
@@ -285,9 +285,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedD"
                                     id="checkedD"
-                                    inputProps={{ 'aria-label': ' El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.' }}
+                                    inputProps={{ 'aria-label': '4. ¿Los requisitos solicitados a los potenciales oferentes no contravienen las políticas del Banco? ' }}
                                 />
-                                El diseño del proyecto está completo en todo su alcance, no queda nada por definir para implementarlo.
+                               4. ¿Los requisitos solicitados a los potenciales oferentes no contravienen las políticas del Banco? 
                             </label>
                         </div>
                         <div className="full">
@@ -298,9 +298,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedE"
                                     id="checkedE"
-                                    inputProps={{ 'aria-label': 'Planos completos de todas las áreas de trabajo que demanda el proyecto.' }}
+                                    inputProps={{ 'aria-label': '5. ¿Se cuenta con el costo estimado y el mismo es consistente con el que figura en el Plan de Adquisiciones?  ' }}
                                 />
-                                Planos completos de todas las áreas de trabajo que demanda el proyecto.
+                                5. ¿Se cuenta con el costo estimado y el mismo es consistente con el que figura en el Plan de Adquisiciones?  
                             </label>
                         </div>
                         <div className="full">
@@ -311,9 +311,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedF"
                                     id="checkedF"
-                                    inputProps={{ 'aria-label': 'Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.' }}
+                                    inputProps={{ 'aria-label': '6. ¿Los plazos establecidos en los documentos de licitación corresponden a los acordados con el Banco?' }}
                                 />
-                                Cálculos unitarios y globales  completos de los trabajos a realizar en cada actividad, no hany comisiones de cálculo o cálculos pendientes y están actualizados.
+                                6. ¿Los plazos establecidos en los documentos de licitación corresponden a los acordados con el Banco?
                             </label>
                         </div>
                         <div className="full">
@@ -324,9 +324,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedG"
                                     id="checkedG"
-                                    inputProps={{ 'aria-label': 'Los costos están completos y actualizados.' }}
+                                    inputProps={{ 'aria-label': '7. ¿El documento de licitación contiene las especificaciones técnicas y éstas no contravienen las políticas del Banco?' }}
                                 />
-                                Los costos están completos y actualizados.
+                                7. ¿El documento de licitación contiene las especificaciones técnicas y éstas no contravienen las políticas del Banco?
                             </label>
                         </div>
                         <div className="full">
@@ -337,9 +337,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedH"
                                     id="checkedH"
-                                    inputProps={{ 'aria-label': 'Las especificaciones técnicas están completas y actualizadas' }}
+                                    inputProps={{ 'aria-label': '8. ¿El documento de licitación contiene los criterios de evaluación y son claros y objetivos?' }}
                                 />
-                                Las especificaciones técnicas están completas y actualizadas
+                                8. ¿El documento de licitación contiene los criterios de evaluación y son claros y objetivos?
                             </label>
                         </div>
                         <div className="full">
@@ -350,87 +350,9 @@ export default function SubirDocumentosBase(props) {
                                     color="primary"
                                     name="checkedI"
                                     id="checkedI"
-                                    inputProps={{ 'aria-label': 'El cronograma tentativo de implementación está identificado y definido.' }}
+                                    inputProps={{ 'aria-label': '9. ¿El llamado a licitación es consistente con el formato estándar del Banco? ' }}
                                 />
-                                El cronograma tentativo de implementación está identificado y definido.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedJ" className="switch">
-                                <Switch
-                                    checked={state.checkedJ}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedJ"
-                                    id="checkedJ"
-                                    inputProps={{ 'aria-label': 'El mercado ha sido evaluado y existen potenciales oferentes' }}
-                                />
-                                El mercado ha sido evaluado y existen potenciales oferentes
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedK" className="switch">
-                                <Switch
-                                    checked={state.checkedK}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedK"
-                                    id="checkedK"
-                                    inputProps={{ 'aria-label': 'Licencias y permisos ambiental están completos y debidamente autorizados' }}
-                                />
-                                Licencias y permisos ambiental están completos y debidamente autorizados
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedL" className="switch">
-                                <Switch
-                                    checked={state.checkedL}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedL"
-                                    id="checkedL"
-                                    inputProps={{ 'aria-label': 'Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada' }}
-                                />
-                                Propiedad de terrenos/inmuebles, si aplica, esta liberadoa/saneada
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedM" className="switch">
-                                <Switch
-                                    checked={state.checkedM}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedM"
-                                    id="checkedM"
-                                    inputProps={{ 'aria-label': 'Derechos de paso están otorgados y saneados.' }}
-                                />
-                                Derechos de paso están otorgados y saneados.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedN" className="switch">
-                                <Switch
-                                    checked={state.checkedN}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedN"
-                                    id="checkedN"
-                                    inputProps={{ 'aria-label': 'Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.' }}
-                                />
-                                Las autoridades locales están enteradas de la realización del proyecto y se coordinó la implementación.
-                            </label>
-                        </div>
-                        <div className="full">
-                            <label htmlFor="checkedO" className="switch"> 
-                                <Switch
-                                    checked={state.checkedO}
-                                    onChange={handleChange}
-                                    color="primary"
-                                    name="checkedO"
-                                    id="checkedO"
-                                    inputProps={{ 'aria-label': 'La supervisión está contratada o estará contratada antes del inicio del proyecto' }}
-                                />
-                                La supervisión está contratada o estará contratada antes del inicio del proyecto
+                                9. ¿El llamado a licitación es consistente con el formato estándar del Banco? 
                             </label>
                         </div>
                         
