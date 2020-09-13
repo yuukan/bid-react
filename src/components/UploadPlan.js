@@ -49,7 +49,9 @@ export default function UploadPlan(props) {
                                 // e.target.reset();
                             })
                             .catch(function (error) {
-                                console.log(error);
+                                // console.log(error);
+                                swal("Error", "!Revise el plan cargado!", "error")
+                                setDisabled(false);
                             });
                     }
                 });
