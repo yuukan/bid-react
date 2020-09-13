@@ -7,7 +7,10 @@ import Switch from '@material-ui/core/Switch';
 
 export default function AprobacionDirector(props) {
     const [state, setState] = useState({
-        checkedA: false
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
     });
 
     const handleChange = (event) => {
@@ -17,7 +20,12 @@ export default function AprobacionDirector(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        if (state.checkedA) {
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+        ) {
             axios.post(props.url + "api/aprobacion-director",
                 {
                     id: props.match.params.id,
@@ -106,9 +114,48 @@ export default function AprobacionDirector(props) {
                                 color="primary"
                                 name="checkedA"
                                 id="checkedA"
-                                inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
+                                inputProps={{ 'aria-label': '1. ¿El proceso está en plan de Adquisiciones aprobado?' }}
                             />
-                            Certifico que cumple con todos los documentos base.
+                            1. ¿El proceso está en plan de Adquisiciones aprobado?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedB" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedB"
+                                id="checkedB"
+                                inputProps={{ 'aria-label': '2. ¿El costo estimado está actualizado y es razonable? ' }}
+                            />
+                            2. ¿El costo estimado está actualizado y es razonable? 
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedC" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedC"
+                                id="checkedC"
+                                inputProps={{ 'aria-label': '3. ¿Las especificaciones técnicas son pertinentes y obedecen a las necesidades del proyecto?' }}
+                            />
+                            3. ¿Las especificaciones técnicas son pertinentes y obedecen a las necesidades del proyecto?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedD" className="switch">
+                            <Switch
+                                checked={state.checkedD}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedD"
+                                id="checkedD"
+                                inputProps={{ 'aria-label': '4. Los criterios de evaluación son pertinentes y  contemplan los aspectos técnicos necesarios?' }}
+                            />
+                            4. Los criterios de evaluación son pertinentes y  contemplan los aspectos técnicos necesarios?
                         </label>
                     </div>
                     <div className="full">
