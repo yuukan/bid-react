@@ -72,8 +72,8 @@ export default function LlamadoLicitacion(props) {
         }else {
             let s = state2;
             swal({
-                title: "¿Completar Información?",
-                text: "Mandaremos los documentos a Aprobación.",
+                title: "¿Guardar Información?",
+                text: "Guardaremos los documentos.",
                 icon: "warning",
                 buttons: ["Cancelar", "Enviar"],
                 dangerMode: true,
