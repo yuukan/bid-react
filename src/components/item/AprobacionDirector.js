@@ -44,7 +44,7 @@ export default function AprobacionDirector(props) {
                 });
 
         } else {
-            swal("Alerta", "Debe de marcar la aprobación", "error");
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
         }
     }
 
