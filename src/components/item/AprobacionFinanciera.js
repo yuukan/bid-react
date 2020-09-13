@@ -123,11 +123,9 @@ export default function AprobacionFinanciera(props) {
                         <button type="button" className="save" onClick={approve}>
                             <FontAwesomeIcon icon="save" /> Aprobar
                         </button>
-                        {/*
-                        <button type="button" className="cancel" onClick={reject}>
-                            <FontAwesomeIcon icon="times" /> Rechazar
+                        <button type="button" className="cancel" onClick={()=>window.history.back()}>
+                            <FontAwesomeIcon icon="long-arrow-left" /> Regresar
                         </button>
-                        */}
                     </div>
                 </div>
             </div>
