@@ -7,7 +7,10 @@ import Switch from '@material-ui/core/Switch';
 
 export default function ValidacionJefeEquipo(props) {
     const [state, setState] = useState({
-        checkedA: false
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
     });
 
     const handleChange = (event) => {
@@ -25,7 +28,12 @@ export default function ValidacionJefeEquipo(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        if (state.checkedA) {
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+        ) {
             axios.post(props.url + "api/aprobacion-jefe-equipo",
                 {
                     id: props.match.params.id,
@@ -44,7 +52,7 @@ export default function ValidacionJefeEquipo(props) {
                 });
 
         } else {
-            swal("Alerta", "Debe de marcar la aprobacieon", "error");
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
         }
     }
 
@@ -114,9 +122,48 @@ export default function ValidacionJefeEquipo(props) {
                                 color="primary"
                                 name="checkedA"
                                 id="checkedA"
-                                inputProps={{ 'aria-label': 'Certificaco que cumple con todos los requerimientos técnicos.' }}
+                                inputProps={{ 'aria-label': '1. ¿El proceso está en plan de Adquisiciones aprobado?' }}
                             />
-                            Valido que cumple con todos los documentos base.
+                            1. ¿El proceso está en plan de Adquisiciones aprobado?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedB" className="switch">
+                            <Switch
+                                checked={state.checkedB}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedB"
+                                id="checkedB"
+                                inputProps={{ 'aria-label': '2. ¿El costo estimado está actualizado y es razonable?  ' }}
+                            />
+                            2. ¿El costo estimado está actualizado y es razonable?  
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedC" className="switch">
+                            <Switch
+                                checked={state.checkedC}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedC"
+                                id="checkedC"
+                                inputProps={{ 'aria-label': '3. ¿Las especificaciones técnicas son pertinentes y obedecen a las necesidades del proyecto?' }}
+                            />
+                            3. ¿Las especificaciones técnicas son pertinentes y obedecen a las necesidades del proyecto?
+                        </label>
+                    </div>
+                    <div className="full">
+                        <label htmlFor="checkedD" className="switch">
+                            <Switch
+                                checked={state.checkedD}
+                                onChange={handleChange}
+                                color="primary"
+                                name="checkedD"
+                                id="checkedD"
+                                inputProps={{ 'aria-label': '4. Los criterios de evaluación  son técnicamente pertinentes?' }}
+                            />
+                            4. Los criterios de evaluación  son técnicamente pertinentes?
                         </label>
                     </div>
                     <div className="full">
