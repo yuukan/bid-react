@@ -157,7 +157,7 @@ export default function OtorgarNoObjecionEvaluacion(props) {
                                 id="checkedA"
                                 inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
                             />
-                            Certifico que cumple con todos los documentos base.
+                            Certifico que cumple con todos los documentos.
                         </label>
                     </div>
                     <div className="full">
