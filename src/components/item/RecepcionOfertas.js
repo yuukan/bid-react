@@ -192,7 +192,12 @@ export default function RecepcionOfertas(props) {
                         <div className="row file-input space-bellow">
                             <div className="half">
                                 <div className="label">
-                                    Cargar acta de recepción de expresión de interés
+                                    Cargar acta de 
+                                    {
+                                        activity && [1,2,3].includes(activity.cs_tipo_plan) ? ' recepción de ofertas' : activity.cs_tipo_plan!==4 ? ' expresión de interés' : ' expresión de interés para lista corta'
+                                    }
+                                    
+                                    
                                 </div>
                                 <input type="file" name="acta_recepcion" id="acta_recepcion" onChange={onChangeHandler} />
                                 <label htmlFor="acta_recepcion" className={acta_recepcion ? 'active' : ''}>
@@ -240,7 +245,7 @@ export default function RecepcionOfertas(props) {
                         <div className="row file-input space-bellow">
                             <h4>
                                 {
-                                    activity && activity.cs_tipo_plan!==4 ? 'Subir documentos de expresión de interés' : 'Subir documento de expresión de interés para lista corta'
+                                    activity && [1,2,3].includes(activity.cs_tipo_plan) ? 'Subir documentos de ofertas' : activity.cs_tipo_plan!==4 ? 'Subir documentos de expresión de interés' : 'Subir documento de expresión de interés para lista corta'
                                 }
                             </h4>
                             <div className="half">
@@ -271,6 +276,7 @@ export default function RecepcionOfertas(props) {
                                         url={props.url}
                                         urlDocs={props.urlDocs}
                                         delete={true}
+                                        cs_tipo_plan={activity.cs_tipo_plan}
                                     />
                             </div>
                         </div>

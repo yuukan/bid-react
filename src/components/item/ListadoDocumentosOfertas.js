@@ -79,7 +79,9 @@ export default function ListadoDocumentosOfertas(props) {
     return (
         <div className="row flex">
             <h3 className="full">
-                Listado de documentos de expresión de interés
+                {   
+                    [1,2,3].includes(props.cs_tipo_plan) ? 'Subir documentos de ofertas' : props.cs_tipo_plan!==4 ? 'Subir documentos de expresión de interés' : 'Subir documento de expresión de interés para lista corta'
+                }
             </h3>
             {files}
         </div>
