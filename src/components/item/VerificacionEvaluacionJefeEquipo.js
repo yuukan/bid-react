@@ -6,11 +6,21 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
+import Switch from '@material-ui/core/Switch';
 
 export default function VerificacionEvalluacionJefeEquipo(props) {
     const [disabled, setDisabled] = useState(false);
     const [activity, setActivity] = useState(false);
+    const [state, setState] = useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
+    });
 
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -29,25 +39,35 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
 
     //####################################Verify#########################################
     const verify = () => {
-        setDisabled(true);
+        
         let user = localStorage.getItem("bidID");
-        axios.post(props.url + "api/solicitar-verificacion-evaluacion-jefe-equipo",
-            {
-                id: props.match.params.id,
-                user
-            }
-        )
-            .then(function () {
-                swal("Información", "Se ha enviado la solicitud.", "info")
-                    .then(() => {
-                        props.getProcesses();
-                        props.history.goBack();
-                        setDisabled(false);
-                    });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });   
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+        ) {
+            setDisabled(true);
+            axios.post(props.url + "api/solicitar-verificacion-evaluacion-jefe-equipo",
+                {
+                    id: props.match.params.id,
+                    user
+                }
+            )
+                .then(function () {
+                    swal("Información", "Se ha enviado la solicitud.", "info")
+                        .then(() => {
+                            props.getProcesses();
+                            props.history.goBack();
+                            setDisabled(false);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });   
+        } else {
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
+        }
     }
 
     let razon2 = "";
@@ -157,6 +177,59 @@ export default function VerificacionEvalluacionJefeEquipo(props) {
                         cs_estado_proceso_id={48}
                         type={1}
                     />
+                </div>
+
+                <div className="full">
+                    <label htmlFor="checkedA" className="switch">
+                        <Switch
+                            checked={state.checkedA}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedA"
+                            id="checkedA"
+                            inputProps={{ 'aria-label': '1. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?' }}
+                        />
+                        1. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedB" className="switch">
+                        <Switch
+                            checked={state.checkedB}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedB"
+                            id="checkedB"
+                            inputProps={{ 'aria-label': '2.¿La evaluación de la capacidad técnica y financiera de los oferentes cumple con los criterios establecidos en el documento de licitación?' }}
+                        />
+                        2.¿La evaluación de la capacidad técnica y financiera de los oferentes cumple con los criterios establecidos en el documento de licitación?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedC" className="switch">
+                        <Switch
+                            checked={state.checkedC}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedC"
+                            id="checkedC"
+                            inputProps={{ 'aria-label': '3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?' }}
+                        />
+                        3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedD" className="switch">
+                        <Switch
+                            checked={state.checkedD}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedD"
+                            id="checkedD"
+                            inputProps={{ 'aria-label': '4. ¿La recomendación de adjudicación corresponde a la oferta mejor evaluada?' }}
+                        />
+                        4. ¿Las ofertas se recibieron según lo establecido en el documento de licitación?
+                    </label>
                 </div>
 
                 <div className="row">                        
