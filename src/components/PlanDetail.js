@@ -41,6 +41,7 @@ const tableIcons = {
 };
 
 const columns = [
+    { title: 'Estado', field: 'estado_text', cellStyle:{ backgroundColor: '#ccc', fontWeight:'bold',textAlign:'center'} },
     { title: 'Tipo', field: 'tipo' },
     { title: 'Unidad', field: 'unidad' },
     { title: 'Actividad', field: 'actividad' },
@@ -56,7 +57,6 @@ const columns = [
     { title: 'Aviso Especial Adquisición', field: 'aviso_especial_adquisicion' },
     { title: 'Firma Contrato', field: 'firma_contrato' },
     { title: 'Comentarios Método Seleccion', field: 'comentarios_metodo_seleccion' },
-    { title: 'Estado', field: 'estado_text', cellStyle:{ backgroundColor: '#ccc', fontWeight:'bold',textAlign:'center'} },
 ];
 export default function PlanDetail(props) {
 
