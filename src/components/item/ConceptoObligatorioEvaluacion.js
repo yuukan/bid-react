@@ -20,8 +20,7 @@ export default function ConceptoObligatorioEvaluacion(props) {
         checkedB: false,
         checkedC: false,
         checkedD: false,
-        checkedE: false,
-        checkedF: false,
+        checkedE: false
     });
 
     const handleChange = (event) => {
@@ -51,7 +50,13 @@ export default function ConceptoObligatorioEvaluacion(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        if (state.checkedA && state.checkedB && state.checkedC && state.checkedD && state.checkedE && state.checkedF) {
+        if (
+            state.checkedA 
+            && state.checkedB 
+            && state.checkedC 
+            && state.checkedD 
+            && state.checkedE
+        ) {
             swal({
                 text: 'Ingrese el Concepto Obligatorio',
                 content: {
@@ -88,7 +93,7 @@ export default function ConceptoObligatorioEvaluacion(props) {
             }));
 
         } else {
-            swal("Alerta", "Debe de marcar las 6 preguntas.", "error");
+            swal("Alerta", "Debe de marcar las preguntas.", "error");
         }
     }
     let razon2 = "";
@@ -171,9 +176,9 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                 color="primary"
                                 name="checkedA"
                                 id="checkedA"
-                                inputProps={{ 'aria-label': 'Los diseños son completos, el alcance del proyecto es completo' }}
+                                inputProps={{ 'aria-label': '1. ¿El proceso fue debidamente divulgado/publicitado?' }}
                             />
-                            Los diseños son completos, el alcance del proyecto es completo
+                            1. ¿El proceso fue debidamente divulgado/publicitado?
                         </label>
                     </div>
                     <div className="full">
@@ -184,9 +189,9 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                 color="primary"
                                 name="checkedB"
                                 id="checkedB"
-                                inputProps={{ 'aria-label': 'Los planos son completos y con las debidas autorizaciones' }}
+                                inputProps={{ 'aria-label': '2. ¿El Informe de Evaluación está completo y contiene todos los respaldos? ' }}
                             />
-                            Los planos son completos y con las debidas autorizaciones
+                            2. ¿El Informe de Evaluación está completo y contiene todos los respaldos? 
                         </label>
                     </div>
                     <div className="full">
@@ -197,9 +202,9 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                 color="primary"
                                 name="checkedC"
                                 id="checkedC"
-                                inputProps={{ 'aria-label': 'Los costos estan actualizados a la fecha' }}
+                                inputProps={{ 'aria-label': '3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?' }}
                             />
-                            Los costos estan actualizados a la fecha
+                            3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?
                         </label>
                     </div>
                     <div className="full">
@@ -210,9 +215,9 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                 color="primary"
                                 name="checkedD"
                                 id="checkedD"
-                                inputProps={{ 'aria-label': 'En el mercado existen oferentes ' }}
+                                inputProps={{ 'aria-label': '4. ¿La evaluación se realizó conforme lo establecido en el documento de licitación y políticas del Banco?' }}
                             />
-                            En el mercado existen oferentes
+                            4. ¿La evaluación se realizó conforme lo establecido en el documento de licitación y políticas del Banco?
                         </label>
                     </div>
                     <div className="full">
@@ -223,24 +228,12 @@ export default function ConceptoObligatorioEvaluacion(props) {
                                 color="primary"
                                 name="checkedE"
                                 id="checkedE"
-                                inputProps={{ 'aria-label': 'Los permisos, licencias y derechos estan autorizados' }}
+                                inputProps={{ 'aria-label': '5. ¿La recomendación de adjudicación es consistente con el resultado de la evaluación y corresponde a la oferta mejor evaluada? ' }}
                             />
-                            Los permisos, licencias y derechos estan autorizados
+                            5. ¿La recomendación de adjudicación es consistente con el resultado de la evaluación y corresponde a la oferta mejor evaluada? 
                         </label>
                     </div>
-                    <div className="full">
-                        <label htmlFor="checkedF" className="switch">
-                            <Switch
-                                checked={state.checkedF}
-                                onChange={handleChange}
-                                color="primary"
-                                name="checkedF"
-                                id="checkedF"
-                                inputProps={{ 'aria-label': 'La tecnologia propuesta es de vanguardia' }}
-                            />
-                            La tecnologia propuesta es de vanguardia
-                        </label>
-                    </div>
+
                     <div className="full">
                         <button type="button" className="save" onClick={approve} disabled={disabled}>
                             <FontAwesomeIcon icon="save" /> Concepto Obligatorio
