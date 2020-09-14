@@ -91,7 +91,7 @@ export default function RevisionNoObjecionEvaluacion(props) {
             });
 
         } else {
-            swal("Alerta", "Debe de marcar la aprobación", "error");
+            swal("Alerta", "Debe de marcar la certificación", "error");
         }
     }
 
@@ -194,15 +194,15 @@ export default function RevisionNoObjecionEvaluacion(props) {
                                 id="checkedA"
                                 inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
                             />
-                            Certifico que cumple con todos los documentos base.
+                            Certifico que cumple con la no objeción.
                         </label>
                     </div>
                     <div className="full">
                         <button type="button" className="save" onClick={approve}>
-                            <FontAwesomeIcon icon="save" /> Aprobar
+                            <FontAwesomeIcon icon="save" /> Comentario Conforme
                         </button>
                         <button type="button" className="cancel" onClick={deny}>
-                            <FontAwesomeIcon icon="exclamation-triangle" /> Rechazar
+                            <FontAwesomeIcon icon="exclamation-triangle" /> Comentario no conforme
                         </button>
                     </div>
                 </div>
