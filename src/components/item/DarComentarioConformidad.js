@@ -5,9 +5,25 @@ import swal from 'sweetalert';
 import ListadoDocumentosOfertas from './ListadoDocumentosOfertas';
 import ListadoDocumentosEvaluacion from './ListadoDocumentosEvaluacion';
 import ListadoDocumentosConceptoObligatorio from './ListadoDocumentosConceptoObligatorio';
+import Switch from '@material-ui/core/Switch';
 
 export default function DarComentarioConformidad(props) {
     const [activity, setActivity] = useState(false);
+
+    const [state, setState] = useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
+        checkedE: false,
+        checkedF: false,
+        checkedG: false,
+        checkedH: false,
+    });
+
+    const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+    };
 
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -27,36 +43,49 @@ export default function DarComentarioConformidad(props) {
     // Approve this plan
     const approve = () => {
         let user = localStorage.getItem("bidID");
-        swal({
-            text: 'Ingrese el comentario conformidad',
-            content: {
-                element: "input",
-            },
-            button: {
-                text: "Enviar"
-            },
-            icon: "success",
-        }).then((razon => {
-            if (razon) {
-                axios.post(props.url + "api/dar-comentario-conformidad",
-                    {
-                        id: props.match.params.id,
-                        user,
-                        razon
-                    }
-                )
-                    .then(function () {
-                        swal("Información", "Se ha enviado el comentario de conformidad", "info")
-                            .then(() => {
-                                props.getProcesses();
-                                props.history.goBack();
-                            });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                });
-            }
-        }));
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+            && state.checkedE
+            && state.checkedF
+            && state.checkedG
+            && state.checkedH
+        ) {
+            swal({
+                text: 'Ingrese el comentario conformidad',
+                content: {
+                    element: "input",
+                },
+                button: {
+                    text: "Enviar"
+                },
+                icon: "success",
+            }).then((razon => {
+                if (razon) {
+                    axios.post(props.url + "api/dar-comentario-conformidad",
+                        {
+                            id: props.match.params.id,
+                            user,
+                            razon
+                        }
+                    )
+                        .then(function () {
+                            swal("Información", "Se ha enviado el comentario de conformidad", "info")
+                                .then(() => {
+                                    props.getProcesses();
+                                    props.history.goBack();
+                                });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                    });
+                }
+            }));
+        } else {
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
+        }
     }
 
     //####################################Return####################################
@@ -104,6 +133,112 @@ export default function DarComentarioConformidad(props) {
                         cs_estado_proceso_id={48}
                         type={3}
                     />
+                </div>
+
+
+                <div className="full">
+                    <label htmlFor="checkedA" className="switch">
+                        <Switch
+                            checked={state.checkedA}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedA"
+                            id="checkedA"
+                            inputProps={{ 'aria-label': '1. ¿El documento de licitación publicado corresponde al que recibió No Objeción del Banco? ' }}
+                        />
+                        1. ¿El documento de licitación publicado corresponde al que recibió No Objeción del Banco? 
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedB" className="switch">
+                        <Switch
+                            checked={state.checkedB}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedB"
+                            id="checkedB"
+                            inputProps={{ 'aria-label': '2. ¿Las publicaciones se realizaron conforme se establece en las políticas del Banco?' }}
+                        />
+                        2. ¿Las publicaciones se realizaron conforme se establece en las políticas del Banco?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedC" className="switch">
+                        <Switch
+                            checked={state.checkedC}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedC"
+                            id="checkedC"
+                            inputProps={{ 'aria-label': '3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?' }}
+                        />
+                        3. ¿La junta o comisión de evaluación se conformó conforme se establece en el ROP o MOP?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedD" className="switch">
+                        <Switch
+                            checked={state.checkedD}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedD"
+                            id="checkedD"
+                            inputProps={{ 'aria-label': '4. ¿Las ofertas se recibieron según lo establecido en el documento de licitación?' }}
+                        />
+                        4. ¿Las ofertas se recibieron según lo establecido en el documento de licitación?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedE" className="switch">
+                        <Switch
+                            checked={state.checkedE}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedE"
+                            id="checkedE"
+                            inputProps={{ 'aria-label': '5. ¿Todas las consultas de los potenciales oferentes y las inconformidades fueron oportunamente respondidas? ' }}
+                        />
+                        5. ¿Todas las consultas de los potenciales oferentes y las inconformidades fueron oportunamente respondidas? 
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedF" className="switch">
+                        <Switch
+                            checked={state.checkedF}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedF"
+                            id="checkedF"
+                            inputProps={{ 'aria-label': '6. ¿La evaluación de ofertas siguió los procedimientos establecidos en el documento de licitación y políticas del Banco? ' }}
+                        />
+                        6. ¿La evaluación de ofertas siguió los procedimientos establecidos en el documento de licitación y políticas del Banco? 
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedG" className="switch">
+                        <Switch
+                            checked={state.checkedG}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedG"
+                            id="checkedG"
+                            inputProps={{ 'aria-label': '7. ¿Se verificó que los oferentes no se encuentren en la lista de sancionados por el Banco y son elegibles?' }}
+                        />
+                        7. ¿Se verificó que los oferentes no se encuentren en la lista de sancionados por el Banco y son elegibles?
+                    </label>
+                </div>
+                <div className="full">
+                    <label htmlFor="checkedH" className="switch">
+                        <Switch
+                            checked={state.checkedH}
+                            onChange={handleChange}
+                            color="primary"
+                            name="checkedH"
+                            id="checkedH"
+                            inputProps={{ 'aria-label': '8. ¿El Informe de Evaluación y Recomendación de Adjudicación se encuentra completo?' }}
+                        />
+                        8. ¿El Informe de Evaluación y Recomendación de Adjudicación se encuentra completo?
+                    </label>
                 </div>
 
                 <div className="row">
