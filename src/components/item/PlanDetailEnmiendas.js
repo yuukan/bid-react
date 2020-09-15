@@ -41,6 +41,7 @@ const tableIcons = {
 };
 
 const columns = [
+    { title: 'ID', field: 'id' },
     { title: 'Tipo', field: 'tipo' },
     { title: 'Unidad', field: 'unidad' },
     { title: 'Actividad', field: 'actividad' },
