@@ -121,7 +121,7 @@ export default function AprobarProducto(props) {
         <div className="crear-container">
             <div className="sub-container">
                 <h1>
-                    Aprobar el producto (supervisor)
+                    Aprobar el producto Jefe Equipo
                 </h1>
                 
                 <h2>

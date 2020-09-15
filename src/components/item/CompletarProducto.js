@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from 'react';
-import swal from 'sweetalert';
-import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DateTimeFormatter, LocalDate } from "@js-joda/core";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import {LocalDate,DateTimeFormatter}  from "@js-joda/core";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 import ListadoDocumentosCompletarProducto from './ListadoDocumentosCompletarProducto';
 
 export default function CompletarProducto(props) {
@@ -169,7 +169,7 @@ export default function CompletarProducto(props) {
                                                 </button>
                                             </div>
                                         ) :
-                                        key[6]===0 ?
+                                        key[6]===0 || !key[6]  ?
                                         (
                                             <div className="fifth no-bg no-padding">
                                                 <button type="button" className="save" onClick={()=>{setProducto([key[0],key[4],key[7],key[8],key[5]])}}>

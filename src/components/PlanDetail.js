@@ -334,7 +334,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <CheckBox />,
                     tooltip: 'Aprobar producto',
-                    hidden: !["5","10"].includes(profile) || !(rowData.estado === 73 && rowData.q_supervisor>0),
+                    hidden: !["2","10"].includes(profile) || !(rowData.estado === 73 && rowData.q_supervisor>0),
                     onClick: (event, rowData) => {
                         props.history.push("/item/aprobar-producto/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
