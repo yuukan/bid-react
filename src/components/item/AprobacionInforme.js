@@ -229,9 +229,9 @@ export default function AprobacionInforme(props) {
                                             color="primary"
                                             name="checkedA"
                                             id="checkedA"
-                                            inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos técnicos.' }}
+                                            inputProps={{ 'aria-label': 'Certifico que cumple con todos los requerimientos.' }}
                                         />
-                                        Certifico que cumple con todos los documentos base.
+                                        Certifico que cumple con todos los requerimientos.
                                     </label>
                                 </div>
                             </div>
