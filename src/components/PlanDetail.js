@@ -174,7 +174,7 @@ export default function PlanDetail(props) {
                 rowData => ({
                     icon: () => <VisibilityOutlined />,
                     tooltip: [1,2,3].includes(rowData.cs_tipo_plan) ? 'Ver ofertas' : rowData.cs_metodo_seleccion_id!==4 ? 'Ver expresión de interés' : 'Ver expresión de interés para lista corta',
-                    hidden: !(rowData.estado >= 30 && rowData.estado < 54 && rowData.licitacion_ended===1),
+                    hidden: !(((rowData.estado >= 30 && rowData.estado<=36) || (rowData.estado>=44 && rowData.estado < 54)) && rowData.licitacion_ended===1),
                     onClick: (event, rowData) => {
                         props.history.push("/item/ver-ofertas/" + rowData.id+"/"+rowData.actividad+"/"+rowData.tipo_plan + "/" + rowData.cs_process_id);
                     },
