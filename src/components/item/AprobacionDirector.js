@@ -122,7 +122,7 @@ export default function AprobacionDirector(props) {
                     <div className="full">
                         <label htmlFor="checkedB" className="switch">
                             <Switch
-                                checked={state.checkedC}
+                                checked={state.checkedB}
                                 onChange={handleChange}
                                 color="primary"
                                 name="checkedB"
