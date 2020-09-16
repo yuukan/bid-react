@@ -79,6 +79,7 @@ import CompletarContrato from './components/item/CompletarContrato';
 import CertificacionTecnicaLicitacionEnmienda from './components/item/CertificacionTecnicaLicitacionEnmienda';
 import ConceptoObligatorioLicitacionEnmienda from './components/item/ConceptoObligatorioLicitacionEnmienda';
 import AprobacionFinalLicitacionEnmienda from './components/item/AprobacionFinalLicitacionEnmienda';
+import CertificacionContrato from './components/item/CertificacionContrato';
 library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
 
 let url = "https://eriw.bidropdigital.com/";
@@ -723,6 +724,16 @@ class App extends Component {
                         path="/item/aprobacion-contrato/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <AprobacionContrato
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+                          
+                      <Route
+                        path="/item/certificacion-contrato-jefe-equipo/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <CertificacionContrato
                             {...props}
                             url={url}
                             urlDocs={urlDocs}
