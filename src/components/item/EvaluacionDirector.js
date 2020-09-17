@@ -78,63 +78,81 @@ export default function EvaluacionDirector(props) {
     }
     //####################################Verify#########################################
     const verify = () => {
-        let user = localStorage.getItem("bidID");
-        swal({
-            text: '¿Cuál es la razón para la solicitud de verificación?',
-            content: {
-                element: "input",
-            },
-            button: {
-                text: "Solicitar"
-            },
-            icon: "error",
-        }).then((razon => {
-            if (razon) {
-                setDisabled(true);
-                axios.post(props.url + "api/solicitar-verificacion-evaluacion",
-                    {
-                        id: props.match.params.id,
-                        user,
-                        razon
-                    }
-                )
-                    .then(function () {
-                        swal("Información", "Se ha enviado la solicitud.", "info")
-                            .then(() => {
-                                props.getProcesses();
-                                props.history.goBack();
-                                setDisabled(false);
-                            });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            } else {
-                swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
-            }
-        }));
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+        ) {
+            let user = localStorage.getItem("bidID");
+            swal({
+                text: '¿Cuál es la razón para la solicitud de verificación?',
+                content: {
+                    element: "input",
+                },
+                button: {
+                    text: "Solicitar"
+                },
+                icon: "error",
+            }).then((razon => {
+                if (razon) {
+                    setDisabled(true);
+                    axios.post(props.url + "api/solicitar-verificacion-evaluacion",
+                        {
+                            id: props.match.params.id,
+                            user,
+                            razon
+                        }
+                    )
+                        .then(function () {
+                            swal("Información", "Se ha enviado la solicitud.", "info")
+                                .then(() => {
+                                    props.getProcesses();
+                                    props.history.goBack();
+                                    setDisabled(false);
+                                });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                } else {
+                    swal("Información", "Debe de ingresar una razón para el rechazo.", "error")
+                }
+            }));
+        }else {
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
+        }
     }
     //####################################Verify#########################################
     const solicitar_comentario = () => {
-        let user = localStorage.getItem("bidID");   
-        setDisabled(true);
-        axios.post(props.url + "api/solicitar-comentario-conformidad",
-            {
-                id: props.match.params.id,
-                user
-            }
-        )
-            .then(function () {
-                swal("Información", "Se ha solicitado el comentrio de conformidad.", "info")
-                    .then(() => {
-                        props.getProcesses();
-                        props.history.goBack();
-                        setDisabled(false);
-                    });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if (
+            state.checkedA
+            && state.checkedB
+            && state.checkedC
+            && state.checkedD
+        ) {
+            let user = localStorage.getItem("bidID");   
+            setDisabled(true);
+            axios.post(props.url + "api/solicitar-comentario-conformidad",
+                {
+                    id: props.match.params.id,
+                    user
+                }
+            )
+                .then(function () {
+                    swal("Información", "Se ha solicitado el comentrio de conformidad.", "info")
+                        .then(() => {
+                            props.getProcesses();
+                            props.history.goBack();
+                            setDisabled(false);
+                        });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }else {
+            swal("Alerta", "Debe de marcar todas las preguntas", "error");
+        }
     }
 
     let razon1 = "";
