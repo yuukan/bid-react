@@ -75,6 +75,17 @@ class Header extends Component {
                                     Enmiendas
                                 </Link>
                             </li>
+                            {
+                                ["10"].includes(profile) ?
+                                (
+                                    <li>
+                                        <Link className={this.props.current === "reporte-vencimiento" ? "active" : ""} to="/reporte-vencimiento" onClick={() => { this.props.changeCurrent("reporte-vencimiento"); this.changeMenuStatus(); }}>
+                                            <FontAwesomeIcon icon="file-chart-line" />
+                                            Reporte Vencimiento
+                                        </Link>
+                                    </li>
+                                ) : ""
+                            }
                         </ul>
                     </div>
                     <div className="empty-clickable" onClick={this.changeMenuStatus}></div>

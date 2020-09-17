@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import CrearOperacion from './components/CrearOperacion';
 import List from './components/List';
+import ReporteVencimiento from './components/ReporteVencimiento';
 import UploadDocuments from './components/UploadDocuments';
 import UploadPlan from './components/UploadPlan';
 import AprobacionJefeUnidadEjecutora from './components/AprobacionJefeUnidadEjecutora';
@@ -14,6 +15,7 @@ import AprobacionJefeEquipoBanco from './components/AprobacionJefeEquipoBanco';
 import ConceptoObligatorio from './components/ConceptoObligatorio';
 import AprobacionFinal from './components/AprobacionFinal';
 import ViewPlan from './components/ViewPlan';
+import ViewPlanDetail from './components/ViewPlanDetail';
 import EditarDetallePlan from './components/EditarDetallePlan';
 import axios from 'axios';
 // #################################################################
@@ -68,7 +70,7 @@ import './css/App.css';
 
 // Fontawesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck } from '@fortawesome/pro-solid-svg-icons';
+import { faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck, faFileChartLine } from '@fortawesome/pro-solid-svg-icons';
 import ConceptoObligatorioEvaluacionListaCorta from './components/item/ConceptoObligatorioEvaluacionListaCorta';
 import OtorgarNoObjecionEvaluacionListaCorta from './components/item/OtorgarNoObjecionEvaluacionListaCorta';
 import RevisionNoObjecionEvaluacionListaCorta from './components/item/RevisionNoObjecionEvaluacionListaCorta';
@@ -80,7 +82,8 @@ import CertificacionTecnicaLicitacionEnmienda from './components/item/Certificac
 import ConceptoObligatorioLicitacionEnmienda from './components/item/ConceptoObligatorioLicitacionEnmienda';
 import AprobacionFinalLicitacionEnmienda from './components/item/AprobacionFinalLicitacionEnmienda';
 import CertificacionContrato from './components/item/CertificacionContrato';
-library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck); 
+import VerDetalleContrato from './components/item/VerDetalleContrato';
+library.add(faBars, faHouse, faSignIn, faSignOut, faPlus, faSave, faFileUpload, faList, faDownload, faLongArrowLeft, faTimes, faTrash, faExclamationTriangle,faTools,faInfoSquare,faBandAid,faArrowToLeft,faClipboardListCheck,faPause,faEye,faCheck,faWrench,faMoneyCheck, faFileChartLine); 
 
 let url = "https://eriw.bidropdigital.com/";
 let urlDocs = "https://eriw.bidropdigital.com/storage/app/";
@@ -278,6 +281,8 @@ class App extends Component {
                         url={url}
                       />} />
 
+                  
+
                   <Route path="/crear-operacion"
                     render={(props) =>
                       <CrearOperacion
@@ -291,6 +296,14 @@ class App extends Component {
                   <Route path="/lista"
                     render={(props) =>
                       <List
+                        {...props}
+                        url={url}
+                        processes={this.state.processes}
+                      />} />
+
+                  <Route path="/reporte-vencimiento"
+                    render={(props) =>
+                      <ReporteVencimiento
                         {...props}
                         url={url}
                         processes={this.state.processes}
@@ -376,6 +389,16 @@ class App extends Component {
                   <Route path="/ver-plan/:id"
                     render={(props) =>
                       <ViewPlan
+                        {...props}
+                        url={url}
+                        urlDocs={urlDocs}
+                        getProcesses={this.getProcesses}
+                        processes={this.state.processes}
+                      />} />
+
+                  <Route path="/ver-detalle-plan/:id"
+                    render={(props) =>
+                      <ViewPlanDetail
                         {...props}
                         url={url}
                         urlDocs={urlDocs}
@@ -714,6 +737,16 @@ class App extends Component {
                         path="/item/registro-del-contrato/:id/:description/:tipo/:parent"
                         render={(props) =>
                           <RegistroContrato
+                            {...props}
+                            url={url}
+                            urlDocs={urlDocs}
+                            getProcesses={this.getProcesses}
+                          />} />
+
+                      <Route
+                        path="/item/ver-detalle-contrato/:id/:description/:tipo/:parent"
+                        render={(props) =>
+                          <VerDetalleContrato
                             {...props}
                             url={url}
                             urlDocs={urlDocs}

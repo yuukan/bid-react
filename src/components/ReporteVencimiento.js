@@ -17,7 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { CloudUpload, Visibility, Publish, ThumbUp, EmojiObjects, Assignment, VerifiedUser } from '@material-ui/icons/';
+import { Visibility } from '@material-ui/icons/';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -39,13 +39,14 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
 };
 
-class List extends Component {
+export default class ReporteVencimiento extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             columns: [
                 { title: 'ID', field: 'id' },
+                { title: 'Fecha Creación', field: 'fecha_creacion' },
                 { title: 'Orden', field: 'name' },
                 { title: 'Número de Proyecto', field: 'project_number' },
                 { title: 'Tipo de Proyecto', field: 'type' },
@@ -58,19 +59,15 @@ class List extends Component {
 
         let processes = null;
 
-        let ejecutor = parseInt(localStorage.getItem("bidEjecutor"));
-        let profile = localStorage.getItem("bidProfile");
-
         if (this.props.processes){
-            // processes = this.props.processes;
-            processes = this.props.processes.filter(key => ejecutor===key.ejecutor_id || ["1","2","3","9","10"].includes(profile));
+            processes = this.props.processes;
         }
             
         return (
             <div className="crear-container">
                 <div className="sub-container">
                     <h1>
-                        Listado de Ordenes
+                        Reporte vencimiento por actividad de operación
                     </h1>
                     <div className="list-container">
                         {
@@ -85,60 +82,10 @@ class List extends Component {
                                     }}
                                     actions={[
                                         rowData => ({
-                                            icon: CloudUpload,
-                                            tooltip: 'Subir Documentos',
-                                            hidden: !["3", "2", "1", "10"].includes(profile),
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/subir-documentos/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
-                                            icon: () => rowData.estado === 8 || rowData.estado === 9 || rowData.estado === 10 || rowData.estado === 11 ? <Publish color="error" /> : <Publish />,
-                                            tooltip: 'Subir Plan',
-                                            // hidden: !["3", "7", "1", "10"].includes(profile) || (rowData.estado !== 1 && rowData.estado !== 2 && rowData.estado !== 8 && rowData.estado !== 9 && rowData.estado !== 10 && rowData.estado !== 11),
-                                            hidden: !["3", "7", "1", "10"].includes(profile),
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/subir-plan/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
-                                            icon: () => rowData.estado === 9 ? <ThumbUp color="error" /> : <ThumbUp />,
-                                            tooltip: 'Aprobación jefe unidad ejecutora',
-                                            hidden: !["4","10"].includes(profile) || (rowData.estado !== 3 && rowData.estado !== 9),
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/aprobacion-jefe-unidad-ejecutora/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
-                                            icon: () => rowData.estado === 10 ? <EmojiObjects color="error" /> : <EmojiObjects />,
-                                            tooltip: 'Aprobación jefe equipo banco',
-                                            hidden: !["2","10"].includes(profile) || (rowData.estado !== 4 && rowData.estado !== 10),
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/aprobacion-jefe-equipo-banco/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
-                                            icon: () => rowData.estado === 11 ? <Assignment color="error" /> : <Assignment />,
-                                            tooltip: 'Concepto obligatorio',
-                                            hidden: !["3","10"].includes(profile) || (rowData.estado !== 5 && rowData.estado !== 11),
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/concepto-obligatorio/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
-                                            icon: VerifiedUser,
-                                            tooltip: 'Aprobación Final',
-                                            hidden: !["2","10"].includes(profile) || rowData.estado !== 6,
-                                            onClick: (event, rowData) => {
-                                                this.props.history.push("/aprobacion-final/" + rowData.id);
-                                            },
-                                        }),
-                                        rowData => ({
                                             icon: Visibility,
-                                            tooltip: 'Ver plan de adquisiciones',
-                                            hidden: rowData.estado !== 7,
+                                            tooltip: 'Ver actividades del plan',
                                             onClick: (event, rowData) => {
-                                                this.props.history.push("/ver-plan/" + rowData.id);
+                                                this.props.history.push("/ver-detalle-plan/" + rowData.id);
                                             },
                                         }),
                                     ]}
@@ -152,7 +99,7 @@ class List extends Component {
                                             searchPlaceholder: 'Buscar'
                                         },
                                         header: {
-                                            actions: 'Acciones'
+                                            actions: 'Ver detalle'
                                         },
                                         body: {
                                             emptyDataSourceMessage: 'No existen ordenes',
@@ -171,4 +118,3 @@ class List extends Component {
         );
     }
 }
-export default List;
